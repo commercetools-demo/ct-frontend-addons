@@ -38,11 +38,9 @@ export const addToCart = (originalCb: ActionHandler, config?: Configuration): Ac
 
       const res = await cartApi.addMinimumQuantityToCart(cart, changes);
       const response: Response = {
+        ...originalResult,
         statusCode: 200,
         body: JSON.stringify(res),
-        sessionData: {
-          ...request.sessionData,
-        },
       };
       return response;
     }
@@ -83,11 +81,9 @@ export const updateLineItem = (originalCb: ActionHandler, config?: Configuration
 
       const res = await cartApi.addMinimumQuantityToCart(cart, changes);
       const response: Response = {
+        ...originalResult,
         statusCode: 200,
         body: JSON.stringify(res),
-        sessionData: {
-          ...request.sessionData,
-        },
       };
       return response;
     }
