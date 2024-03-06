@@ -1,8 +1,8 @@
 import { ActionContext, ActionHandler, Request, Response } from '@frontastic/extension-types';
-import { Configuration } from '../types';
-import { extractDependency } from './utils';
-import { Cart } from './types';
-import { getCurrency, getLocale } from '../../utils/request';
+import { Configuration } from '../../types';
+import { extractDependency } from '../utils';
+import { Cart } from '../types';
+import { getCurrency, getLocale } from '../../../utils/request';
 
 export const addToCart = (originalCb: ActionHandler, config?: Configuration): ActionHandler => {
   return async (request: Request, actionContext: ActionContext): Promise<Response> => {

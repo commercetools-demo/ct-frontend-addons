@@ -1,5 +1,5 @@
 import { MergableAction } from '../utils/types';
-import { addToCart, updateLineItem } from './extensions/actions';
+import { addToCart, updateLineItem } from './extensions/actionControllers/cartController';
 
 const minimumQuantity: {
   actions: MergableAction[];
