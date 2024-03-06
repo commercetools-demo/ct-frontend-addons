@@ -1,6 +1,6 @@
 {
   "name": "ct-frontend-addons",
-  "version": "0.1.2",
+  "version": "0.2.1",
   "description": "Commercetools frontend backoffice integration",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
