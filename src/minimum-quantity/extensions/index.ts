@@ -1,8 +1,9 @@
-import { MergableAction } from '../utils/types';
-import { addToCart, updateLineItem } from './extensions/actionControllers/cartController';
+import { MergableAction } from '../../utils/types';
+import { addToCart, updateLineItem } from './actionControllers/cartController';
+import { Configuration } from '../types';
 
 const minimumQuantity: {
-  actions: MergableAction[];
+  actions: MergableAction<Configuration>[];
 } = {
   actions: [
     {

@@ -2,6 +2,7 @@
 
 ## Available modules
 1. [Minimum quantity](src/minimum-quantity/README.md)
+1. [Superuser](src/superuser/README.md)
 
 ## Install
 ```
@@ -13,7 +14,7 @@ yarn add ct-frontend-addons
 
 ```diff
 // backend/index.ts
-+import { injectExtensionsRegistry } from 'ct-frontend-addons/dist';
++import { injectExtensionsRegistry } from 'ct-frontend-addons/dist/extensions';
 
 -export default {
 -  'dynamic-page-handler': mergeDynamicPageHandlers(extensionsToMerge),
