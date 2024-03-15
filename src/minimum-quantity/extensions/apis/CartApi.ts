@@ -1,5 +1,5 @@
-import { Cart } from '../types';
 import { CartUpdate } from '@commercetools/platform-sdk';
+import { Cart } from '../../../shared/types';
 
 export const injectCartApi = (BaseCartApi: any): typeof BaseCartApi => {
   return class CartApi extends BaseCartApi {
