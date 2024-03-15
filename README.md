@@ -2,6 +2,7 @@
 
 ## Available modules
 1. [Minimum quantity](src/minimum-quantity/README.md)
+1. [Superuser](src/superuser/README.md)
 
 ## Install
 ```
