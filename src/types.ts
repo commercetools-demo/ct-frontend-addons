@@ -6,6 +6,7 @@ import { Configuration as ApprovalWorkflowsConfiguration } from './approval-work
 import { Configuration as ProductSearchConfiguration } from './product-search/types';
 import { Configuration as StoreContextConfiguration } from './store-context/types';
 import { Configuration as FeclRulesConfiguration } from './fecl-rules/extensions/types';
+import { Configuration as B2BSubscriptionConfiguration } from './subscription/types';
 
 export enum Module {
   MinimumQuantity = 'minimum-quantity',
@@ -16,6 +17,7 @@ export enum Module {
   ProductSearch = 'product-search',
   StoreContext = 'store-context',
   FeclRules = 'fecl-rules',
+  B2BSubscription = 'b2b-subscription',
 }
 export interface ModuleConfiguration {
   modules: {
@@ -27,5 +29,6 @@ export interface ModuleConfiguration {
     [Module.ProductSearch]?: ProductSearchConfiguration;
     [Module.StoreContext]?: StoreContextConfiguration;
     [Module.FeclRules]?: FeclRulesConfiguration;
+    [Module.B2BSubscription]?: B2BSubscriptionConfiguration;
   };
 }

@@ -1,6 +1,6 @@
 import { Request } from '@frontastic/extension-types';
 import parseQueryParams from './parseRequestParams';
-import { Account } from '../shared/types';
+import { Account } from '@commercetools/frontend-domain-types/account';
 
 export const getPath = (request: Request): string | null => {
   return getHeader(request, 'frontastic-path') ?? request.query.path;
@@ -16,19 +16,21 @@ export const getLocale = (request: Request): string => {
   throw new Error(`Locale is missing from request ${request}`);
 };
 
-export const getCurrency = (request: Request): string => {
-  const currency = getHeader(request, 'frontastic-currency') ?? request.query['currency'];
+export const getCurrency = (request: Request): string | null => {
+  if (request !== undefined) {
+    const currency = getHeader(request, 'frontastic-currency') ?? request.query['currency'];
 
-  if (currency !== undefined) {
-    return getHeader(request, 'frontastic-currency') ?? request.query['currency'];
+    if (currency !== undefined) {
+      return getHeader(request, 'frontastic-currency') ?? request.query['currency'];
+    }
   }
 
-  return 'USD'; //hardcoded for testing
-
-  throw new Error(`Currency is missing from request ${request}`);
+  return null;
 };
+
 const getHeader = (request: Request, header: string): string | null => {
-  if (request?.headers && header in request.headers) {
+  // @ts-ignore
+  if (header in request.headers) {
     // @ts-ignore
     const foundHeader = request.headers[header];
     if (Array.isArray(foundHeader)) {

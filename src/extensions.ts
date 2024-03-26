@@ -8,6 +8,7 @@ import ApprovalWorkflows from './approval-workflows/extensions';
 import ProductSearch from './product-search/extensions';
 import StoreContext from './store-context/extensions';
 import FeclRules from './fecl-rules/extensions';
+import B2BSubscription from './subscription/extensions';
 import { mergeExtensions } from './utils';
 import { ModuleConfiguration, Module } from './types';
 
@@ -64,6 +65,13 @@ export const injectExtensionsRegistry = (
         );
       case Module.FeclRules:
         extensionRegirstry = mergeExtensions(extensionRegirstry, FeclRules, configuration.modules[Module.FeclRules]!);
+        break;
+      case Module.B2BSubscription:
+        extensionRegirstry = mergeExtensions(
+          extensionRegirstry,
+          B2BSubscription,
+          configuration.modules[Module.B2BSubscription]!,
+        );
         break;
       default:
         break;
