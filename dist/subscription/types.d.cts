@@ -1,4 +1,4 @@
-import { G as GeneralConfiguration } from '../types-Dst8Thoo.cjs';
+import { G as GeneralConfiguration } from '../types-B2_pD38A.cjs';
 import '@frontastic/extension-types';
 
 interface Dependencies extends Record<string, any> {
@@ -14,6 +14,7 @@ interface Configuration extends GeneralConfiguration {
         product: {
             attributeNameOnParentProduct: string;
             attributeNameOnSubscriptionProduct: string;
+            productDetailsPageRegex: RegExp;
         };
         lineItemCustomType: {
             customTypeKey: string;

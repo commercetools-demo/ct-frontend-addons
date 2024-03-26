@@ -1,9 +1,12 @@
 import {
   addToCart
-} from "./chunk-S5MIIU3N.js";
+} from "./chunk-OB3S5HHL.js";
 import {
   getAllSubscriptions
-} from "./chunk-GBLCEEJC.js";
+} from "./chunk-ZTX22PIV.js";
+import {
+  injectProductDetailPageHandler
+} from "./chunk-WOVZKRJD.js";
 
 // src/subscription/extensions/index.ts
 var subscription = {
@@ -20,7 +23,10 @@ var subscription = {
       hook: getAllSubscriptions,
       create: true
     }
-  ]
+  ],
+  dynamicPageHandler: {
+    "frontastic/product-page": injectProductDetailPageHandler
+  }
 };
 var extensions_default = subscription;
 

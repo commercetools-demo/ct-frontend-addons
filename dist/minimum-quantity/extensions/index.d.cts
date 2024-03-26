@@ -1,4 +1,4 @@
-import { M as MergableAction, C as Configuration } from '../../types-Dst8Thoo.cjs';
+import { M as MergableAction, C as Configuration } from '../../types-B2_pD38A.cjs';
 import '@frontastic/extension-types';
 
 declare const minimumQuantity: {

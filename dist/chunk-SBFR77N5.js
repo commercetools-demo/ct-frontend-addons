@@ -1,13 +1,13 @@
 import {
-  formatMoneyCurrency,
-  formatNumberForCurrency
-} from "./chunk-5CPHS4XM.js";
-import {
   useCSRLoginForm
 } from "./chunk-JORVGZ3H.js";
 import {
   useStandalonePrice
 } from "./chunk-HP3TMTL3.js";
+import {
+  formatMoneyCurrency,
+  formatNumberForCurrency
+} from "./chunk-5CPHS4XM.js";
 import {
   __export
 } from "./chunk-53DOP6C6.js";

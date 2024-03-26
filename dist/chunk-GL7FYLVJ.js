@@ -1,9 +1,9 @@
 import {
-  extractDependency
-} from "./chunk-XJJ4GMMW.js";
-import {
   CartFetcher
 } from "./chunk-Y5YH7C6K.js";
+import {
+  extractDependency
+} from "./chunk-XJJ4GMMW.js";
 import {
   getCurrency,
   getLocale

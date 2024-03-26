@@ -14,7 +14,8 @@ export interface Configuration extends GeneralConfiguration {
     product: {
       attributeNameOnParentProduct: string;
       attributeNameOnSubscriptionProduct: string; // of type key-value
-    }
+      productDetailsPageRegex: RegExp;
+    };
     lineItemCustomType: {
       customTypeKey: string;
       parentLineItemCustomFieldKey: string;

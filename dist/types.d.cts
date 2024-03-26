@@ -1,4 +1,4 @@
-import { C as Configuration, a as Configuration$1 } from './types-Dst8Thoo.cjs';
+import { C as Configuration, a as Configuration$1 } from './types-B2_pD38A.cjs';
 import { Configuration as Configuration$2 } from './subscription/types.cjs';
 import '@frontastic/extension-types';
 
