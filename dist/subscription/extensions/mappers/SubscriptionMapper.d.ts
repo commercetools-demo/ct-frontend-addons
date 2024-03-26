@@ -7,7 +7,7 @@ import '@commercetools/frontend-domain-types/product/Product';
 import '@commercetools/frontend-domain-types/cart/Cart';
 import '@commercetools/frontend-domain-types/cart/LineItem';
 import '@commercetools/frontend-domain-types/account/Address';
-import '../../../types-Dst8Thoo.js';
+import '../../../types-B2_pD38A.js';
 import '@frontastic/extension-types';
 
 interface SubscriptionMapperType {

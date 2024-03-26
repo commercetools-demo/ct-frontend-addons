@@ -1,5 +1,5 @@
 import { Request, ActionContext, Response, ActionHandler } from '@frontastic/extension-types';
-import { a as Configuration } from '../../../types-Dst8Thoo.cjs';
+import { a as Configuration } from '../../../types-B2_pD38A.cjs';
 
 declare const changePrice: (config?: Configuration) => (request: Request, actionContext: ActionContext) => Promise<Response | undefined>;
 declare const checkoutWithCSR: (originalCb: ActionHandler, config?: Configuration) => ActionHandler;

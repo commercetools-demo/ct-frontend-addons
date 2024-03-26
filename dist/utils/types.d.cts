@@ -1,2 +1,2 @@
 import '@frontastic/extension-types';
-export { e as ActionCreator, d as ActionWrapper, A as AddOnRegistry, b as DataSources, G as GeneralConfiguration, M as MergableAction, U as UnionDependencies } from '../types-Dst8Thoo.cjs';
+export { f as ActionCreator, e as ActionWrapper, A as AddOnRegistry, c as DataSources, g as DynamicPagehandler, G as GeneralConfiguration, M as MergableAction, b as MergableDynamicHandlers, U as UnionDependencies } from '../types-B2_pD38A.cjs';

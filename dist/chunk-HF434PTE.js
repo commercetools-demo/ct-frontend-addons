@@ -1,10 +1,10 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _optionalChain(ops) { let lastAccessLHS = undefined; let value = ops[0]; let i = 1; while (i < ops.length) { const op = ops[i]; const fn = ops[i + 1]; i += 2; if ((op === 'optionalAccess' || op === 'optionalCall') && value == null) { return undefined; } if (op === 'access' || op === 'optionalAccess') { lastAccessLHS = value; value = fn(value); } else if (op === 'call' || op === 'optionalCall') { value = fn((...args) => value.call(lastAccessLHS, ...args)); lastAccessLHS = undefined; } } return value; }
-
-var _chunkRUW2XDBNcjs = require('./chunk-RUW2XDBN.cjs');
-
-
-
-var _chunk3ZKYW53Kcjs = require('./chunk-3ZKYW53K.cjs');
+import {
+  calculateNextDeliveryDate,
+  getSubscriptionGroups
+} from "./chunk-M5BHFVAK.js";
+import {
+  injectCartApi
+} from "./chunk-3ZSQQQS3.js";
 
 // src/subscription/extensions/apis/SubscriptionApi.ts
 var createSubscriptionApi = (BaseApi, configuration) => {
@@ -77,7 +77,7 @@ var createSubscriptionApi = (BaseApi, configuration) => {
             customTypeKey
           } = configuration.props.lineItemCustomType;
           const { attributeNameOnSubscriptionProduct } = configuration.props.product;
-          const subscriptionGroups = _chunk3ZKYW53Kcjs.getSubscriptionGroups.call(void 0, 
+          const subscriptionGroups = getSubscriptionGroups(
             cart,
             parentLineItemCustomFieldKey,
             lineItemIsSubscriptionCustomFieldKey
@@ -86,8 +86,8 @@ var createSubscriptionApi = (BaseApi, configuration) => {
             const productApi = new ProductApi(this.frontasticContext, this.locale, this.currency);
             const cartApi = new CartApi(this.frontasticContext, this.locale, this.currency);
             for await (const sku of Object.keys(subscriptionGroups)) {
-              const interval = attributeNameOnSubscriptionProduct ? parseInt(_optionalChain([subscriptionGroups, 'access', _ => _[sku], 'access', _2 => _2.variant, 'optionalAccess', _3 => _3.attributes, 'optionalAccess', _4 => _4[attributeNameOnSubscriptionProduct], 'optionalAccess', _5 => _5.key])) : 0;
-              const nextDeliveryDate = _chunk3ZKYW53Kcjs.calculateNextDeliveryDate.call(void 0, subscriptionGroups[sku].variant, interval);
+              const interval = attributeNameOnSubscriptionProduct ? parseInt(subscriptionGroups[sku].variant?.attributes?.[attributeNameOnSubscriptionProduct]?.key) : 0;
+              const nextDeliveryDate = calculateNextDeliveryDate(subscriptionGroups[sku].variant, interval);
               const productQuery = {
                 skus: [sku]
               };
@@ -120,10 +120,10 @@ var createSubscriptionApi = (BaseApi, configuration) => {
 
 // src/subscription/extensions/utils.ts
 var extractDependency = (dependency, configuration) => {
-  if (_optionalChain([configuration, 'access', _6 => _6.dependencies, 'optionalAccess', _7 => _7[dependency]])) {
+  if (configuration.dependencies?.[dependency]) {
     switch (dependency) {
       case "CartApi":
-        return _chunkRUW2XDBNcjs.injectCartApi.call(void 0, configuration.dependencies.CartApi);
+        return injectCartApi(configuration.dependencies.CartApi);
       case "ProductApi":
         return configuration.dependencies.ProductApi;
       case "SubscriptionApi":
@@ -147,7 +147,7 @@ var createSubscriptionMapper = (configuration) => {
         customerId: commercetoolsCart.customerId,
         cartVersion: commercetoolsCart.version.toString(),
         lineItems: CartMapper.commercetoolsLineItemsToLineItems(commercetoolsCart.lineItems, locale),
-        email: _optionalChain([commercetoolsCart, 'optionalAccess', _8 => _8.customerEmail]),
+        email: commercetoolsCart?.customerEmail,
         sum: ProductMapper.commercetoolsMoneyToMoney(commercetoolsCart.totalPrice),
         shippingAddress: CartMapper.commercetoolsAddressToAddress(commercetoolsCart.shippingAddress),
         billingAddress: CartMapper.commercetoolsAddressToAddress(commercetoolsCart.billingAddress),
@@ -159,13 +159,13 @@ var createSubscriptionMapper = (configuration) => {
         ),
         taxed: CartMapper.commercetoolsTaxedPriceToTaxed(commercetoolsCart.taxedPrice, locale),
         discountedAmount: ProductMapper.commercetoolsMoneyToMoney(
-          _optionalChain([commercetoolsCart, 'access', _9 => _9.discountOnTotalPrice, 'optionalAccess', _10 => _10.discountedAmount])
+          commercetoolsCart.discountOnTotalPrice?.discountedAmount
         ),
         itemShippingAddresses: commercetoolsCart.itemShippingAddresses,
         origin: commercetoolsCart.origin,
         cartState: CartMapper.commercetoolsCartStateToCartState(commercetoolsCart.cartState),
-        businessUnitKey: _optionalChain([commercetoolsCart, 'access', _11 => _11.businessUnit, 'optionalAccess', _12 => _12.key]),
-        storeKey: _optionalChain([commercetoolsCart, 'access', _13 => _13.store, 'optionalAccess', _14 => _14.key]),
+        businessUnitKey: commercetoolsCart.businessUnit?.key,
+        storeKey: commercetoolsCart.store?.key,
         subscription: SubscriptionMapper.commercetoolsCustomToSubscriptions(
           locale,
           commercetoolsCart.custom,
@@ -182,22 +182,22 @@ var createSubscriptionMapper = (configuration) => {
         return {};
       }
       return {
-        order: _optionalChain([commercetoolsCustom, 'optionalAccess', _15 => _15.fields, 'optionalAccess', _16 => _16[originalOrderFieldKey], 'optionalAccess', _17 => _17.obj]),
-        sku: _optionalChain([commercetoolsCustom, 'optionalAccess', _18 => _18.fields, 'optionalAccess', _19 => _19[subscriptionSKUFieldKey]]),
+        order: commercetoolsCustom?.fields?.[originalOrderFieldKey]?.obj,
+        sku: commercetoolsCustom?.fields?.[subscriptionSKUFieldKey],
         // TODO: Fix this
         // product: ProductMapper.commercetoolsProductProjectionToProduct(
         //   commercetoolsCustom?.fields?.[subscriptionProductFieldKey]?.obj?.masterData?.current,
         //   locale,
         // ),
-        nextDeliveryDate: _optionalChain([commercetoolsCustom, 'optionalAccess', _20 => _20.fields, 'optionalAccess', _21 => _21[nextRecurrenceFieldKey]]),
-        isActive: _optionalChain([commercetoolsCustom, 'optionalAccess', _22 => _22.fields, 'optionalAccess', _23 => _23[isActiveFieldKey]])
+        nextDeliveryDate: commercetoolsCustom?.fields?.[nextRecurrenceFieldKey],
+        isActive: commercetoolsCustom?.fields?.[isActiveFieldKey]
       };
     }
   };
 };
 
-
-
-
-
-exports.createSubscriptionMapper = createSubscriptionMapper; exports.createSubscriptionApi = createSubscriptionApi; exports.extractDependency = extractDependency;
+export {
+  createSubscriptionMapper,
+  createSubscriptionApi,
+  extractDependency
+};

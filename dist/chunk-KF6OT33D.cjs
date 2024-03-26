@@ -1,7 +1,7 @@
 "use strict";Object.defineProperty(exports, "__esModule", {value: true});
 
 
-var _chunkZNFG4SG5cjs = require('./chunk-ZNFG4SG5.cjs');
+var _chunkUIOZDNLScjs = require('./chunk-UIOZDNLS.cjs');
 
 // src/minimum-quantity/extensions/index.ts
 var minimumQuantity = {
@@ -9,12 +9,12 @@ var minimumQuantity = {
     {
       action: "addToCart",
       actionNamespace: "cart",
-      hook: _chunkZNFG4SG5cjs.addToCart
+      hook: _chunkUIOZDNLScjs.addToCart
     },
     {
       action: "updateLineItem",
       actionNamespace: "cart",
-      hook: _chunkZNFG4SG5cjs.updateLineItem
+      hook: _chunkUIOZDNLScjs.updateLineItem
     }
   ]
 };

@@ -1,18 +1,19 @@
-import { ExtensionRegistry } from '@frontastic/extension-types';
-import { ActionCreator, ActionWrapper, AddOnRegistry, GeneralConfiguration } from './types';
+import { DynamicPageContext, ExtensionRegistry, Request } from '@frontastic/extension-types';
+import { ActionCreator, ActionWrapper, AddOnRegistry, DynamicPagehandler, GeneralConfiguration } from './types';
 
-export const mergeExtensions = <T>(
+export const mergeExtensions = <T extends GeneralConfiguration>(
   extensionRegirstry: ExtensionRegistry,
   addOnRegistry: AddOnRegistry<T>,
-  config: GeneralConfiguration,
+  config: T,
 ): ExtensionRegistry => {
   const actionNamespaces = mergeActions<T>(extensionRegirstry, addOnRegistry, config);
   const dataSources = mergeDataSources<T>(extensionRegirstry, addOnRegistry);
-
+  const dynamicPageHandlers = mergeDynamicPageHandlers<T>(extensionRegirstry, addOnRegistry, config);
   return {
     ...extensionRegirstry,
     actions: actionNamespaces,
     'data-sources': dataSources,
+    'dynamic-page-handler': dynamicPageHandlers,
   };
 };
 
@@ -46,4 +47,24 @@ function mergeDataSources<T>(extensionRegirstry: ExtensionRegistry, addOnRegistr
     }
   }
   return dataSources;
+}
+
+function mergeDynamicPageHandlers<T extends GeneralConfiguration>(
+  extensionRegirstry: ExtensionRegistry,
+  addOnRegistry: AddOnRegistry<T>,
+  config: T,
+): DynamicPagehandler {
+  const originalDynamicPageHandler = extensionRegirstry['dynamic-page-handler'];
+  return async (request: Request, context: DynamicPageContext) => {
+    const originalResult = await originalDynamicPageHandler?.(request, context);
+    if (
+      addOnRegistry.dynamicPageHandler &&
+      originalResult &&
+      'dynamicPageType' in originalResult &&
+      addOnRegistry.dynamicPageHandler?.[originalResult.dynamicPageType]
+    ) {
+      return addOnRegistry.dynamicPageHandler[originalResult.dynamicPageType](request, context, originalResult, config);
+    }
+    return originalResult;
+  };
 }

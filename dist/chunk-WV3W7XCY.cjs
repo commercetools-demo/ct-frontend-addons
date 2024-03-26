@@ -1,15 +1,15 @@
-import {
-  extensions_default as extensions_default3
-} from "./chunk-PFT6VYRM.js";
-import {
-  extensions_default as extensions_default2
-} from "./chunk-BROWUJ5W.js";
-import {
-  mergeExtensions
-} from "./chunk-SW2PQCW3.js";
-import {
-  extensions_default
-} from "./chunk-AO3YWNPT.js";
+"use strict";Object.defineProperty(exports, "__esModule", {value: true});
+
+var _chunk375EWEINcjs = require('./chunk-375EWEIN.cjs');
+
+
+var _chunkY3AQLYGEcjs = require('./chunk-Y3AQLYGE.cjs');
+
+
+var _chunk6TCT5IQMcjs = require('./chunk-6TCT5IQM.cjs');
+
+
+var _chunkKF6OT33Dcjs = require('./chunk-KF6OT33D.cjs');
 
 // src/extensions.ts
 var injectExtensionsRegistry = (extensionRegirstry, configuration) => {
@@ -19,23 +19,23 @@ var injectExtensionsRegistry = (extensionRegirstry, configuration) => {
   Object.keys(configuration.modules || {}).forEach((mod) => {
     switch (mod) {
       case "minimum-quantity" /* MinimumQuantity */:
-        extensionRegirstry = mergeExtensions(
+        extensionRegirstry = _chunk6TCT5IQMcjs.mergeExtensions.call(void 0, 
           extensionRegirstry,
-          extensions_default,
+          _chunkKF6OT33Dcjs.extensions_default,
           configuration.modules["minimum-quantity" /* MinimumQuantity */]
         );
         break;
       case "superuser" /* Superuser */:
-        extensionRegirstry = mergeExtensions(
+        extensionRegirstry = _chunk6TCT5IQMcjs.mergeExtensions.call(void 0, 
           extensionRegirstry,
-          extensions_default2,
+          _chunkY3AQLYGEcjs.extensions_default,
           configuration.modules["superuser" /* Superuser */]
         );
         break;
       case "b2b-subscription" /* B2BSubscription */:
-        extensionRegirstry = mergeExtensions(
+        extensionRegirstry = _chunk6TCT5IQMcjs.mergeExtensions.call(void 0, 
           extensionRegirstry,
-          extensions_default3,
+          _chunk375EWEINcjs.extensions_default,
           configuration.modules["b2b-subscription" /* B2BSubscription */]
         );
         break;
@@ -46,6 +46,6 @@ var injectExtensionsRegistry = (extensionRegirstry, configuration) => {
   return extensionRegirstry;
 };
 
-export {
-  injectExtensionsRegistry
-};
+
+
+exports.injectExtensionsRegistry = injectExtensionsRegistry;

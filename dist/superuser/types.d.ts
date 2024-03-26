@@ -1,2 +1,2 @@
-export { a as Configuration, c as Dependencies } from '../types-Dst8Thoo.js';
+export { a as Configuration, d as Dependencies } from '../types-B2_pD38A.js';
 import '@frontastic/extension-types';

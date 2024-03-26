@@ -1,9 +1,12 @@
 "use strict";Object.defineProperty(exports, "__esModule", {value: true});
 
-var _chunkAUYI3KIBcjs = require('./chunk-AUYI3KIB.cjs');
+var _chunkA4ZOZQJJcjs = require('./chunk-A4ZOZQJJ.cjs');
 
 
-var _chunkQSILZYPPcjs = require('./chunk-QSILZYPP.cjs');
+var _chunkM3FM44BIcjs = require('./chunk-M3FM44BI.cjs');
+
+
+var _chunkEFXXIOUScjs = require('./chunk-EFXXIOUS.cjs');
 
 // src/subscription/extensions/index.ts
 var subscription = {
@@ -11,16 +14,19 @@ var subscription = {
     {
       action: "addToCart",
       actionNamespace: "cart",
-      hook: _chunkAUYI3KIBcjs.addToCart,
+      hook: _chunkA4ZOZQJJcjs.addToCart,
       create: true
     },
     {
       action: "getAllSubscriptions",
       actionNamespace: "subscription",
-      hook: _chunkQSILZYPPcjs.getAllSubscriptions,
+      hook: _chunkM3FM44BIcjs.getAllSubscriptions,
       create: true
     }
-  ]
+  ],
+  dynamicPageHandler: {
+    "frontastic/product-page": _chunkEFXXIOUScjs.injectProductDetailPageHandler
+  }
 };
 var extensions_default = subscription;
 

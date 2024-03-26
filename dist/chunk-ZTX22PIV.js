@@ -1,6 +1,6 @@
 import {
   extractDependency
-} from "./chunk-P7CM7Q7Y.js";
+} from "./chunk-HF434PTE.js";
 import {
   getCurrency,
   getLocale

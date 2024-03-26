@@ -1,4 +1,4 @@
-import { M as MergableAction, a as Configuration, b as DataSources } from '../../types-Dst8Thoo.cjs';
+import { M as MergableAction, a as Configuration, c as DataSources } from '../../types-B2_pD38A.cjs';
 import '@frontastic/extension-types';
 
 declare const superuser: {

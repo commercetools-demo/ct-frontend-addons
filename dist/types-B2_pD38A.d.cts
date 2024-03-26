@@ -1,4 +1,4 @@
-import { ActionHandler, DataSourceConfiguration, DataSourceContext } from '@frontastic/extension-types';
+import { ActionHandler, Request, DynamicPageContext, DynamicPageSuccessResult, DynamicPageRedirectResult, DataSourceConfiguration, DataSourceContext } from '@frontastic/extension-types';
 
 interface Dependencies$1 extends Record<string, any> {
     CartApi: any;
@@ -24,9 +24,11 @@ interface MergableAction<T> {
     hook: ActionWrapper<T> | ActionCreator<T>;
     create?: boolean;
 }
+type MergableDynamicHandlers<T> = (request: Request, context: DynamicPageContext, originalResult: DynamicPageSuccessResult, config: T) => Promise<DynamicPageSuccessResult | DynamicPageRedirectResult | null>;
 interface AddOnRegistry<T> {
     actions: MergableAction<T>[];
     dataSources?: DataSources;
+    dynamicPageHandler?: Record<string, MergableDynamicHandlers<T>>;
 }
 interface GeneralConfiguration {
     dependencies: UnionDependencies;
@@ -37,6 +39,7 @@ interface DataSources {
         dataSourcePayload: any;
     }>;
 }
+type DynamicPagehandler = (request: Request, context: DynamicPageContext) => Promise<DynamicPageSuccessResult | DynamicPageRedirectResult | null>;
 
 interface Dependencies extends Record<string, any> {
     CartApi: any;
@@ -48,4 +51,4 @@ interface Configuration extends GeneralConfiguration {
     };
 }
 
-export type { AddOnRegistry as A, Configuration as C, Dependencies as D, GeneralConfiguration as G, MergableAction as M, UnionDependencies as U, Configuration$1 as a, DataSources as b, Dependencies$1 as c, ActionWrapper as d, ActionCreator as e };
+export type { AddOnRegistry as A, Configuration as C, Dependencies as D, GeneralConfiguration as G, MergableAction as M, UnionDependencies as U, Configuration$1 as a, MergableDynamicHandlers as b, DataSources as c, Dependencies$1 as d, ActionWrapper as e, ActionCreator as f, DynamicPagehandler as g };
