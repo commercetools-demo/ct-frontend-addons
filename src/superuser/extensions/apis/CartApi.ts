@@ -21,7 +21,7 @@ export const injectCartApi = (BaseCartApi: any, CartMapper: any): typeof BaseCar
       const locale = await this.getCommercetoolsLocal();
 
       const cartUpdate: CartUpdate = {
-        version: +cart.cartVersion,
+        version: +cart.cartVersion!,
         actions: [
           {
             action: 'setLineItemPrice',

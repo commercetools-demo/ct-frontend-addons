@@ -10,7 +10,7 @@ export const injectCartApi = (BaseCartApi: any): typeof BaseCartApi => {
       const locale = await this.getCommercetoolsLocal();
 
       const cartUpdate: CartUpdate = {
-        version: +cart.cartVersion,
+        version: +cart.cartVersion!,
         actions: changes.map((change) => ({
           action: 'changeLineItemQuantity',
           lineItemId: change.lineItemId,

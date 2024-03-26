@@ -23,6 +23,9 @@ function mergeActions<T>(
 ) {
   const actionNamespaces = extensionRegirstry.actions || {};
   addOnRegistry.actions.forEach((hook) => {
+    if (!actionNamespaces[hook.actionNamespace]) {
+      actionNamespaces[hook.actionNamespace] = {};
+    }
     if (hook.create) {
       actionNamespaces[hook.actionNamespace][hook.action] = (hook.hook as ActionCreator<T>)(config as T);
     } else if (actionNamespaces[hook.actionNamespace]?.[hook.action]) {
