@@ -13,7 +13,6 @@ const subscription: {
       action: 'addToCart',
       actionNamespace: 'cart',
       hook: addToCart as ActionWrapper<Configuration>,
-      create: true,
     },
     {
       action: 'getAllSubscriptions',
