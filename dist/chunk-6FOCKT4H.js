@@ -1,15 +1,15 @@
 import {
   extensions_default as extensions_default3
-} from "./chunk-U24KDBH6.js";
+} from "./chunk-UV6WTXFB.js";
 import {
   extensions_default as extensions_default2
-} from "./chunk-OVZWEEZH.js";
+} from "./chunk-C3I3LBKA.js";
 import {
   mergeExtensions
 } from "./chunk-LMX5WSAA.js";
 import {
   extensions_default
-} from "./chunk-C3TVDZK2.js";
+} from "./chunk-AO3YWNPT.js";
 
 // src/extensions.ts
 var injectExtensionsRegistry = (extensionRegirstry, configuration) => {

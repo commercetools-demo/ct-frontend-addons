@@ -1,6 +1,6 @@
 "use strict";Object.defineProperty(exports, "__esModule", {value: true});
 
-var _chunk375EWEINcjs = require('../../chunk-375EWEIN.cjs');
+var _chunkD42HV6CIcjs = require('../../chunk-D42HV6CI.cjs');
 require('../../chunk-A4ZOZQJJ.cjs');
 require('../../chunk-M3FM44BI.cjs');
 require('../../chunk-EFXXIOUS.cjs');
@@ -13,4 +13,4 @@ require('../../chunk-XOX4LYIZ.cjs');
 require('../../chunk-D7CLCBWV.cjs');
 
 
-exports.default = _chunk375EWEINcjs.extensions_default;
+exports.default = _chunkD42HV6CIcjs.extensions_default;

@@ -7,7 +7,7 @@ var _chunkX6AMZYKQcjs = require('./chunk-X6AMZYKQ.cjs');
 
 
 
-var _chunkWBP6GK7Zcjs = require('./chunk-WBP6GK7Z.cjs');
+var _chunk434NYINVcjs = require('./chunk-434NYINV.cjs');
 
 
 var _chunkL4KGVOI2cjs = require('./chunk-L4KGVOI2.cjs');
@@ -34,17 +34,17 @@ var superuser = {
     {
       action: "checkout",
       actionNamespace: "cart",
-      hook: _chunkWBP6GK7Zcjs.checkoutWithCSR
+      hook: _chunk434NYINVcjs.checkoutWithCSR
     },
     {
       action: "getOrders",
       actionNamespace: "cart",
-      hook: _chunkWBP6GK7Zcjs.getOrders
+      hook: _chunk434NYINVcjs.getOrders
     },
     {
       action: "changePrice",
       actionNamespace: "cart",
-      hook: _chunkWBP6GK7Zcjs.changePrice,
+      hook: _chunk434NYINVcjs.changePrice,
       create: true
     }
   ],

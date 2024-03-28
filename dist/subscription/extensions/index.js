@@ -1,6 +1,6 @@
 import {
   extensions_default
-} from "../../chunk-U24KDBH6.js";
+} from "../../chunk-UV6WTXFB.js";
 import "../../chunk-OB3S5HHL.js";
 import "../../chunk-ZTX22PIV.js";
 import "../../chunk-WOVZKRJD.js";

@@ -1,7 +1,7 @@
 import {
   addToCart,
   updateLineItem
-} from "./chunk-LLLU7UJA.js";
+} from "./chunk-JFZU5ED7.js";
 
 // src/minimum-quantity/extensions/index.ts
 var minimumQuantity = {

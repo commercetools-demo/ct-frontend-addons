@@ -14,8 +14,7 @@ var subscription = {
     {
       action: "addToCart",
       actionNamespace: "cart",
-      hook: _chunkA4ZOZQJJcjs.addToCart,
-      create: true
+      hook: _chunkA4ZOZQJJcjs.addToCart
     },
     {
       action: "getAllSubscriptions",

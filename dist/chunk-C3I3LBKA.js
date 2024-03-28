@@ -7,7 +7,7 @@ import {
   changePrice,
   checkoutWithCSR,
   getOrders
-} from "./chunk-GL7FYLVJ.js";
+} from "./chunk-NBR3PYUE.js";
 import {
   dataSources_default
 } from "./chunk-KURTXYBW.js";
