@@ -1,6 +1,6 @@
 import {
   ProductRouter
-} from "./chunk-VFMHFF2T.js";
+} from "./chunk-2T4GDJP6.js";
 
 // src/subscription/extensions/dynamic-page-handlers/index.ts
 var injectProductDetailPageHandler = (request, context, originalResult, config) => {

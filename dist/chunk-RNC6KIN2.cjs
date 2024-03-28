@@ -1,9 +1,9 @@
 "use strict";Object.defineProperty(exports, "__esModule", {value: true});
 
-var _chunkD42HV6CIcjs = require('./chunk-D42HV6CI.cjs');
+var _chunkVT56AIJBcjs = require('./chunk-VT56AIJB.cjs');
 
 
-var _chunkSUGJV3LQcjs = require('./chunk-SUGJV3LQ.cjs');
+var _chunkHSDF6G4Jcjs = require('./chunk-HSDF6G4J.cjs');
 
 
 var _chunk6TCT5IQMcjs = require('./chunk-6TCT5IQM.cjs');
@@ -28,14 +28,14 @@ var injectExtensionsRegistry = (extensionRegirstry, configuration) => {
       case "superuser" /* Superuser */:
         extensionRegirstry = _chunk6TCT5IQMcjs.mergeExtensions.call(void 0, 
           extensionRegirstry,
-          _chunkSUGJV3LQcjs.extensions_default,
+          _chunkHSDF6G4Jcjs.extensions_default,
           configuration.modules["superuser" /* Superuser */]
         );
         break;
       case "b2b-subscription" /* B2BSubscription */:
         extensionRegirstry = _chunk6TCT5IQMcjs.mergeExtensions.call(void 0, 
           extensionRegirstry,
-          _chunkD42HV6CIcjs.extensions_default,
+          _chunkVT56AIJBcjs.extensions_default,
           configuration.modules["b2b-subscription" /* B2BSubscription */]
         );
         break;

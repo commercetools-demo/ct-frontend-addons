@@ -6,7 +6,7 @@ var _chunkA4ZOZQJJcjs = require('./chunk-A4ZOZQJJ.cjs');
 var _chunkM3FM44BIcjs = require('./chunk-M3FM44BI.cjs');
 
 
-var _chunkEFXXIOUScjs = require('./chunk-EFXXIOUS.cjs');
+var _chunkYVP6EWXEcjs = require('./chunk-YVP6EWXE.cjs');
 
 // src/subscription/extensions/index.ts
 var subscription = {
@@ -24,7 +24,7 @@ var subscription = {
     }
   ],
   dynamicPageHandler: {
-    "frontastic/product-page": _chunkEFXXIOUScjs.injectProductDetailPageHandler
+    "frontastic/product-page": _chunkYVP6EWXEcjs.injectProductDetailPageHandler
   }
 };
 var extensions_default = subscription;
