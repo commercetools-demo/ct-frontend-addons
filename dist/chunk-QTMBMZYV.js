@@ -6,7 +6,7 @@ import {
 } from "./chunk-ZTX22PIV.js";
 import {
   injectProductDetailPageHandler
-} from "./chunk-WOVZKRJD.js";
+} from "./chunk-5SB3VRLF.js";
 
 // src/subscription/extensions/index.ts
 var subscription = {

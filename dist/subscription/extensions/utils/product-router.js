@@ -1,6 +1,6 @@
 import {
   ProductRouter
-} from "../../../chunk-VFMHFF2T.js";
+} from "../../../chunk-2T4GDJP6.js";
 import "../../../chunk-HF434PTE.js";
 import "../../../chunk-M5BHFVAK.js";
 import "../../../chunk-3ZSQQQS3.js";

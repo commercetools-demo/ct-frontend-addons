@@ -28,7 +28,7 @@ export class ProductRouter {
         variants.forEach((variant) => {
           // Store product IDs in referencedProductsMapping for each reference
           referencedProductsMapping.forEach((referenceProductMap) => {
-            const attributes = frontasticContext?.projectConfiguration?.[referenceProductMap.key]?.split(',');
+            const attributes = referenceProductMap.key.split(',');
             if (attributes?.length) {
               const attributeKeys = Object.keys(variant.attributes || {}).filter((attributeKey) =>
                 attributes.includes(attributeKey),
