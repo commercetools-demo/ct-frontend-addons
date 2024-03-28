@@ -1,10 +1,10 @@
 import {
+  extractDependency
+} from "./chunk-U7V7DDWV.js";
+import {
   getCurrency,
   getLocale
 } from "./chunk-OUNJUZFQ.js";
-import {
-  extractDependency
-} from "./chunk-U7V7DDWV.js";
 
 // src/minimum-quantity/extensions/actionControllers/cartController.ts
 var addToCart = (originalCb, config) => {

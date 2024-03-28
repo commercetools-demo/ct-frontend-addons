@@ -14,8 +14,7 @@ var subscription = {
     {
       action: "addToCart",
       actionNamespace: "cart",
-      hook: addToCart,
-      create: true
+      hook: addToCart
     },
     {
       action: "getAllSubscriptions",
