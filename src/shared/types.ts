@@ -16,8 +16,10 @@ export interface LineItem {
   lineItemId: string;
   variant: {
       attributes: Record<string, any>
+      sku?: string
   };
   count: number;
+  parentId?: string;
 }
 
 

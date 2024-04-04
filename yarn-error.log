@@ -1,5 +1,5 @@
 Arguments: 
-  /Users/behnam.tehrani/.nvm/versions/node/v18.18.2/bin/node /usr/local/bin/yarn add @types/lodash.debounce _D
+  /Users/behnam.tehrani/.nvm/versions/node/v18.18.2/bin/node /usr/local/bin/yarn add rimraf copy-css -D
 
 PATH: 
   /Users/behnam.tehrani/.nvm/versions/node/v18.18.2/bin:/Library/Frameworks/Python.framework/Versions/3.11/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/Library/Apple/usr/bin:/usr/local/share/dotnet:~/.dotnet/tools:/Users/behnam.tehrani/.nvm/versions/node/v18.18.2/bin:/Library/Frameworks/Python.framework/Versions/3.11/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/Users/behnam.tehrani/.cargo/bin
@@ -14,7 +14,7 @@ Platform:
   darwin arm64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/_D: Not found
+  Error: https://registry.yarnpkg.com/copy-css: Not found
       at params.callback [as _callback] (/usr/local/lib/node_modules/yarn/lib/cli.js:66145:18)
       at self.callback (/usr/local/lib/node_modules/yarn/lib/cli.js:140890:22)
       at Request.emit (node:events:517:28)
@@ -31,28 +31,13 @@ npm manifest:
     "name": "ct-frontend-addons",
     "version": "0.3.0",
     "description": "Commercetools frontend backoffice integration",
-    "main": "dist/index.js",
-    "types": "dist/index.d.ts",
+    "main": "dist/frontend.cjs",
+    "types": "dist/frontend.d.ts",
+    "module": "dist/frontend.js",
+    "type": "module",
     "files": [
       "dist"
     ],
-    "exports": {
-      ".": {
-        "types": "./dist/index.d.ts",
-        "import": "./dist/index.js",
-        "require": "./dist/index.cjs"
-      },
-      "./extensions": {
-        "types": "./dist/extensions.d.ts",
-        "import": "./dist/extensions.js",
-        "require": "./dist/extensions.cjs"
-      },
-      "./superuser": {
-        "types": "./dist/superuser.d.ts",
-        "import": "./dist/superuser.js",
-        "require": "./dist/superuser.cjs"
-      }
-    },
     "scripts": {
       "lint": "eslint .",
       "lint:fix": "eslint --fix .",
@@ -669,6 +654,18 @@ Lockfile:
     version "7.0.15"
     resolved "https://registry.yarnpkg.com/@types/json-schema/-/json-schema-7.0.15.tgz#596a1747233694d50f6ad8a7869fcb6f56cf5841"
     integrity sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==
+  
+  "@types/lodash.debounce@^4.0.9":
+    version "4.0.9"
+    resolved "https://registry.yarnpkg.com/@types/lodash.debounce/-/lodash.debounce-4.0.9.tgz#0f5f21c507bce7521b5e30e7a24440975ac860a5"
+    integrity sha512-Ma5JcgTREwpLRwMM+XwBR7DaWe96nC38uCBDFKZWbNKD+osjVzdpnUSwBcqCptrp16sSOLBAUb50Car5I0TCsQ==
+    dependencies:
+      "@types/lodash" "*"
+  
+  "@types/lodash@*":
+    version "4.14.202"
+    resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.202.tgz#f09dbd2fb082d507178b2f2a5c7e74bd72ff98f8"
+    integrity sha512-OvlIYQK9tNneDlS0VN54LLd5uiPCBOp7gS5Z0f1mjoJYBrtStzgmJBxONW3U6OZqdtNzZPmn9BS/7WI7BFFcFQ==
   
   "@types/node@^20.11.17":
     version "20.11.24"

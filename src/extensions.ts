@@ -2,6 +2,7 @@ import { ExtensionRegistry } from '@frontastic/extension-types';
 
 import MinimumQuantity from './minimum-quantity/extensions';
 import Superuser from './superuser/extensions';
+import ConfigurableProducts from './configurable-products/extensions';
 import { mergeExtensions } from './utils';
 import { ModuleConfiguration, Module } from './types';
 
@@ -26,6 +27,13 @@ export const injectExtensionsRegistry = (
           extensionRegirstry,
           Superuser,
           configuration.modules[Module.Superuser]!,
+        );
+        break;
+      case Module.ConfigurableProducts:
+        extensionRegirstry = mergeExtensions(
+          extensionRegirstry,
+          ConfigurableProducts,
+          configuration.modules[Module.ConfigurableProducts]!,
         );
         break;
       default:
