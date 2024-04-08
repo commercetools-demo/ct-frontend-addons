@@ -1,2 +1,2 @@
 export { injectExtensionsRegistry } from './extensions';
-export { SuperuserFrontend } from './frontend';
+export { SuperuserFrontend, ConfigurableProducts } from './frontend';

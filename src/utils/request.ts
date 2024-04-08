@@ -1,4 +1,6 @@
 import { Request } from '@frontastic/extension-types';
+import parseQueryParams from './parseRequestParams';
+import { Account } from '../shared/types';
 
 export const getPath = (request: Request): string | null => {
   return getHeader(request, 'frontastic-path') ?? request.query.path;
@@ -37,3 +39,79 @@ const getHeader = (request: Request, header: string): string | null => {
 
   return null;
 };
+
+export const getBusinessUnitKey = (request: Request): string | null => {
+  if (request !== undefined) {
+    const { businessUnitKey } = parseQueryParams<{
+      businessUnitKey: string;
+    }>(request.query);
+
+    return businessUnitKey ?? request.sessionData?.businessUnitKey;
+  }
+
+  return null;
+};
+
+export const getStoreKey = (request: Request): string | null => {
+  if (request !== undefined) {
+    const { storeKey } = parseQueryParams<{
+      storeKey: string;
+    }>(request.query);
+
+    return storeKey ?? request.sessionData?.storeKey;
+  }
+
+  return null;
+};
+
+export const getStoreId = (request: Request): string | null => {
+  if (request !== undefined) {
+    const { storeId } = parseQueryParams<{
+      storeId: string;
+    }>(request.query);
+
+    return storeId ?? request.sessionData?.storeId;
+  }
+
+  return null;
+};
+
+export const getDistributionChannelId = (request: Request): string | null => {
+  if (request !== undefined) {
+    const { distributionChannelId } = parseQueryParams<{
+      distributionChannelId: string;
+    }>(request.query);
+
+    return distributionChannelId ?? request.sessionData?.distributionChannelId;
+  }
+
+  return null;
+};
+
+export const getSupplyChannelId = (request: Request): string | null => {
+  if (request !== undefined) {
+    const { supplyChannelId } = parseQueryParams<{
+      supplyChannelId: string;
+    }>(request.query);
+
+    return supplyChannelId ?? request.sessionData?.supplyChannelId;
+  }
+
+  return null;
+};
+
+export function fetchAccountFromSession(request: Request): Account | undefined {
+  if (request.sessionData?.account !== undefined) {
+    return request.sessionData.account;
+  }
+
+  return undefined;
+}
+
+export function fetchCartIdFromSession(request: Request): string | undefined {
+  if (request.sessionData?.cartId !== undefined) {
+    return request.sessionData.cartId;
+  }
+
+  return undefined;
+}

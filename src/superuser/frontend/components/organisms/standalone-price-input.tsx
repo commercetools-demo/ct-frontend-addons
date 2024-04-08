@@ -53,7 +53,7 @@ const StandalonePriceInput = ({
   }, [priceValue, item]);
 
   const debounceFormatAndSet = useCallback(
-    debounce((value) => {
+    debounce((value: string) => {
       const numericValue = parseFloat(value.replace(/[^0-9\.]/g, ''));
       if (isNaN(numericValue)) return;
 
