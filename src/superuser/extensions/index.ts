@@ -6,7 +6,7 @@ import { changePrice, checkoutWithCSR, getOrders } from './actionControllers/Car
 
 const superuser: {
   actions: MergableAction<Configuration>[];
-  dataSources: DataSourcesType;
+  dataSources: DataSourcesType<Configuration>;
 } = {
   actions: [
     {

@@ -1,3 +1,5 @@
+# 0.5.0
+- add B2B superuser module
 # 0.4.0
 - add configurable components
 # 0.3.0
