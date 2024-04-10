@@ -115,3 +115,7 @@ export function fetchCartIdFromSession(request: Request): string | undefined {
 
   return undefined;
 }
+
+export const getSuperuserFromSession = (request: Request): string | null => {
+  return request.sessionData?.superuser;
+};

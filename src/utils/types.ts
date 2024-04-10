@@ -2,6 +2,7 @@ import {
   ActionHandler,
   DataSourceConfiguration,
   DataSourceContext,
+  DataSourceResult,
   DynamicPageContext,
   DynamicPageRedirectResult,
   DynamicPageSuccessResult,
@@ -9,11 +10,16 @@ import {
 } from '@frontastic/extension-types';
 import { Dependencies as MinimumQuantityDependencies } from '../minimum-quantity/types';
 import { Dependencies as SuperuserDependencies } from '../superuser/types';
+import { Dependencies as SuperuserB2BDependencies } from '../superuser-b2b/types';
+import { Dependencies as ConfigurableProductsDependencies } from '../configurable-products/types';
 
-export type UnionDependencies = MinimumQuantityDependencies | SuperuserDependencies;
+export type UnionDependencies = MinimumQuantityDependencies | SuperuserDependencies | SuperuserB2BDependencies | ConfigurableProductsDependencies;
 
 export type ActionWrapper<T> = (originalCb: ActionHandler, config?: T) => ActionHandler;
 export type ActionCreator<T> = (config?: T) => ActionHandler;
+export type DatasourceWrapper<T> = (originalCb: DatasourceSig, config?: T) => DatasourceSig;
+export type DatasourceCreator<T> = (config?: T) => DatasourceSig;
+export type Writeable<T> = { -readonly [P in keyof T]: T[P] };
 
 export interface MergableAction<T> {
   actionNamespace: string;
@@ -31,7 +37,7 @@ export type MergableDynamicHandlers<T> =  (
 
 export interface AddOnRegistry<T> {
   actions: MergableAction<T>[];
-  dataSources?: DataSources;
+  dataSources?: DataSources<T>;
   dynamicPageHandlers?: Record<string, MergableDynamicHandlers<T>>;
 }
 
@@ -40,13 +46,16 @@ export interface GeneralConfiguration {
   props: Record<string, any>;
 }
 
-export interface DataSources {
-  [key: string]: (
-    config: DataSourceConfiguration,
-    context: DataSourceContext,
-  ) => Promise<{
-    dataSourcePayload: any;
-  }>;
+export type DatasourceSig = (
+  config: DataSourceConfiguration,
+  context: DataSourceContext,
+) => Promise<DataSourceResult> | DataSourceResult;
+
+export interface DataSources<T> {
+  [key: string]: {
+    create?: boolean;
+    hook: DatasourceWrapper<T> | DatasourceCreator<T>;
+  };
 }
 
 export type DynamicPagehandler = (

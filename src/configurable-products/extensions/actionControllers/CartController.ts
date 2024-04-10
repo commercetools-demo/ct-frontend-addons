@@ -1,6 +1,7 @@
 import { ActionContext, ActionHandler, Request, Response } from '@frontastic/extension-types';
 import { Cart, LineItem } from '../../../shared/types';
-import { extractDependency, getCartApi } from '../utils';
+import { extractDependency } from '../utils';
+import { getCartApi } from '../../../shared/utils/getCartApi';
 import { Configuration } from '../../types';
 import { AddToCartBody } from '../types';
 import parseRequestBody from '../../../utils/parseRequestBody';
