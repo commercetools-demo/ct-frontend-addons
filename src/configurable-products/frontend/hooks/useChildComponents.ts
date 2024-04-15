@@ -1,11 +1,24 @@
 import { Cart } from '@commercetools/frontend-domain-types/cart';
 import { LineItem } from '../types';
 import { useBundledItemsContext } from '../providers/bundled-items';
+import { Middleware, SWRHook } from 'swr';
 
 export const childComponentsAttributeName = 'bundled_components';
 
 const useChildComponents = () => {
   const { cart } = useBundledItemsContext();
+
+  const swrBundleMiddleware: Middleware = (useSWRNext: SWRHook) => (key: any, fetcher: any, config?: any) => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const swr = useSWRNext(key, fetcher, config);
+    if (swr.error || !swr.data) return swr;
+
+    return {
+      ...swr,
+      data: bundleComponentsIntoLineItems(swr.data as Cart),
+    };
+  };
+
   const getBundledPrice = (lineItem: {
     id: string;
     price?: number;
@@ -18,10 +31,9 @@ const useChildComponents = () => {
       return { price: 0, discountedPrice: 0 };
     }
 
-    const bundleCentAmount = (originalLineItem.variant?.attributes?.[childComponentsAttributeName] as LineItem[]).reduce(
-      (prev, curr) => prev + (curr.price?.centAmount || 0),
-      0,
-    );
+    const bundleCentAmount = (
+      originalLineItem.variant?.attributes?.[childComponentsAttributeName] as LineItem[]
+    ).reduce((prev, curr) => prev + (curr.price?.centAmount || 0), 0);
 
     return {
       price: bundleCentAmount,
@@ -59,6 +71,7 @@ const useChildComponents = () => {
   return {
     bundleComponentsIntoLineItems,
     getBundledPrice,
+    swrBundleMiddleware,
   };
 };
 
