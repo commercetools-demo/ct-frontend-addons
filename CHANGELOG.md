@@ -1,3 +1,5 @@
+# 0.5.2
+- FIX addToCart action on configurable products
 # 0.5.1
 - Add configurable component middlerware
 # 0.5.0

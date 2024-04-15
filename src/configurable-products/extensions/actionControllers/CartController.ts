@@ -69,17 +69,15 @@ export const addToCart = (originalCb: ActionHandler, config?: Configuration): Ac
 
       const cartApi = getCartApi(request, actionContext.frontasticContext!, CartApi);
 
-      if (body.configurableComponents?.length) {
-        const commercetoolsCart = await cartApi.getCommercetoolsCartById(cart.cartId);
-        cart = CartMapper.mergeParentIdToCart(cart, commercetoolsCart, config);
+      const commercetoolsCart = await cartApi.getCommercetoolsCartById(cart.cartId);
+      cart = CartMapper.mergeParentIdToCart(cart, commercetoolsCart, config);
 
-        const response: Response = {
-          ...originalResult,
-          statusCode: 200,
-          body: JSON.stringify(cart),
-        };
-        return response;
-      }
+      const response: Response = {
+        ...originalResult,
+        statusCode: 200,
+        body: JSON.stringify(cart),
+      };
+      return response;
     }
     return originalResult;
   };
