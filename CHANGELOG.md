@@ -1,3 +1,5 @@
+# 0.5.1
+- Add configurable component middlerware
 # 0.5.0
 - add B2B superuser module
 # 0.4.0
