@@ -1,11 +1,11 @@
-import { MergableAction, MergableDynamicHandlers } from '../../utils/types';
+import { DynamicPageHandlerAddOn, MergableAction, MergableDynamicHandlers } from '../../utils/types';
 import { Configuration } from '../types';
 import { addComponentsToCart, addToCart, getCart, removeLineItem, updateLineItem } from './actionControllers/CartController';
 import { injectProductDetailPageHandler } from './dynamic-page-handlers';
 
 const configurableProducts: {
   actions: MergableAction<Configuration>[];
-  dynamicPageHandlers: Record<string, MergableDynamicHandlers<Configuration>>;
+  dynamicPageHandlers: Record<string, DynamicPageHandlerAddOn<Configuration>>;
 } = {
   actions: [
     {
@@ -36,7 +36,10 @@ const configurableProducts: {
     },
   ],
   dynamicPageHandlers: {
-    'frontastic/product-page': injectProductDetailPageHandler
+    'frontastic/product-page': {
+      hook: injectProductDetailPageHandler as MergableDynamicHandlers<Configuration>,
+      create: false,
+    }
   }
 };
 

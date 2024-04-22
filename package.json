@@ -71,6 +71,8 @@
     "swr": ">=2.2.0"
   },
   "dependencies": {
-    "lodash.debounce": "^4.0.8"
+    "@react-awesome-query-builder/ui": "^6.4.2",
+    "lodash.debounce": "^4.0.8",
+    "react-organizational-chart": "^2.2.1"
   }
 }

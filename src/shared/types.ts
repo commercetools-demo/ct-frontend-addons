@@ -1,3 +1,5 @@
+import { Currency } from "@commercetools/frontend-sdk/lib/types/Currency";
+
 export type AccountLoginBody = {
   email?: string;
   password?: string;
@@ -42,3 +44,10 @@ export interface Money {
   currencyCode?: string; // The currency code compliant to ISO 4217.
 }
 
+export interface Transaction {
+  subtotal: { centAmount: number; currencyCode: Currency; fractionDigits: number };
+  discount: { centAmount: number; currencyCode: Currency; fractionDigits: number };
+  tax: { centAmount: number; currencyCode: Currency; fractionDigits: number };
+  shipping: { centAmount: number; currencyCode: Currency; fractionDigits: number; isEstimated?: boolean };
+  total: { centAmount: number; currencyCode: Currency; fractionDigits: number };
+}

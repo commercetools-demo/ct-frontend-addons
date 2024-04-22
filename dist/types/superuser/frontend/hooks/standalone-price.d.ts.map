@@ -1,0 +1,1 @@
+{"version":3,"file":"standalone-price.d.ts","sourceRoot":"","sources":["../../../../../src/superuser/frontend/hooks/standalone-price.ts"],"names":[],"mappings":"AAEA,OAAO,EAAE,KAAK,EAAE,MAAM,UAAU,CAAC;AAEjC,MAAM,MAAM,kBAAkB,GAAG;IAC/B,WAAW,EAAE,CAAC,UAAU,EAAE,MAAM,EAAE,KAAK,EAAE,KAAK,KAAK,OAAO,CAAC,IAAI,CAAC,CAAC;CAClE,CAAC;AAEF,eAAO,MAAM,kBAAkB;SAIxB,GAAG;;MAEN,kBAWH,CAAC"}
