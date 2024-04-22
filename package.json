@@ -1,6 +1,6 @@
 {
   "name": "ct-frontend-addons",
-  "version": "0.8.2",
+  "version": "0.9.0",
   "description": "Commercetools frontend backoffice integration",
   "main": "dist/index.cjs",
   "types": "dist/index.d.ts",
@@ -50,7 +50,7 @@
     "@commercetools/frontend-composable-commerce": "^1.3.0",
     "@commercetools/frontend-domain-types": "^1.0.7",
     "@commercetools/frontend-sdk": "^1.9.1",
-    "@commercetools/platform-sdk": "^7.4.0",
+    "@commercetools/platform-sdk": "^7.11.0",
     "@frontastic/extension-types": "^0.0.12",
     "@headlessui/react": "1.7.0",
     "@heroicons/react": "2.0.0",

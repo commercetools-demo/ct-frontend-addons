@@ -6,7 +6,7 @@ export default defineConfig({
   dts: true,
   splitting: false,
   outDir: 'dist',
-  minify: true,
+  // minify: true,
   bundle: true,
   skipNodeModulesBundle: true,
   target: 'es2020',

@@ -3,6 +3,7 @@ import { Configuration as SuperuserConfiguration } from './superuser/types';
 import { Configuration as SuperuserB2BConfiguration } from './superuser-b2b/types';
 import { Configuration as ConfigurableProductsConfiguration } from './configurable-products/types';
 import { Configuration as ApprovalWorkflowsConfiguration } from './approval-workflows/types';
+import { Configuration as ProductSearchConfiguration } from './product-search/types';
 
 export enum Module {
     MinimumQuantity = 'minimum-quantity',
@@ -10,6 +11,7 @@ export enum Module {
     SuperuserB2B = 'superuser-b2b',
     ConfigurableProducts = 'configurable-products',
     ApprovalWorkflows = 'approval-workflows',
+    ProductSearch = 'product-search',
 }
 export interface ModuleConfiguration {
     modules: {
@@ -18,5 +20,6 @@ export interface ModuleConfiguration {
         [Module.SuperuserB2B]?: SuperuserB2BConfiguration;
         [Module.ConfigurableProducts]?: ConfigurableProductsConfiguration;
         [Module.ApprovalWorkflows]?: ApprovalWorkflowsConfiguration;
+        [Module.ProductSearch]?: ProductSearchConfiguration;
     };
 }
