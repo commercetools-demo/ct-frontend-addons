@@ -1,3 +1,5 @@
+# 0.5.3
+- Separate build process for FE and extensions 
 # 0.5.2
 - FIX addToCart action on configurable products
 # 0.5.1
