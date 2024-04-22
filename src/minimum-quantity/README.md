@@ -1,33 +1,35 @@
 # Minimum quantity
-This extension checks a lineitem's quantity againts an attribute on product and sets the lineitem to that amount if it's less.  
+
+This extension checks a lineitem's quantity againts an attribute on product and sets the lineitem to that amount if it's less.
 
 ## Requirements
-Attribute of type number on product or variant level.
 
-## Usage
-```diff
--export default {
--  'dynamic-page-handler': mergeDynamicPageHandlers(extensionsToMerge),
-tension['data-sources'] || {}).reduce(Object.assign, {}),
--  actions: mergeActions(extensionsToMerge),
--} as ExtensionRegistry;
-+export default injectExtensionsRegistry(
-+  {
-nsionsToMerge),
-,
-+    actions: mergeActions(extensionsToMerge),
-+  } as ExtensionRegistry,
-+  {
-+    modules: {
-+      'minimum-quantity': {
-+        dependencies: {
-+          CartApi,
-+        },
-+        props: {
-+          attributeName: 'Minimo',
-+        },
-+      },
-+    },
-+  },
-+);
+1. B2C launchpad
+1. An attribute of type number on product or variant level.
+
+## Backend changes
+
+```ts
+import { CartApi } from './apis/CartApi';
+...
+export default injectExtensionsRegistry({
+        'dynamic-page-handler':...
+        'data-sources':...
+        ...
+    }, {
+        modules: {
+            'minimum-quantity': {
+        dependencies: {
+          CartApi,
+        },
+        props: {
+          attributeName: 'Minimo',
+        },
+      },
+        }
+    });
 ```
+
+## FE changes
+
+none
