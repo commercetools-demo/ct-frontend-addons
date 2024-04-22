@@ -24,11 +24,7 @@ export const injectExtensionsRegistry = (
         );
         break;
       case Module.Superuser:
-        extensionRegirstry = mergeExtensions(
-          extensionRegirstry,
-          Superuser,
-          configuration.modules[Module.Superuser]!,
-        );
+        extensionRegirstry = mergeExtensions(extensionRegirstry, Superuser, configuration.modules[Module.Superuser]!);
         break;
       case Module.ConfigurableProducts:
         extensionRegirstry = mergeExtensions(
