@@ -1,0 +1,1 @@
+// any types you want to share in your frontend code
