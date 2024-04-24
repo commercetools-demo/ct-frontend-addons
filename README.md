@@ -4,6 +4,7 @@
 1. [Minimum quantity](src/minimum-quantity/README.md)
 1. [Superuser](src/superuser/README.md)
 1. [Configurable components](src/configurable-products/README.md)
+1. [B2B superuser](src/superuser-b2b/README.md)
 
 ## Install
 ```
