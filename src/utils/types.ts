@@ -12,8 +12,14 @@ import { Dependencies as MinimumQuantityDependencies } from '../minimum-quantity
 import { Dependencies as SuperuserDependencies } from '../superuser/types';
 import { Dependencies as SuperuserB2BDependencies } from '../superuser-b2b/types';
 import { Dependencies as ConfigurableProductsDependencies } from '../configurable-products/types';
+import { Dependencies as ApprovalWorkflowsDependencies } from '../approval-workflows/types';
 
-export type UnionDependencies = MinimumQuantityDependencies | SuperuserDependencies | SuperuserB2BDependencies | ConfigurableProductsDependencies;
+export type UnionDependencies =
+  | MinimumQuantityDependencies
+  | SuperuserDependencies
+  | SuperuserB2BDependencies
+  | ConfigurableProductsDependencies
+  | ApprovalWorkflowsDependencies;
 
 export type ActionWrapper<T> = (originalCb: ActionHandler, config?: T) => ActionHandler;
 export type ActionCreator<T> = (config?: T) => ActionHandler;
@@ -27,18 +33,28 @@ export interface MergableAction<T> {
   hook: ActionWrapper<T> | ActionCreator<T>;
   create?: boolean;
 }
-export type MergableDynamicHandlers<T> =  (
-    request: Request,
-    context: DynamicPageContext,
-    originalResult: DynamicPageSuccessResult,
-    config: T
-  ) => Promise<DynamicPageSuccessResult | DynamicPageRedirectResult | null>;
+export type MergableDynamicHandlers<T> = (
+  request: Request,
+  context: DynamicPageContext,
+  originalResult: DynamicPageSuccessResult,
+  config: T,
+) => Promise<DynamicPageSuccessResult | DynamicPageRedirectResult | null>;
 
+export type NewDynamicHandlers<T> = (
+  request: Request,
+  context: DynamicPageContext,
+  config: T,
+) => Promise<DynamicPageSuccessResult | DynamicPageRedirectResult | null>;
+
+export type DynamicPageHandlerAddOn<T> = {
+  create?: boolean;
+  hook: MergableDynamicHandlers<T> | NewDynamicHandlers<T>;
+};
 
 export interface AddOnRegistry<T> {
   actions: MergableAction<T>[];
   dataSources?: DataSources<T>;
-  dynamicPageHandlers?: Record<string, MergableDynamicHandlers<T>>;
+  dynamicPageHandlers?: Record<string, DynamicPageHandlerAddOn<T>>;
 }
 
 export interface GeneralConfiguration {
@@ -62,3 +78,11 @@ export type DynamicPagehandler = (
   request: Request,
   context: DynamicPageContext,
 ) => Promise<DynamicPageSuccessResult | DynamicPageRedirectResult | null>;
+
+export interface PaginatedResult<T> {
+  total?: number;
+  previousCursor?: string;
+  nextCursor?: string;
+  count: number;
+  items: T[];
+}

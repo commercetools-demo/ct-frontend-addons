@@ -4,6 +4,7 @@ import MinimumQuantity from './minimum-quantity/extensions';
 import Superuser from './superuser/extensions';
 import SuperuserB2B from './superuser-b2b/extensions';
 import ConfigurableProducts from './configurable-products/extensions';
+import ApprovalWorkflows from './approval-workflows/extensions';
 import { mergeExtensions } from './utils';
 import { ModuleConfiguration, Module } from './types';
 
@@ -38,6 +39,13 @@ export const injectExtensionsRegistry = (
           extensionRegirstry,
           SuperuserB2B,
           configuration.modules[Module.SuperuserB2B]!,
+        );
+        break;
+      case Module.ApprovalWorkflows:
+        extensionRegirstry = mergeExtensions(
+          extensionRegirstry,
+          ApprovalWorkflows,
+          configuration.modules[Module.ApprovalWorkflows]!,
         );
         break;
       default:

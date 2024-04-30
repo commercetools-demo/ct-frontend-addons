@@ -1,4 +1,4 @@
-import { MergableAction, MergableDynamicHandlers } from '../../utils/types';
+import { DynamicPageHandlerAddOn, MergableAction } from '../../utils/types';
 import { Configuration } from '../types';
 import { getSuperuser, login, logout } from './actionControllers/AccountController';
 import {
@@ -13,11 +13,17 @@ import { injectOrderPageHandler, injectThankYouPageHandler } from './dynamic-pag
 
 const superUserB2B: {
   actions: MergableAction<Configuration>[];
-  dynamicPageHandlers: Record<string, MergableDynamicHandlers<Configuration>>;
+  dynamicPageHandlers: Record<string, DynamicPageHandlerAddOn<Configuration>>;
 } = {
   dynamicPageHandlers: {
-    'frontastic/thank-you-page': injectThankYouPageHandler,
-    'frontastic/order-page': injectOrderPageHandler,
+    'frontastic/thank-you-page': {
+      hook: injectThankYouPageHandler,
+      create: false,
+    },
+    'frontastic/order-page': {
+      hook: injectOrderPageHandler,
+      create: false,
+    },
   },
   actions: [
     {

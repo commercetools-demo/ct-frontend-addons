@@ -9,5 +9,6 @@ export default defineConfig({
   minify: true,
   bundle: true,
   skipNodeModulesBundle: true,
+  external: [],
   target: 'es2020',
 });

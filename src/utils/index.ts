@@ -1,5 +1,15 @@
 import { DynamicPageContext, ExtensionRegistry, Request } from '@frontastic/extension-types';
-import { ActionCreator, ActionWrapper, AddOnRegistry, DatasourceCreator, DatasourceWrapper, DynamicPagehandler, GeneralConfiguration } from './types';
+import {
+  ActionCreator,
+  ActionWrapper,
+  AddOnRegistry,
+  DatasourceCreator,
+  DatasourceWrapper,
+  DynamicPagehandler,
+  GeneralConfiguration,
+  MergableDynamicHandlers,
+  NewDynamicHandlers,
+} from './types';
 
 export const mergeExtensions = <T extends GeneralConfiguration>(
   extensionRegirstry: ExtensionRegistry,
@@ -59,7 +69,6 @@ function mergeDataSources<T>(extensionRegirstry: ExtensionRegistry, addOnRegistr
         dataSources = Object.assign({}, dataSources, {
           [ds]: newDataSource,
         });
-
       }
     }
   }
@@ -80,7 +89,29 @@ function mergeDynamicPageHandlers<T extends GeneralConfiguration>(
       'dynamicPageType' in originalResult &&
       addOnRegistry.dynamicPageHandlers?.[originalResult.dynamicPageType]
     ) {
-      return addOnRegistry.dynamicPageHandlers[originalResult.dynamicPageType](request, context, originalResult, config);
+      return (addOnRegistry.dynamicPageHandlers[originalResult.dynamicPageType].hook as MergableDynamicHandlers<T>)(
+        request,
+        context,
+        originalResult,
+        config,
+      );
+    }
+    if (!originalResult) {
+      let result = null;
+      for (let index = 0; index < Object.keys(addOnRegistry.dynamicPageHandlers || {}).length; index++) {
+        const key = Object.keys(addOnRegistry.dynamicPageHandlers || {})[index];
+        if (addOnRegistry.dynamicPageHandlers?.[key]?.create) {
+          result = await (addOnRegistry.dynamicPageHandlers[key].hook as NewDynamicHandlers<T>)(
+            request,
+            context,
+            config,
+          );
+          if (result) {
+            break;
+          }
+        }
+      }
+      return result;
     }
     return originalResult;
   };
