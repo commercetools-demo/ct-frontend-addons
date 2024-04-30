@@ -1,1 +1,0 @@
-{"version":3,"file":"index.d.ts","sourceRoot":"","sources":["../../../../src/superuser/extensions/index.ts"],"names":[],"mappings":"AAAA,OAAO,EAAgC,WAAW,IAAI,eAAe,EAAE,cAAc,EAAE,MAAM,mBAAmB,CAAC;AAEjH,OAAO,EAAE,aAAa,EAAE,MAAM,UAAU,CAAC;AAIzC,QAAA,MAAM,SAAS,EAAE;IACf,OAAO,EAAE,cAAc,CAAC,aAAa,CAAC,EAAE,CAAC;IACzC,WAAW,EAAE,eAAe,CAAC,aAAa,CAAC,CAAC;CAqC7C,CAAC;AAEF,eAAe,SAAS,CAAC"}

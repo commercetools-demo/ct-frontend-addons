@@ -1,1 +1,0 @@
-{"version":3,"file":"types.d.ts","sourceRoot":"","sources":["../../../src/approval-workflows/types.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,oBAAoB,EAAE,MAAM,gBAAgB,CAAC;AAEtD,MAAM,WAAW,YAAa,SAAQ,MAAM,CAAC,MAAM,EAAE,GAAG,CAAC;IACvD,OAAO,EAAE,GAAG,CAAC;IACb,UAAU,EAAE,GAAG,CAAC;CACjB;AAED,MAAM,WAAW,aAAc,SAAQ,oBAAoB;IACzD,YAAY,EAAE,YAAY,CAAC;CAC5B"}
