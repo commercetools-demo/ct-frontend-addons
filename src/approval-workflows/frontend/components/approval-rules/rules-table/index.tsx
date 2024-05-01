@@ -47,7 +47,9 @@ const RulesTable = ({
                 <span className="block max-w-full truncate">{id}</span>
               </Table.Cell>
               <Table.Cell>{new Date(createdAt).toLocaleDateString()}</Table.Cell>
-              <Table.Cell>{predicate}</Table.Cell>
+              <Table.Cell>
+                <span className="block max-w-full truncate">{predicate}</span>
+              </Table.Cell>
               <Table.Cell isButtonsCell>
                 <div className="flex justify-end">
                   <components.Link href={`/approval-rule/${id.replace(/\s+/g, '-')}`} underlineOnHover={false}>

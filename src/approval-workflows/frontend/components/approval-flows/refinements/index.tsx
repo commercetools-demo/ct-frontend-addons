@@ -13,7 +13,7 @@ const Refinements = ({
 }: Partial<ApprovalFlowsProps> & { components: FlowComponents }) => {
   const refinements = [
     {
-      title: 'flows.label',
+      title: 'dashboard.flows.label',
       Component: (
         <components.SearchInput
           className="h-[38px] w-[360px]"
