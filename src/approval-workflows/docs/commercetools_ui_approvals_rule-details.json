@@ -1,0 +1,19 @@
+{
+    "name": "Rule Detail",
+    "Category": "Dashboard",
+    "schema": [
+        {
+            "name": "Data Source",
+            "fields": [
+                {
+                    "label": "Rule",
+                    "field": "data",
+                    "type": "dataSource",
+                    "dataSourceType": "frontastic/approval-rule",
+                    "required": false
+                }
+            ]
+        }
+    ],
+    "tasticType": "commercetools/ui/approvals/rule-details"
+}
