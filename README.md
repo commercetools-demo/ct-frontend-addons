@@ -5,6 +5,7 @@
 1. [Superuser](src/superuser/README.md)
 1. [Configurable components](src/configurable-products/README.md)
 1. [B2B superuser](src/superuser-b2b/README.md)
+1. [Approval workflows](src/approval-workflows/README.md)
 
 ## Install
 ```
