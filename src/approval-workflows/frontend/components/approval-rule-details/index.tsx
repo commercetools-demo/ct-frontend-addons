@@ -71,7 +71,7 @@ const ApprovalRuleDetails = ({
         };
   }, [rule]);
   const [data, setData] = useState(initialData);
-  const viewOnly = useMemo(() => !permissions?.UpdateApprovalFlows, [permissions]);
+  const viewOnly = useMemo(() => !permissions?.UpdateApprovalRules, [permissions]);
 
   const { activateRule, deactivateRule, createRule, updateRule } = useApprovals(
     sdk,
