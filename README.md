@@ -1,5 +1,8 @@
 # ct-frontend-addons
 
+NOTE:
+This is NOT an official commercetools code and NOT production ready. Use it at your own risk
+
 ## Available modules
 1. [Minimum quantity](src/minimum-quantity/README.md)
 1. [Superuser](src/superuser/README.md)
