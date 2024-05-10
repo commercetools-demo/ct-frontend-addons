@@ -9,16 +9,42 @@
   "files": [
     "dist"
   ],
+  "exports": {
+    "./dist/approval-workflows": {
+      "types": "./dist/approval-workflows/index.d.ts",
+      "import": "./dist/approval-workflows/index.js",
+      "require": "./dist/approval-workflows/index.cjs"
+    },
+    "./dist/configurable-products": {
+      "types": "./dist/configurable-products/index.d.ts",
+      "import": "./dist/configurable-products/index.js",
+      "require": "./dist/configurable-products/index.cjs"
+    },
+    "./dist/superuser-b2b": {
+      "types": "./dist/superuser/index.d.ts",
+      "import": "./dist/superuser/index.js",
+      "require": "./dist/superuser/index.cjs"
+    },
+    "./dist/superuser": {
+      "types": "./dist/superuser/index.d.ts",
+      "import": "./dist/superuser/index.js",
+      "require": "./dist/superuser/index.cjs"
+    },
+    "./dist/extensions": {
+      "types": "./dist/extensions.d.ts",
+      "import": "./dist/extensions.js"
+    }
+  },
   "scripts": {
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "format": "prettier --write \"**/*.ts\"",
     "test": "test",
     "build": "rimraf dist && yarn bundle",
-    "bundle": "npm run build:ts && npm run build:tsup",
+    "bundle": "npm run build:tsup",
     "build:ts": "tsc",
     "build:tsup": "npm run build:tsup:fe && npm run build:tsup:extensions",
-    "build:tsup:fe": "tsup --config tsup.config.fe.ts",
+    "build:tsup:fe": "tsup --config tsup.config.fe.ts && node move-dist.js",
     "build:tsup:extensions": "tsup --config tsup.config.extensions.ts"
   },
   "repository": {
@@ -55,7 +81,6 @@
     "eslint": "^8.56.0",
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "next": "13.4.5",
     "prettier": "^3.2.5",
     "rimraf": "^5.0.5",
     "swr": "^2.2.0",
@@ -72,6 +97,7 @@
   },
   "dependencies": {
     "@react-awesome-query-builder/ui": "^6.4.2",
+    "next": "13.4.5",
     "lodash.debounce": "^4.0.8",
     "react-organizational-chart": "^2.2.1"
   }

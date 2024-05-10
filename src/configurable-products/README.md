@@ -128,15 +128,15 @@ None
    ```ts
    /// packages/<project>/frontend/src/lib/tastics/product-details/components/product-details-client-wrapper.tsx
 
-   import { ConfigurableProducts } from 'ct-frontend-addons';
+   import { PROVIDERS } from 'ct-frontend-addons/dist/configurable-products';
    ...
    return (
-       <ConfigurableProducts.PROVIDERS.ConfigurableComponentsProvider
+       <PROVIDERS.ConfigurableComponentsProvider
        configurableComponents={data.data.dataSource.configurableComponents}
        productAttributes={['generic-model']}
        >
        <ProductDetailsMapper product={data.data.dataSource.product} />;
-       </ConfigurableProducts.PROVIDERS.ConfigurableComponentsProvider>
+       </PROVIDERS.ConfigurableComponentsProvider>
    );
 
    ```
@@ -147,12 +147,12 @@ None
 
    ````ts
        // packages/<project>/frontend/src/components/organisms/product-details/components/main-info.tsx
-       import import { ConfigurableProducts } from 'ct-frontend-addons';
+       import { COMPONENTS } from 'ct-frontend-addons/dist/configurable-products';
 
        ...
        return(
            ...
-           <ConfigurableComponents
+           <COMPONENTS.ConfigurableComponents
                product={product}
                Button={Button}
                translatedTexts={{
@@ -169,7 +169,7 @@ None
                    addToCartDisabled={addToCartDisabled || isDisabled}
                />
                )}
-           </ConfigurableComponents>
+           </COMPONENTS.ConfigurableComponents>
            ...
        );
        ```
@@ -180,12 +180,12 @@ None
 
    ```ts
    // packages/<project>/frontend/src/lib/hooks/useCart/index.ts
-   import { ConfigurableProducts } from 'ct-frontend-addons';
+   import { hooks } from 'ct-frontend-addons/dist/configurable-products';
 
    ...
 
    const useCart = (businessUnitKey?: string, storeKey?: string) => {
-       const { swrBundleMiddleware } = ConfigurableProducts.hooks.useChildComponents();
+       const { swrBundleMiddleware } = hooks.useChildComponents();
        ...
        const { data, mutate } = useSWR(
            !(businessUnitKey && storeKey) ? null : ['/action/cart/getCart', businessUnitKey, storeKey],
@@ -195,7 +195,7 @@ None
            },
        );
        ...
-       const { addComponents } = ConfigurableProducts.hooks.useComponentsCart(sdk, mutate, businessUnitKey, storeKey);
+       const { addComponents } = hooks.useComponentsCart(sdk, mutate, businessUnitKey, storeKey);
        ...
 
        return {
@@ -231,14 +231,14 @@ None
 
    ```ts
    /// packages/<project>/frontend/src/lib/tastics/cart/components/cart-client-wrapper/index.tsx
-   import BundledItemsProvider from '@/lib/tastics/product-details/bundled-items/provider';
+   import { PROVIDERS } from 'ct-frontend-addons/dist/configurable-products';
    ...
 
-   <BundledItemsProvider cart={cart} productAttributes={['generic-model']}>
+   <PROVIDERS.BundledItemsProvider cart={cart} productAttributes={['generic-model']}>
        <Cart
            {...cart}
            />
-   </BundledItemsProvider>
+   </PROVIDERS.BundledItemsProvider>
 
    ```
 
@@ -246,23 +246,23 @@ None
 
    ```ts
    // packages/<project>/frontend/src/components/organisms/cart/components/cart-item-header.tsx
-   import { ConfigurableProducts } from 'ct-frontend-addons';
+   import { COMPONENTS } from 'ct-frontend-addons/dist/configurable-products';
 
            {item.sku && (
            <p className="truncate text-12 leading-loose text-gray-600">{`${translate('common.model')}# ${item.sku}`}</p>
            )}
-           <ConfigurableProducts.COMPONENTS.BundledItems item={item} />
+           <COMPONENTS.BundledItems item={item} />
    ```
 
    Or show the bundled price
 
    ```ts
    ///packages/<project>/frontend/src/components/organisms/cart/components/cart-item.tsx
-   import { ConfigurableProducts } from 'ct-frontend-addons';
+   import { hooks } from 'ct-frontend-addons/dist/configurable-products';
 
    const CartItem = ({ item, onUpdateQuantity, onRemove, onUndoRemove, onAddToNewWishlist }: CartItemProps) => {
        ...
-       const { getBundledPrice } = ConfigurableProducts.hooks.useChildComponents();
+       const { getBundledPrice } = hooks.useChildComponents();
 
        const bundledPrice = getBundledPrice(item);
    ```

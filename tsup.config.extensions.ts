@@ -4,7 +4,7 @@ export default defineConfig({
   entry: ['src/extensions.ts'],
   format: ['esm'],
   dts: true,
-  splitting: true,
+  splitting: false,
   outDir: 'dist',
   minify: true,
   bundle: true,

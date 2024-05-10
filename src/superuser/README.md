@@ -85,15 +85,15 @@ None
    // packages/demo/frontend/providers/index.tsx
    import React from 'react'
    ...
-   import { SuperuserFrontend } from 'ct-frontend-addons';
+   import { PROVIDERS } from 'ct-frontend-addons/dist/superuser';
 
    export const Providers = ({ translations, accountResult, page, children }: React.PropsWithChildren<ProvidersProps>) => {
 
      return (
        <Other providers...>
-         <SuperuserFrontend.PROVIDERS.SuperUserProvider sdk={sdk}>
+         <PROVIDERS.SuperUserProvider sdk={sdk}>
            {children}
-         </SuperuserFrontend.PROVIDERS.SuperUserProvider>
+         </PROVIDERS.SuperUserProvider>
        </>
      )
 
@@ -106,10 +106,10 @@ None
    ```tsx
    import React from 'react';
    ...
-   import { SuperuserFrontend } from 'ct-frontend-addons';
+   import { PROVIDERS } from 'ct-frontend-addons/dist/superuser';
 
    const Cart: React.FC<Props> = ({ ... } }) => {
-     const { superUserData } = SuperuserFrontend.PROVIDERS.useSuperUserContext();
+     const { superUserData } = PROVIDERS.useSuperUserContext();
 
      return (
        <div>
@@ -131,7 +131,7 @@ None
       -const { login, requestConfirmationEmail, requestPasswordReset } = useAccount();
       +const { requestConfirmationEmail, requestPasswordReset } = useAccount();
       ...
-      +const { login, isCSRLogin } = SuperuserFrontend.HOOKS.useCSRLoginForm({
+      +const { login, isCSRLogin } = HOOKS.useCSRLoginForm({
       +  sdk,
       +  setError,
       +  formatMessage: formatErrorMessage,
@@ -181,9 +181,9 @@ None
 
    ```diff
    // cart-item.tsx
-   + import { SuperuserFrontend } from 'ct-frontend-addons';
+   + import { PROVIDERS, COMPONENTS } from 'ct-frontend-addons/dist/superuser';
 
-   + const { superUserData } = SuperuserFrontend.PROVIDERS.useSuperUserContext();
+   + const { superUserData } = PROVIDERS.useSuperUserContext();
    ...
 
    -<div className="...">
@@ -206,7 +206,7 @@ None
      <div className="...">
        {item.discountedPrice?.centAmount ? (
          <div className="...">
-           <SuperuserFrontend.COMPONENTS.StandalonePriceInput
+           <COMPONENTS.StandalonePriceInput
                  item={item}
                  price={item.discountedPrice}
                  sdk={sdk}
@@ -221,7 +221,7 @@ None
          </div>
        ) : (
          <span className="...">
-           <SuperuserFrontend.COMPONENTS.StandalonePriceInput
+           <COMPONENTS.StandalonePriceInput
                  item={item}
                  price={item.price}
                  sdk={sdk}

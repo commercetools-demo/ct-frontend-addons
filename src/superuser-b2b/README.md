@@ -113,17 +113,17 @@ None
 
    ```ts
      /// packages/<project>/frontend/src/providers/index.tsx
-     import { SuperuserB2BFrontend } from 'ct-frontend-addons';
+     import { PROVIDERS } from 'ct-frontend-addons/dist/superuser-b2b';
 
      export default async function Page({ params, searchParams }: PageProps) {
 
      return (
        ...
-       <SuperuserB2BFrontend.PROVIDERS.SuperuserProvider sdk={sdk}>
+       <PROVIDERS.SuperuserProvider sdk={sdk}>
            <ShipAndLanguageProvider>
            ...
            </ShipAndLanguageProvider>
-       </SuperuserB2BFrontend.PROVIDERS.SuperuserProvider>
+       </PROVIDERS.SuperuserProvider>
      )
 
    ```
@@ -132,9 +132,9 @@ None
 
    ```ts
      /// packages/<project>/frontend/src/lib/hooks/useCart/index.ts
-     import { SuperuserB2BFrontend } from 'ct-frontend-addons';
+     import { hooks } from 'ct-frontend-addons/dist/superuser-b2b';
      const useCart = (businessUnitKey?: string, storeKey?: string) => {
-         const { setCart, createSuperuserCart, reassignCart } = SuperuserB2BFrontend.hooks.useSuperuserCarts(sdk, mutate);
+         const { setCart, createSuperuserCart, reassignCart } = hooks.useSuperuserCarts(sdk, mutate);
          ...
 
          return {
@@ -152,10 +152,10 @@ None
 
    ```ts
    /// packages/<project>/frontend/src/components/organisms/product-list/index.tsx
-   import { SuperuserB2BFrontend } from 'ct-frontend-addons';
+   import { PROVIDERS } from 'ct-frontend-addons/dist/superuser-b2b';
 
    const ProductList = (props: ProductListProps) => {
-     const { superuserStatus } = SuperuserB2BFrontend.PROVIDERS.useSuperuserContext();
+     const { superuserStatus } = PROVIDERS.useSuperuserContext();
 
      return (
        {superuserStatus?.isSuperuser && (
@@ -174,7 +174,7 @@ None
 
    ```ts
      /// packages/<project>/frontend/src/components/organisms/header/cart-link/index.tsx
-     import { SuperuserB2BFrontend } from 'ct-frontend-addons';
+     import { COMPONENTS } from 'ct-frontend-addons/dist/superuser-b2b';
 
      const CartLink = () => {
 
@@ -186,7 +186,7 @@ None
          <Link ...>
 
          ...
-         <SuperuserB2BFrontend.COMPONENTS.CartBrowser
+         <COMPONENTS.CartBrowser
            cartId={cart?.cartId ?? ''}
            createSuperuserCart={createSuperuserCart}
            setCart={setCart}
@@ -203,19 +203,19 @@ None
 
    ```ts
      /// packages/<project>/frontend/src/cmponents/organisms/order-summary/components/checkout-cta.tsx
-     import { SuperuserB2BFrontend } from 'ct-frontend-addons';
+     import { PROVIDERS, COMPONENTS } from 'ct-frontend-addons/dist/superuser-b2b';
 
      const CheckoutCTA = () => {
          const { activeBusinessUnit } = useBusinessUnit();
 
          const { selectedStore } = useStoreAndBusinessUnits();
-         const { superuserStatus } = SuperuserB2BFrontend.PROVIDERS.useSuperuserContext();
+         const { superuserStatus } = PROVIDERS.useSuperuserContext();
          const { account } = useAccount();
          const { cart, reassignCart } = useCart(activeBusinessUnit?.key, selectedStore?.key);
 
        return (
          ...
-         <SuperuserB2BFrontend.COMPONENTS.CartReassignButton
+         <COMPONENTS.CartReassignButton
            activeBusinessUnit={activeBusinessUnit}
            reassignCart={reassignCart}
            translate={translate}
