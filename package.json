@@ -97,7 +97,6 @@
   },
   "dependencies": {
     "@react-awesome-query-builder/ui": "^6.4.2",
-    "next": "13.4.5",
     "lodash.debounce": "^4.0.8",
     "react-organizational-chart": "^2.2.1"
   }
