@@ -5,8 +5,6 @@ import { Account } from "../../../shared/types";
 export const injectAccountApi = (BaseAccountApi: any, AccountMapper: any): typeof BaseAccountApi => {
   return class AccountApi extends BaseAccountApi {
     getCustomerByEmail: (customerEmail: string) => Promise<Account> = async (customerEmail: string) => {
-      const locale = await this.getCommercetoolsLocal();
-  
       const account = await this.requestBuilder()
         .customers()
         .get({
@@ -18,7 +16,7 @@ export const injectAccountApi = (BaseAccountApi: any, AccountMapper: any): typeo
         .then(async (response: ClientResponse<CustomerPagedQueryResponse>) => {
           if (response.body.results.length === 1) {
             const customer = response.body.results[0];
-            return AccountMapper.commercetoolsCustomerToAccount(customer, locale);
+            return AccountMapper.commercetoolsCustomerToAccount(customer);
           }
           throw new Error('Too many customers');
         })

@@ -90,13 +90,39 @@ export const loginCSR = (config?: Configuration) => {
   };
 };
 
+export const getSuperuser = (config?: Configuration): ActionHandler => {
+  return async (request: Request, actionContext: ActionContext) => {
+    const response: Response = {
+      statusCode: 200,
+      body: JSON.stringify({
+        isSuperuser: false,
+        superUser: request.sessionData?.superUser,
+      }),
+      sessionData: {
+        ...request.sessionData,
+      },
+    };
+    return response;
+  };
+};
+
 export const loginHookWithCSRCheck = (originalCb: ActionHandler, config?: Configuration): ActionHandler => {
   return async (request: Request, actionContext: ActionContext): Promise<Response> => {
     const originalResult = await originalCb(request, actionContext);
     if (originalResult.statusCode === 200 && originalResult?.body) {
       const account = JSON.parse(originalResult.body);
 
-      if (account.customerGroupId && account.customerGroupId === config?.props.csrCustomerGroupId) {
+      const AccountApi = extractDependency('AccountApi', config?.dependencies);
+      const accountApi = new AccountApi(
+        actionContext.frontasticContext,
+        getLocale(request),
+        getCurrency(request),
+        request,
+      );
+
+      const customerAccount = await accountApi.getCustomerByEmail(account.email);
+
+      if (customerAccount.customerGroupId && customerAccount.customerGroupId === config?.props.csrCustomerGroupId) {
         const response: Response = {
           statusCode: 300,
           body: JSON.stringify('CSR'),

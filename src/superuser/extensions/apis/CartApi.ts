@@ -55,8 +55,6 @@ export const injectCartApi = (BaseCartApi: any, CartMapper: any): typeof BaseCar
     };
 
     public getOrders: (account: Account) => Promise<Order[]> = async (account: Account) => {
-      const locale = await this.getCommercetoolsLocal();
-
       return await this.requestBuilder()
         .orders()
         .get({
@@ -72,7 +70,7 @@ export const injectCartApi = (BaseCartApi: any, CartMapper: any): typeof BaseCar
         })
         .execute()
         .then((response: ClientResponse<OrderPagedQueryResponse>) => {
-          return response.body.results.map((order) => CartMapper.commercetoolsOrderToOrder(order, locale));
+          return response.body.results.map((order) => CartMapper.commercetoolsOrderToOrder(order));
         })
         .catch((error: any) => {
           throw new ExternalError({ status: error.code, message: error.message, body: error.body });
@@ -85,8 +83,6 @@ export const injectCartApi = (BaseCartApi: any, CartMapper: any): typeof BaseCar
       customType: string,
       customField: string,
     ) => Promise<Cart> = async (order: Order, superUserEmail: string, customType: string, customField: string) => {
-      const locale = await this.getCommercetoolsLocal();
-
       const orderObj = await this.getOrderByID(order.cartId);
 
       let fields = {};
@@ -118,7 +114,7 @@ export const injectCartApi = (BaseCartApi: any, CartMapper: any): typeof BaseCar
         .withId({ ID: order.cartId })
         .post({ body: orderUpdate })
         .execute()
-        .then((response: ClientResponse<Order>) => CartMapper.commercetoolsOrderToOrder(response.body, locale))
+        .then((response: ClientResponse<Order>) => CartMapper.commercetoolsOrderToOrder(response.body))
         .catch((error: any) => {
           throw new ExternalError({ status: error.code, message: error.message, body: error.body });
         });

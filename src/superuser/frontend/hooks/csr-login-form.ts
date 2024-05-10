@@ -27,17 +27,21 @@ export const useCSRLoginForm = ({
   //login user
   const loginUser = async () => {
     try {
-    const extensions = sdk.composableCommerce;
+      const extensions = sdk.composableCommerce;
 
-      const response = await extensions.account.login({email:data.email, password:data.password, remember:data.rememberMe});
+      const response = await extensions.account.login({
+        email: data.email,
+        password: data.password,
+        remember: data.rememberMe,
+      });
 
-    mutate('/action/account/getAccount');
-    mutate('/action/cart/getCart');
-    mutate('/action/wishlist/getWishlist');
+      mutate('/action/account/getAccount');
+      mutate('/action/cart/getCart');
+      mutate('/action/wishlist/getWishlist');
 
-    if (response.isError) {
-      throw response.error;
-    } 
+      if (response.isError) {
+        throw response.error;
+      }
 
       if (response.data.accountId) onLogin?.();
       else {
@@ -49,9 +53,7 @@ export const useCSRLoginForm = ({
     }
   };
 
-
   const loginCSR = async (email: string, password: string, impersonatedCustomerEmail: string): Promise<any> => {
-
     const payload = {
       email,
       password,

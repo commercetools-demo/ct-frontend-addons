@@ -1,0 +1,1 @@
+{"version":3,"file":"types.d.ts","sourceRoot":"","sources":["../../../../../src/superuser-b2b/frontend/provider/types.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,eAAe,EAAE,MAAM,UAAU,CAAC;AAE3C,MAAM,WAAW,qBAAqB;IAClC,eAAe,CAAC,EAAE,eAAe,CAAC;IAClC,iBAAiB,EAAE,CAAC,KAAK,EAAE,eAAe,CAAC,OAAO,CAAC,KAAK,IAAI,CAAC;CAChE"}

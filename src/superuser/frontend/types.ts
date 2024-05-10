@@ -1,5 +1,3 @@
-import { SDK } from '@commercetools/frontend-sdk';
-import { ComposableCommerce, ComposableCommerceEvents } from '@commercetools/frontend-composable-commerce';
 export interface SuperUser {
   email: string;
   firstName: string;
@@ -8,7 +6,6 @@ export interface SuperUser {
 
 export interface SuperUserReturn {
   superUserData?: SuperUser;
-  setSuperUser?: (superUser: SuperUser) => void;
 }
 
 export interface SuperUserDatasource {

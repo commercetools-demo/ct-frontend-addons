@@ -1,3 +1,5 @@
+# 0.5.4
+- b2c superuser compatibility with latest launchpad changes
 # 0.5.3
 - Separate build process for FE and extensions 
 # 0.5.2

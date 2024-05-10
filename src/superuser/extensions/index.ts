@@ -1,12 +1,10 @@
 import { ActionCreator, ActionWrapper, DataSources as DataSourcesType, MergableAction } from '../../utils/types';
-import { loginCSR, loginHookWithCSRCheck, logoutWithCSRCheck } from './actionControllers/AccountController';
+import { getSuperuser, loginCSR, loginHookWithCSRCheck, logoutWithCSRCheck } from './actionControllers/AccountController';
 import { Configuration } from '../types';
-import dataSources from './dataSources';
 import { changePrice, checkoutWithCSR, getOrders } from './actionControllers/CartController';
 
 const superuser: {
   actions: MergableAction<Configuration>[];
-  dataSources: DataSourcesType<Configuration>;
 } = {
   actions: [
     {
@@ -41,8 +39,13 @@ const superuser: {
       hook: changePrice as ActionCreator<Configuration>,
       create: true,
     },
+    {
+      action: 'getSuperuser',
+      actionNamespace: 'account',
+      hook: getSuperuser as ActionCreator<Configuration>,
+      create: true,
+    },
   ],
-  dataSources,
 };
 
 export default superuser;
