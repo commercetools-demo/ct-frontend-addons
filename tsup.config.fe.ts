@@ -4,7 +4,7 @@ export default defineConfig({
   entry: ['src/*/frontend/index.tsx'],
   format: ['esm','cjs'],
   dts: true,
-  splitting: true,
+  splitting: false,
   outDir: 'dist',
   minify: true,
   bundle: true,
