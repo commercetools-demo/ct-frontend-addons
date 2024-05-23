@@ -1,0 +1,1 @@
+{"version":3,"file":"Flow.d.ts","sourceRoot":"","sources":["../../../../../src/approval-workflows/types/approval/Flow.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,YAAY,IAAI,0BAA0B,EAAE,MAAM,6BAA6B,CAAC;AACzF,OAAO,EAAE,KAAK,EAAE,MAAM,2CAA2C,CAAC;AAElE,MAAM,MAAM,YAAY,GAAG,0BAA0B,GAAG;IACtD,KAAK,EAAE,KAAK,GAAG;QAAE,WAAW,CAAC,EAAE,MAAM,CAAA;KAAE,CAAC;CACzC,CAAC"}

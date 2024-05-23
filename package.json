@@ -11,24 +11,20 @@
   ],
   "exports": {
     "./dist/approval-workflows": {
-      "types": "./dist/approval-workflows/index.d.ts",
-      "import": "./dist/approval-workflows/index.js",
-      "require": "./dist/approval-workflows/index.cjs"
+      "types": "./dist/types/approval-workflows/frontend/index.d.ts",
+      "import": "./dist/approval-workflows.js"
     },
     "./dist/configurable-products": {
-      "types": "./dist/configurable-products/index.d.ts",
-      "import": "./dist/configurable-products/index.js",
-      "require": "./dist/configurable-products/index.cjs"
+      "types": "./dist/types/configurable-products/frontend/index.d.ts",
+      "import": "./dist/configurable-products.js"
     },
     "./dist/superuser-b2b": {
-      "types": "./dist/superuser/index.d.ts",
-      "import": "./dist/superuser/index.js",
-      "require": "./dist/superuser/index.cjs"
+      "types": "./dist/types/superuser-b2b/frontend/index.d.ts",
+      "import": "./dist/superuser-b2b.js"
     },
     "./dist/superuser": {
-      "types": "./dist/superuser/index.d.ts",
-      "import": "./dist/superuser/index.js",
-      "require": "./dist/superuser/index.cjs"
+      "types": "./dist/types/superuser/frontend/index.d.ts",
+      "import": "./dist/superuser.js"
     },
     "./dist/extensions": {
       "types": "./dist/extensions.d.ts",
@@ -43,8 +39,8 @@
     "build": "rimraf dist && yarn bundle",
     "bundle": "npm run build:tsup",
     "build:ts": "tsc",
-    "build:tsup": "npm run build:tsup:fe && npm run build:tsup:extensions",
-    "build:tsup:fe": "tsup --config tsup.config.fe.ts && node move-dist.js",
+    "build:tsup": "npm run build:webpack:fe && npm run build:tsup:extensions",
+    "build:webpack:fe": "webpack --config webpack.config.js",
     "build:tsup:extensions": "tsup --config tsup.config.extensions.ts"
   },
   "repository": {
@@ -62,6 +58,11 @@
   },
   "homepage": "https://github.com/commercetools-demo/frontend-addons#readme",
   "devDependencies": {
+    "@babel/core": "^7.24.5",
+    "@babel/plugin-transform-typescript": "^7.24.5",
+    "@babel/preset-env": "^7.24.5",
+    "@babel/preset-react": "^7.24.1",
+    "@babel/preset-typescript": "^7.24.1",
     "@commercetools/frontend-composable-commerce": "^1.3.0",
     "@commercetools/frontend-domain-types": "^1.0.7",
     "@commercetools/frontend-sdk": "^1.9.1",
@@ -77,15 +78,22 @@
     "@types/react-dom": "^18.2.19",
     "@typescript-eslint/eslint-plugin": "^7.0.1",
     "@typescript-eslint/parser": "^7.0.1",
+    "babel-loader": "^9.1.3",
     "dts-bundle-generator": "^9.3.1",
     "eslint": "^8.56.0",
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "next": "13.4.5",
     "prettier": "^3.2.5",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "rimraf": "^5.0.5",
     "swr": "^2.2.0",
+    "ts-loader": "^9.5.1",
     "tsup": "^8.0.2",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "webpack": "^5.91.0",
+    "webpack-cli": "^5.1.4"
   },
   "peerDependencies": {
     "@commercetools/frontend-composable-commerce": ">=1.2.0",
