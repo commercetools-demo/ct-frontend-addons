@@ -3,18 +3,10 @@ import CartReassignButton from './components/reassign-cart-button';
 import SuperuserProvider, { useSuperuserContext } from './provider';
 import useSuperuserCarts from './hooks/useSuperuserCarts';
 
-export const COMPONENTS = {
-  CartBrowser,
-  CartReassignButton,
-};
+export { CartBrowser, CartReassignButton };
 
-export const PROVIDERS = {
-  SuperuserProvider,
-  useSuperuserContext,
-};
+export { SuperuserProvider, useSuperuserContext };
 
-export const hooks = {
-  useSuperuserCarts,
-};
+export { useSuperuserCarts };
 
 export { SuperuserStatus } from './types';

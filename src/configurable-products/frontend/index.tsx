@@ -5,19 +5,19 @@ import ConfigurableComponents from './components/configurable-components/index';
 import useChildComponents from './hooks/useChildComponents';
 import useComponentsCart from './hooks/useComponentsCart';
 
-export const COMPONENTS = {
+export {
   BundledItems,
   ConfigurableComponents,
 };
 
-export const PROVIDERS = {
+export {
   ConfigurableComponentsProvider,
   useConfigurableComponentsContext,
   BundledItemsProvider,
   useBundledItemsContext,
 };
 
-export const hooks = {
+export {
   useChildComponents,
   useComponentsCart,
 };

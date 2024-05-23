@@ -97,7 +97,7 @@ Create the following dynamic pages in Studio
     'use client';
     // import atom components
     ...
-    import { ApprovalFlow, COMPONENTS } from 'ct-frontend-addons/dist/approval-workflows';
+    import { ApprovalFlow, ApprovalFlowsDetails } from 'ct-frontend-addons/dist/approval-workflows';
     import useTranslation from '@/providers/I18n/hooks/useTranslation';
     import { sdk } from '@/sdk';
     import { DataSource } from '@/types/lib/datasources';
@@ -121,7 +121,7 @@ Create the following dynamic pages in Studio
 
       return (
         <Dashboard href={DashboardLinks.companyAdmin} userName={account?.firstName}>
-          <COMPONENTS.ApprovalFlowsDetails
+          <ApprovalFlowsDetails
             accountId={account?.accountId}
             sdk={sdk}
             components={{
@@ -153,7 +153,7 @@ Create the following dynamic pages in Studio
       'use client';
       /// import atom components
       ...
-      import { ApprovalRule, COMPONENTS } from 'ct-frontend-addons/dist/approval-workflows';
+      import { ApprovalRule, ApprovalRulesDetails } from 'ct-frontend-addons/dist/approval-workflows';
       import { DashboardLinks } from '@/components/pages/dashboard/constants';
       import useTranslation from '@/providers/I18n/hooks/useTranslation';
       import { sdk } from '@/sdk';
@@ -179,7 +179,7 @@ Create the following dynamic pages in Studio
 
         return (
           <Dashboard href={DashboardLinks.companyAdmin} userName={account?.firstName}>
-            <COMPONENTS.ApprovalRulesDetails
+            <ApprovalRulesDetails
               isEditing={!!data.data?.dataSource?.rule}
               sdk={sdk}
               components={{
@@ -228,7 +228,7 @@ Create the following dynamic pages in Studio
     ```ts
     /// packages/<project>/frontend/src/components/pages/dashboard/pages/company-admin/index.tsx
 
-    import { COMPONENTS } from 'ct-frontend-addons/dist/approval-workflows';
+    import { ApprovalFlowsPanel, ApprovalRulesPanel } from 'ct-frontend-addons/dist/approval-workflows';
     /// import atom components
     ...
     import useBusinessUnit from '@/lib/tastics/company-admin/hooks/useBusinessUnit';
@@ -250,7 +250,7 @@ Create the following dynamic pages in Studio
           <Tabs.Panels>
               ...
               <Tabs.Panel>
-                  <COMPONENTS.ApprovalFlowsPanel
+                  <ApprovalFlowsPanel
                     businessUnitKey={activeBusinessUnit?.key}
                     storeKey={selectedStore?.key}
                     sdk={sdk}
@@ -272,7 +272,7 @@ Create the following dynamic pages in Studio
                   />
                 </Tabs.Panel>
                 <Tabs.Panel>
-                  <ApprovalWorkflows.COMPONENTS.ApprovalRulesPanel
+                  <ApprovalRulesPanel
                     businessUnitKey={activeBusinessUnit?.key}
                     storeKey={selectedStore?.key}
                     sdk={sdk}

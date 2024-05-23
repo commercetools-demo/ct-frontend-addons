@@ -5,8 +5,8 @@ import ApprovalRulesDetails from './components/approval-rule-details';
 import { useApprovals } from './hooks/useApprovals';
 import type { ApprovalFlow } from '../types/approval/Flow';
 import type { ApprovalRule } from '../types/approval/Rule';
-export const COMPONENTS = { ApprovalFlowsPanel, ApprovalRulesPanel, ApprovalFlowsDetails, ApprovalRulesDetails };
+export { ApprovalFlowsPanel, ApprovalRulesPanel, ApprovalFlowsDetails, ApprovalRulesDetails };
 
-export const HOOKS = { useApprovals };
+export { useApprovals };
 
 export type { ApprovalFlow, ApprovalRule };
