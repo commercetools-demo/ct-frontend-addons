@@ -34,7 +34,7 @@ export class ProductRouter {
 
         // Fetch all products at once
         if (uniqueIds.length) {
-          const productApi = new ProductApi(frontasticContext, getLocale(request), getCurrency(request), request);
+          const productApi = new ProductApi(frontasticContext, getLocale(request), getCurrency(request));
           const products = await productApi
             .query({
               productIds: uniqueIds,

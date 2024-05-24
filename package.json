@@ -1,6 +1,6 @@
 {
   "name": "ct-frontend-addons",
-  "version": "0.7.2",
+  "version": "0.8.0",
   "description": "Commercetools frontend backoffice integration",
   "main": "dist/index.cjs",
   "types": "dist/index.d.ts",
@@ -21,9 +21,9 @@
       "require": "./dist/configurable-products/index.cjs"
     },
     "./dist/superuser-b2b": {
-      "types": "./dist/superuser/index.d.ts",
-      "import": "./dist/superuser/index.js",
-      "require": "./dist/superuser/index.cjs"
+      "types": "./dist/superuser-b2b/index.d.ts",
+      "import": "./dist/superuser-b2b/index.js",
+      "require": "./dist/superuser-b2b/index.cjs"
     },
     "./dist/superuser": {
       "types": "./dist/superuser/index.d.ts",
