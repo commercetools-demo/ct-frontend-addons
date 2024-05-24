@@ -1,8 +1,8 @@
 import { ActionContext, ActionHandler, Request, Response } from '@frontastic/extension-types';
 import { Configuration } from '../../types';
 import { extractDependency } from '../utils';
-import { getCurrency, getLocale } from '../../../utils/request';
 import { Cart } from '../../../shared/types';
+import { getCartApi } from '../../../shared/utils/apiConstructors/getCartApi';
 
 export const addToCart = (originalCb: ActionHandler, config?: Configuration): ActionHandler => {
   return async (request: Request, actionContext: ActionContext): Promise<Response> => {
@@ -10,17 +10,8 @@ export const addToCart = (originalCb: ActionHandler, config?: Configuration): Ac
 
     if (originalResult.statusCode === 200 && originalResult?.body) {
       const cart: Cart = JSON.parse(originalResult?.body);
-      const CartApi = extractDependency('CartApi', config?.dependencies);
-      if (!CartApi) {
-        const response: Response = {
-          statusCode: 401,
-          body: JSON.stringify('Dependencies not provided: CartApi'),
-        };
 
-        return response;
-      }
-
-      const cartApi = new CartApi(actionContext.frontasticContext, getLocale(request), getCurrency(request), request);
+      const cartApi = getCartApi(request, actionContext.frontasticContext!, config, extractDependency, false);
 
       const changes: {
         lineItemId: string;
@@ -61,17 +52,7 @@ export const updateLineItem = (originalCb: ActionHandler, config?: Configuration
 
     if (originalResult.statusCode === 200 && originalResult?.body) {
       const cart: Cart = JSON.parse(originalResult?.body);
-      const CartApi = extractDependency('CartApi', config?.dependencies);
-      if (!CartApi) {
-        const response: Response = {
-          statusCode: 401,
-          body: JSON.stringify('Dependencies not provided: CartApi'),
-        };
-
-        return response;
-      }
-      
-      const cartApi = new CartApi(actionContext.frontasticContext, getLocale(request), getCurrency(request), request);
+      const cartApi = getCartApi(request, actionContext.frontasticContext!, config, extractDependency, false);
 
       const changes: {
         lineItemId: string;

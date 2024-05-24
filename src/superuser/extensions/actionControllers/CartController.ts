@@ -1,24 +1,14 @@
 import { ActionContext, ActionHandler, Request, Response } from '@frontastic/extension-types';
 import { Configuration } from '../../types';
 import { Money, Order } from '../../../shared/types';
-import { getCurrency, getLocale } from '../../../utils/request';
 import { extractDependency } from '../utils';
 import { CartFetcher } from '../../../shared/utils/CartFetcher';
+import { getCartApi } from '../../../shared/utils/apiConstructors/getCartApi';
 
 export const changePrice = (config?: Configuration) => {
   return async (request: Request, actionContext: ActionContext) => {
-    const CartApi = extractDependency('CartApi', config?.dependencies);
-    
-    if (!CartApi) {
-      const response: Response = {
-        statusCode: 401,
-        body: JSON.stringify('Dependencies not provided: CartApi | CartFetcher'),
-      };
-
-      return response;
-    }
     if (request.body) {
-      const cartApi = new CartApi(actionContext.frontasticContext, getLocale(request), getCurrency(request), request);
+      const cartApi = getCartApi(request, actionContext.frontasticContext!, config, extractDependency, false);
       const body: {
         lineItemId: string;
         price: Money;
@@ -49,16 +39,7 @@ export const checkoutWithCSR = (originalCb: ActionHandler, config?: Configuratio
       const superUserEmail = request.sessionData?.superUser?.email;
 
       if (order && superUserEmail) {
-        const CartApi = extractDependency('CartApi', config?.dependencies);
-        if (!CartApi) {
-          const response: Response = {
-            statusCode: 401,
-            body: JSON.stringify('Dependencies not provided: CartApi'),
-          };
-
-          return response;
-        }
-        const cartApi = new CartApi(actionContext.frontasticContext, getLocale(request), getCurrency(request), request);
+        const cartApi = getCartApi(request, actionContext.frontasticContext!, config, extractDependency, false);
 
         order = await cartApi.setSuperUserEmailOnOrder(
           order,
@@ -80,16 +61,7 @@ export const checkoutWithCSR = (originalCb: ActionHandler, config?: Configuratio
 
 export const getOrders = (originalCb: ActionHandler, config?: Configuration): ActionHandler => {
   return async (request: Request, actionContext: ActionContext): Promise<Response> => {
-    const CartApi = extractDependency('CartApi', config?.dependencies);
-    if (!CartApi) {
-      const response: Response = {
-        statusCode: 401,
-        body: JSON.stringify('Dependencies not provided: CartApi'),
-      };
-
-      return response;
-    }
-    const cartApi = new CartApi(actionContext.frontasticContext, getLocale(request), getCurrency(request), request);
+    const cartApi = getCartApi(request, actionContext.frontasticContext!, config, extractDependency, false);
 
     const account = request.sessionData?.account !== undefined ? request.sessionData.account : undefined;
 

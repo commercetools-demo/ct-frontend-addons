@@ -11,7 +11,7 @@ async function loginCSRAccount(
   impersonatedCustomerEmail?: string,
   config?: Configuration,
 ): Promise<Response> {
-  const AccountApi = extractDependency('AccountApi', config?.dependencies);
+  const AccountApi = extractDependency('AccountApi', config);
   if (!AccountApi) {
     const response: Response = {
       statusCode: 401,
@@ -112,7 +112,7 @@ export const loginHookWithCSRCheck = (originalCb: ActionHandler, config?: Config
     if (originalResult.statusCode === 200 && originalResult?.body) {
       const account = JSON.parse(originalResult.body);
 
-      const AccountApi = extractDependency('AccountApi', config?.dependencies);
+      const AccountApi = extractDependency('AccountApi', config);
       const accountApi = new AccountApi(
         actionContext.frontasticContext,
         getLocale(request),

@@ -3,7 +3,7 @@ import { extractDependency } from '../utils';
 import { Configuration } from '../../types';
 import { getCurrency, getLocale, getStoreKey, getSuperuserFromSession } from '../../../utils/request';
 import { BusinessUnit } from '../../../shared/businessUnit';
-import { getCartApi } from '../../../shared/utils/getCartApi';
+import { getCartApi } from '../../../shared/utils/apiConstructors/getCartApi';
 import { Cart } from '@commercetools/frontend-domain-types/cart';
 
 export const login = (originalCb: ActionHandler, config?: Configuration): ActionHandler => {
@@ -66,9 +66,8 @@ export const getSuperuser = (config?: Configuration): ActionHandler => {
       };
       return response;
     }
-    const CartApi = extractDependency('CartApi', config);
 
-    const cartApi = getCartApi(request, actionContext.frontasticContext!, CartApi);
+    const cartApi = getCartApi(request, actionContext.frontasticContext!, config, extractDependency);
     const storeKey = getStoreKey(request);
 
     const carts = (await cartApi.getAllSuperuserCartsInStore(storeKey)) as Cart[];

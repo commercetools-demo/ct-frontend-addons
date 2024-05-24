@@ -3,7 +3,7 @@ import { Configuration } from '../../types';
 import { getLocale, getStoreKey, getSuperuserFromSession } from '../../../utils/request';
 import { extractDependency } from '../utils';
 import { Cart, Order } from '@commercetools/frontend-domain-types/cart';
-import { getCartApi } from '../../../shared/utils/getCartApi';
+import { getCartApi } from '../../../shared/utils/apiConstructors/getCartApi';
 import parseRequestBody from '../../../utils/parseRequestBody';
 import { Cart as CommercetoolsCart } from '@commercetools/platform-sdk';
 
@@ -12,9 +12,8 @@ export const getAllSuperuserCartsInStore = (config?: Configuration): ActionHandl
     let carts: Cart[] = [];
 
     if (getSuperuserFromSession(request)) {
-      const CartApi = extractDependency('CartApi', config);
+      const cartApi = getCartApi(request, actionContext.frontasticContext!, config, extractDependency);
 
-      const cartApi = getCartApi(request, actionContext.frontasticContext!, CartApi);
       const storeKey = getStoreKey(request);
 
       carts = (await cartApi.getAllSuperuserCartsInStore(storeKey)) as Cart[];
@@ -43,9 +42,8 @@ export const getAllSuperuserCartsInStore = (config?: Configuration): ActionHandl
 export const setCart = (config?: Configuration): ActionHandler => {
   return async (request: Request, actionContext: ActionContext) => {
     if (getSuperuserFromSession(request)) {
-      const CartApi = extractDependency('CartApi', config);
+      const cartApi = getCartApi(request, actionContext.frontasticContext!, config, extractDependency);
 
-      const cartApi = getCartApi(request, actionContext.frontasticContext!, CartApi);
       const id = request.query?.id;
       const body = parseRequestBody<{
         email?: string;
@@ -92,9 +90,8 @@ export const setCart = (config?: Configuration): ActionHandler => {
 export const createSuperuserCart = (config?: Configuration): ActionHandler => {
   return async (request: Request, actionContext: ActionContext) => {
     if (getSuperuserFromSession(request)) {
-      const CartApi = extractDependency('CartApi', config);
+      const cartApi = getCartApi(request, actionContext.frontasticContext!, config, extractDependency);
 
-      const cartApi = getCartApi(request, actionContext.frontasticContext!, CartApi);
       const storeKey = getStoreKey(request);
 
       const cart = await cartApi.createSuperuserCart(storeKey, true);
@@ -130,8 +127,8 @@ export const checkout = (originalCb: ActionHandler, config?: Configuration): Act
   return async (request: Request, actionContext: ActionContext) => {
     const locale = getLocale(request);
 
-    const CartApi = extractDependency('CartApi', config);
-    const cartApi = getCartApi(request, actionContext.frontasticContext!, CartApi);
+    const cartApi = getCartApi(request, actionContext.frontasticContext!, config, extractDependency);
+
     const cartId = request.sessionData?.cartId;
 
     // If the cartId or the originalEmailFieldKey is not found, return the original callback.
@@ -184,9 +181,8 @@ export const reassignCart = (originalCb: ActionHandler, config?: Configuration):
         email?: string;
       }>(request.body);
       const cart: Cart = JSON.parse(originalResult?.body);
-      const CartApi = extractDependency('CartApi', config);
+      const cartApi = getCartApi(request, actionContext.frontasticContext!, config, extractDependency);
 
-      const cartApi = getCartApi(request, actionContext.frontasticContext!, CartApi);
       const commercetoolsCart: CommercetoolsCart = await cartApi.getCommercetoolsCartById(cart.cartId);
 
       if (!!originalRequstBody?.email) {

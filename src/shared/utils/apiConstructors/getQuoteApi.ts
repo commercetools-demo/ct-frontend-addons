@@ -4,7 +4,7 @@ import {
   getBusinessUnitKey,
   getCurrency,
   getLocale
-} from '../../utils/request';
+} from '../../../utils/request';
 
 
 export const getQuoteApi = (request: Request, actionContext: Context, QuoteApi: any) => {

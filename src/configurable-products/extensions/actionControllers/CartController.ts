@@ -1,7 +1,7 @@
 import { ActionContext, ActionHandler, Request, Response } from '@frontastic/extension-types';
 import { Cart, LineItem } from '../../../shared/types';
 import { extractDependency } from '../utils';
-import { getCartApi } from '../../../shared/utils/getCartApi';
+import { getCartApi } from '../../../shared/utils/apiConstructors/getCartApi';
 import { Configuration } from '../../types';
 import { AddToCartBody } from '../types';
 import parseRequestBody from '../../../utils/parseRequestBody';
@@ -15,17 +15,9 @@ export const getCart = (originalCb: ActionHandler, config?: Configuration): Acti
 
     if (originalResult.statusCode === 200 && originalResult?.body) {
       let cart: Cart = JSON.parse(originalResult?.body);
-      const CartApi = extractDependency('CartApi', config);
-      if (!CartApi) {
-        const response: Response = {
-          statusCode: 401,
-          body: JSON.stringify('Dependencies not provided: CartApi'),
-        };
+    
 
-        return response;
-      }
-
-      const cartApi = getCartApi(request, actionContext.frontasticContext!, CartApi);
+      const cartApi = getCartApi(request, actionContext.frontasticContext!, config, extractDependency);
       const commercetoolsCart: CommercetoolsCart = await cartApi.getCommercetoolsCartById(cart.cartId);
 
       cart = CartMapper.mergeParentIdToCart(cart, commercetoolsCart, config);
@@ -53,21 +45,12 @@ export const addToCart = (originalCb: ActionHandler, config?: Configuration): Ac
 
     if (originalResult.statusCode === 200 && originalResult?.body) {
       let cart: Cart = JSON.parse(originalResult?.body);
-      const CartApi = extractDependency('CartApi', config);
-      if (!CartApi) {
-        const response: Response = {
-          statusCode: 401,
-          body: JSON.stringify('Dependencies not provided: CartApi'),
-        };
-
-        return response;
-      }
 
       if (!config?.props.lineItem.customTypeKey || !config?.props.lineItem.parentIdCustomFieldKey) {
         return originalResult;
       }
 
-      const cartApi = getCartApi(request, actionContext.frontasticContext!, CartApi);
+      const cartApi = getCartApi(request, actionContext.frontasticContext!, config, extractDependency);
 
       const commercetoolsCart = await cartApi.getCommercetoolsCartById(cart.cartId);
       cart = CartMapper.mergeParentIdToCart(cart, commercetoolsCart, config);
@@ -87,16 +70,6 @@ export const addComponentsToCart = (config?: Configuration): ActionHandler => {
   return async (request: Request, actionContext: ActionContext): Promise<Response> => {
     const body = parseRequestBody<AddToCartBody>(request.body);
 
-    const CartApi = extractDependency('CartApi', config);
-    if (!CartApi) {
-      const response: Response = {
-        statusCode: 401,
-        body: JSON.stringify('Dependencies not provided: CartApi'),
-      };
-
-      return response;
-    }
-
     if (!config?.props.lineItem.customTypeKey || !config?.props.lineItem.parentIdCustomFieldKey) {
       const response: Response = {
         statusCode: 401,
@@ -106,7 +79,7 @@ export const addComponentsToCart = (config?: Configuration): ActionHandler => {
       return response;
     }
 
-    const cartApi = getCartApi(request, actionContext.frontasticContext!, CartApi);
+    const cartApi = getCartApi(request, actionContext.frontasticContext!, config, extractDependency);
     const cartId = fetchCartIdFromSession(request);
 
     let commercetoolsCart: CommercetoolsCart = await cartApi.getCommercetoolsCartById(cartId);
@@ -157,17 +130,8 @@ export const removeLineItem = (originalCb: ActionHandler, config?: Configuration
 
     if (originalResult.statusCode === 200 && originalResult?.body) {
       let cart: Cart = JSON.parse(originalResult?.body);
-      const CartApi = extractDependency('CartApi', config);
-      if (!CartApi) {
-        const response: Response = {
-          statusCode: 401,
-          body: JSON.stringify('Dependencies not provided: CartApi'),
-        };
 
-        return response;
-      }
-
-      const cartApi = getCartApi(request, actionContext.frontasticContext!, CartApi);
+      const cartApi = getCartApi(request, actionContext.frontasticContext!, config, extractDependency);
       const commercetoolsCart = await cartApi.getCommercetoolsCartById(cart.cartId);
 
       cart = CartMapper.mergeParentIdToCart(cart, commercetoolsCart, config);
@@ -201,17 +165,8 @@ export const updateLineItem = (originalCb: ActionHandler, config?: Configuration
 
     if (originalResult.statusCode === 200 && originalResult?.body) {
       let cart: Cart = JSON.parse(originalResult?.body);
-      const CartApi = extractDependency('CartApi', config);
-      if (!CartApi) {
-        const response: Response = {
-          statusCode: 401,
-          body: JSON.stringify('Dependencies not provided: CartApi'),
-        };
 
-        return response;
-      }
-
-      const cartApi = getCartApi(request, actionContext.frontasticContext!, CartApi);
+      const cartApi = getCartApi(request, actionContext.frontasticContext!, config, extractDependency);
       let commercetoolsCart = await cartApi.getCommercetoolsCartById(cart.cartId);
 
       cart = CartMapper.mergeParentIdToCart(cart, commercetoolsCart, config);

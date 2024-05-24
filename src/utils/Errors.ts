@@ -1,38 +1,23 @@
-export type ErrorData = { message: string; errors?: never };
+export type ErrorData = { message: string; errors?: string[] };
 
-export type ErrorProps = ErrorData | { message?: never; errors: ErrorData[] };
+export interface ErrorProperties {
+  message: string;
+  errors?: ErrorData[];
+}
 
-export type ExternalErrorProps = {
-  status: number;
-  body?: string;
-} & ErrorProps;
+export interface ExtensionErrorProperties extends ErrorProperties {
+  statusCode?: number;
+}
 
 export abstract class ExtensionError extends Error {
-  protected code?: string;
-  errors: ErrorData[];
+  errorName?: string;
+  errors?: ErrorData[];
+  statusCode?: number;
 
-  protected constructor({ message, errors }: ErrorProps) {
+  protected constructor({ message, errors, statusCode }: ExtensionErrorProperties) {
     super(message || errors?.[0]?.message);
 
     this.errors = errors || [{ message }];
-  }
-}
-
-export class ValidationError extends ExtensionError {
-  constructor(options: ErrorProps) {
-    super(options);
-    this.code = 'validation_error';
-  }
-}
-
-export class ExternalError extends ExtensionError {
-  status: number;
-  body?: string | Record<string, unknown>;
-
-  constructor(options: ExternalErrorProps) {
-    super(options);
-    this.status = options.status;
-    this.body = options.body;
-    this.code = 'external_error';
+    this.statusCode = isNaN(statusCode) ? 503 : statusCode;
   }
 }

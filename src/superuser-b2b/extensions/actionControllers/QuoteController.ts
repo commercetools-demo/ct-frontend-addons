@@ -1,13 +1,13 @@
 import { ActionContext, ActionHandler, Request } from '@frontastic/extension-types';
 import { Configuration } from '../../types';
 import { extractDependency } from '../utils';
-import { getCartApi } from '../../../shared/utils/getCartApi';
+import { getCartApi } from '../../../shared/utils/apiConstructors/getCartApi';
 
 export const createQuoteRequest = (originalCb: ActionHandler, config?: Configuration): ActionHandler => {
   return async (request: Request, actionContext: ActionContext) => {
 
-    const CartApi = extractDependency('CartApi', config);
-    const cartApi = getCartApi(request, actionContext.frontasticContext!, CartApi);
+    const cartApi = getCartApi(request, actionContext.frontasticContext!, config, extractDependency);
+
     const cartId = request.sessionData?.cartId;
 
     // If the cartId or the originalEmailFieldKey is not found, return the original callback.
