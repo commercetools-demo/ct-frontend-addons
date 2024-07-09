@@ -34,7 +34,7 @@ async function loginCSRAccount(
 
     return response;
   }
-  const accountApi = new AccountApi(actionContext.frontasticContext, getLocale(request), getCurrency(request), request);
+  const accountApi = new AccountApi(actionContext.frontasticContext, getLocale(request), getCurrency(request));
 
   let superUserAccount: Account;
   let impersonatedAccount: Account = {} as Account;
@@ -117,7 +117,6 @@ export const loginHookWithCSRCheck = (originalCb: ActionHandler, config?: Config
         actionContext.frontasticContext,
         getLocale(request),
         getCurrency(request),
-        request,
       );
 
       const customerAccount = await accountApi.getCustomerByEmail(account.email);
