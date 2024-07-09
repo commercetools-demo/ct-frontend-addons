@@ -1,7 +1,6 @@
 import { Dependencies } from "../types";
 import { injectAccountApi } from "./apis/AccountApi";
 import { injectCartApi } from "./apis/CartApi";
-import { injectAccountMapper } from "./mappers/AccountMapper";
 import { injectCartMapper } from "./mappers/CartMapper";
 
 export const extractDependency = (dependency: keyof Dependencies, dependencies?: Dependencies): any => {
@@ -12,7 +11,7 @@ export const extractDependency = (dependency: keyof Dependencies, dependencies?:
       case 'AccountApi':
         return injectAccountApi(dependencies.AccountApi, extractDependency('AccountMapper', dependencies));
       case 'AccountMapper':
-        return injectAccountMapper(dependencies.AccountMapper);
+        return dependencies.AccountMapper;
       case 'CartMapper':
         return injectCartMapper(dependencies.CartMapper);
     }
