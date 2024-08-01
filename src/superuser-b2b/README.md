@@ -113,13 +113,13 @@ None
 
    ```ts
      /// packages/<project>/frontend/src/providers/index.tsx
-     import { PROVIDERS } from 'ct-frontend-addons/dist/superuser-b2b';
+     import { SuperuserProvider } from 'ct-frontend-addons/dist/superuser-b2b';
 
      export default async function Page({ params, searchParams }: PageProps) {
 
      return (
        ...
-       <PROVIDERS.SuperuserProvider sdk={sdk}>
+       <SuperuserProvider sdk={sdk}>
            <ShipAndLanguageProvider>
            ...
            </ShipAndLanguageProvider>
@@ -132,9 +132,9 @@ None
 
    ```ts
      /// packages/<project>/frontend/src/lib/hooks/useCart/index.ts
-     import { hooks } from 'ct-frontend-addons/dist/superuser-b2b';
+     import { useSuperuserCarts } from 'ct-frontend-addons/dist/superuser-b2b';
      const useCart = (businessUnitKey?: string, storeKey?: string) => {
-         const { setCart, createSuperuserCart, reassignCart } = hooks.useSuperuserCarts(sdk, mutate);
+         const { setCart, createSuperuserCart, reassignCart } = useSuperuserCarts(sdk, mutate);
          ...
 
          return {
@@ -152,10 +152,10 @@ None
 
    ```ts
    /// packages/<project>/frontend/src/components/organisms/product-list/index.tsx
-   import { PROVIDERS } from 'ct-frontend-addons/dist/superuser-b2b';
+   import { useSuperuserContext } from 'ct-frontend-addons/dist/superuser-b2b';
 
    const ProductList = (props: ProductListProps) => {
-     const { superuserStatus } = PROVIDERS.useSuperuserContext();
+     const { superuserStatus } = useSuperuserContext();
 
      return (
        {superuserStatus?.isSuperuser && (
@@ -174,7 +174,7 @@ None
 
    ```ts
      /// packages/<project>/frontend/src/components/organisms/header/cart-link/index.tsx
-     import { COMPONENTS } from 'ct-frontend-addons/dist/superuser-b2b';
+     import { CartBrowser } from 'ct-frontend-addons/dist/superuser-b2b';
 
      const CartLink = () => {
 
@@ -186,7 +186,7 @@ None
          <Link ...>
 
          ...
-         <COMPONENTS.CartBrowser
+         <CartBrowser
            cartId={cart?.cartId ?? ''}
            createSuperuserCart={createSuperuserCart}
            setCart={setCart}
@@ -203,19 +203,19 @@ None
 
    ```ts
      /// packages/<project>/frontend/src/cmponents/organisms/order-summary/components/checkout-cta.tsx
-     import { PROVIDERS, COMPONENTS } from 'ct-frontend-addons/dist/superuser-b2b';
+     import { useSuperuserContext, CartReassignButton } from 'ct-frontend-addons/dist/superuser-b2b';
 
      const CheckoutCTA = () => {
          const { activeBusinessUnit } = useBusinessUnit();
 
          const { selectedStore } = useStoreAndBusinessUnits();
-         const { superuserStatus } = PROVIDERS.useSuperuserContext();
+         const { superuserStatus } = useSuperuserContext();
          const { account } = useAccount();
          const { cart, reassignCart } = useCart(activeBusinessUnit?.key, selectedStore?.key);
 
        return (
          ...
-         <COMPONENTS.CartReassignButton
+         <CartReassignButton
            activeBusinessUnit={activeBusinessUnit}
            reassignCart={reassignCart}
            translate={translate}
