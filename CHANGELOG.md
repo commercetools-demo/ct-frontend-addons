@@ -1,3 +1,10 @@
+# 0.9.0
+- product-seach module
+# 0.8.2
+- fix superuser b2c bugs
+- adapt to new b2c boilerplate
+# 0.8.0
+- fix frontend component exports + readme
 # 0.7.2
 - no chunks during build
 # 0.7.1

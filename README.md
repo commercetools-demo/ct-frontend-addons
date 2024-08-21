@@ -9,6 +9,7 @@ This is NOT an official commercetools code and NOT production ready. Use it at y
 1. [Configurable components](src/configurable-products/README.md)
 1. [B2B superuser](src/superuser-b2b/README.md)
 1. [Approval workflows](src/approval-workflows/README.md)
+1. [Product search](src/product-search/README.md)
 
 ## Install
 ```

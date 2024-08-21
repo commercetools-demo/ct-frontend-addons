@@ -13,12 +13,14 @@ import { Dependencies as SuperuserDependencies } from '../superuser/types';
 import { Dependencies as SuperuserB2BDependencies } from '../superuser-b2b/types';
 import { Dependencies as ConfigurableProductsDependencies } from '../configurable-products/types';
 import { Dependencies as ApprovalWorkflowsDependencies } from '../approval-workflows/types';
+import { Dependencies as ProductSeaechDependencies } from '../product-search/types';
 
 export type UnionDependencies =
   | MinimumQuantityDependencies
   | SuperuserDependencies
   | SuperuserB2BDependencies
   | ConfigurableProductsDependencies
+  | ProductSeaechDependencies
   | ApprovalWorkflowsDependencies;
 
 export type ActionWrapper<T> = (originalCb: ActionHandler, config?: T) => ActionHandler;
