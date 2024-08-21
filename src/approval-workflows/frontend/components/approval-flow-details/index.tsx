@@ -1,5 +1,6 @@
 'use client';
 import React, { useEffect, useMemo, useState } from 'react';
+// @ts-ignore
 import dynamic from 'next/dynamic';
 import { ApprovalFlow } from '../../../types/approval/Flow';
 import { useApprovals } from '../../hooks/useApprovals';
@@ -8,6 +9,7 @@ import { CurrencyHelpers } from '../../../../shared/utils/currency-helpers';
 import { Cart } from '@commercetools/frontend-domain-types/cart';
 import { Transaction } from '../../../../shared/types';
 import { Currency } from '@commercetools/frontend-sdk/lib/types/Currency';
+// @ts-ignore
 import { useParams } from 'next/navigation';
 import FlowStatusTag from '../flow-status-tag';
 // necessary for react-organizational-chart in ssr

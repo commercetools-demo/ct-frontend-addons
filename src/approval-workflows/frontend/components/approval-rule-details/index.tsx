@@ -1,4 +1,6 @@
+// @ts-ignore
 import dynamic from 'next/dynamic';
+// @ts-ignore
 import { useRouter } from 'next/navigation';
 import React, { useCallback, useMemo, useState } from 'react';
 import { ApprovalRule, ApproverConjunction } from '../../../types/approval/Rule';

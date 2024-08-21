@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react';
+// @ts-ignore
 import { useParams } from 'next/navigation';
 import { Money, Product } from '@commercetools/frontend-domain-types/product';
 import { childComponentsAttributeName } from '../../hooks/useChildComponents';
