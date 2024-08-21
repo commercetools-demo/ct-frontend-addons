@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+// @ts-ignore
 import { useParams } from 'next/navigation';
 import { CheckIcon } from '@heroicons/react/24/outline';
 import { useConfigurableComponentsContext } from '../../providers/configurable-components';

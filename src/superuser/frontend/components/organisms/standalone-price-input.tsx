@@ -1,4 +1,5 @@
 import React, { useCallback, useMemo, useState } from 'react';
+// @ts-ignore
 import { useParams } from 'next/navigation';
 import debounce from 'lodash.debounce';
 import { LineItem, Money } from '../../types';
