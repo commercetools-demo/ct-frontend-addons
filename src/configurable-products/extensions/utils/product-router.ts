@@ -1,10 +1,38 @@
 import { Product, Variant } from '@commercetools/frontend-domain-types/product';
 import { Context, Request } from '@frontastic/extension-types';
-import { getCurrency, getDistributionChannelId, getLocale, getPath, getStoreId, getStoreKey, getSupplyChannelId } from '../../../utils/request';
+import {
+  getCurrency,
+  getDistributionChannelId,
+  getLocale,
+  getPath,
+  getStoreId,
+  getStoreKey,
+  getSupplyChannelId,
+} from '../../../utils/request';
 import { Configuration } from '../../types';
 import { extractDependency } from '../utils';
+import { LineItem } from '@commercetools/frontend-domain-types/wishlist';
 
 export class ProductRouter {
+  private static isProduct(product: Product | LineItem): product is Product {
+    // Only Product has the property "slug"
+    return product.hasOwnProperty('slug');
+  }
+
+  static identifyFrom(request: Request) {
+    if (getPath(request)?.match(/\/p\/([^\/]+)/)) {
+      return true;
+    }
+
+    return false;
+  }
+  
+  static generateUrlFor(item: Product | LineItem) {
+    if (ProductRouter.isProduct(item)) {
+      return `/${item.slug}/p/${item.variants[0].sku}`;
+    }
+    return `/slug/p/${item.variant?.sku}`;
+  }
   static getBundles = async (
     request: Request,
     frontasticContext: Context,
