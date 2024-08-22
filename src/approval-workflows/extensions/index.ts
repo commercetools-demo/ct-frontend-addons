@@ -1,4 +1,11 @@
-import { MergableAction,  DataSources as DataSourcesType, MergableDynamicHandlers, AddOnRegistry, DynamicPageHandlerAddOn, NewDynamicHandlers,  } from '../../utils/types';
+import {
+  MergableAction,
+  DataSources as DataSourcesType,
+  MergableDynamicHandlers,
+  AddOnRegistry,
+  DynamicPageHandlerAddOn,
+  NewDynamicHandlers,
+} from '../../utils/types';
 import { Configuration } from '../types';
 
 import {
@@ -34,7 +41,7 @@ const approvalWorkflowsExt: {
     'frontastic/approval-rule-page': {
       hook: injectRulePageHandler as NewDynamicHandlers<Configuration>,
       create: true,
-    }
+    },
   },
   actions: [
     {

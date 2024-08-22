@@ -1,5 +1,10 @@
 import { ActionCreator, ActionWrapper, DataSources as DataSourcesType, MergableAction } from '../../utils/types';
-import { getSuperuser, loginCSR, loginHookWithCSRCheck, logoutWithCSRCheck } from './actionControllers/AccountController';
+import {
+  getSuperuser,
+  loginCSR,
+  loginHookWithCSRCheck,
+  logoutWithCSRCheck,
+} from './actionControllers/AccountController';
 import { Configuration } from '../types';
 import { changePrice, checkoutWithCSR, getOrders } from './actionControllers/CartController';
 

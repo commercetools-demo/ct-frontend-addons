@@ -1,4 +1,4 @@
-import { Money } from "../types";
+import { Money } from '../types';
 
 export const getLocaleFromShortenedLocale = function (locale?: string) {
   return locale ? locale.split('_')[0] : 'en';

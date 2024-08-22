@@ -2,7 +2,7 @@ import { KeyedMutator } from 'swr';
 import { useSuperuserContext } from '../provider';
 import { SDKResponse } from '@commercetools/frontend-sdk';
 import { Cart } from '@commercetools/frontend-domain-types/cart';
-import { Cart as CommercetoolsCart } from "@commercetools/platform-sdk";
+import { Cart as CommercetoolsCart } from '@commercetools/platform-sdk';
 
 const useSuperuserCarts = (sdk: any, mutate: KeyedMutator<Cart>) => {
   const { setSuperuserCarts } = useSuperuserContext();
@@ -11,7 +11,7 @@ const useSuperuserCarts = (sdk: any, mutate: KeyedMutator<Cart>) => {
       actionName: `cart/setCart?id=${id}`,
       payload: {
         email,
-      }
+      },
     });
 
     if (!result.isError) mutate(result.data, { revalidate: false });

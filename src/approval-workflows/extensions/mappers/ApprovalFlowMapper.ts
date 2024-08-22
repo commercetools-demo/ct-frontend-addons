@@ -3,10 +3,14 @@ import { Locale } from '../../../utils/locale';
 import { ApprovalFlow } from '../../types/approval/Flow';
 
 export class ApprovalFlowMapper {
-  static mapCommercetoolsFlowToDomainFlow(flow: CommercewtoolsApprovalFlow, CartMapper: any, locale: Locale): ApprovalFlow {
+  static mapCommercetoolsFlowToDomainFlow(
+    flow: CommercewtoolsApprovalFlow,
+    CartMapper: any,
+    locale: Locale,
+  ): ApprovalFlow {
     return {
       ...flow,
-      ...(flow.order?.obj && {order: CartMapper.commercetoolsOrderToOrder(flow.order.obj, locale)}),
+      ...(flow.order?.obj && { order: CartMapper.commercetoolsOrderToOrder(flow.order.obj, locale) }),
     };
   }
 

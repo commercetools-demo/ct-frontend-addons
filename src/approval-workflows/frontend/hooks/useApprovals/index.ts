@@ -34,7 +34,7 @@ export const useApprovals = (sdk: any, businessUnitKey?: string, storeKey?: stri
       query: {
         businessUnitKey: businessUnitKey as string,
         storeKey: storeKey as string,
-        approvalFlowId
+        approvalFlowId,
       },
     });
     if (!res.isError) {
@@ -96,7 +96,15 @@ export const useApprovals = (sdk: any, businessUnitKey?: string, storeKey?: stri
     throw res.error;
   };
 
-  const getApprovalRules = async ({ limit, cursor, ids, states, createdFrom, createdTo, predicate }: Options): Promise<any> => {
+  const getApprovalRules = async ({
+    limit,
+    cursor,
+    ids,
+    states,
+    createdFrom,
+    createdTo,
+    predicate,
+  }: Options): Promise<any> => {
     const res = await sdk.callAction({
       actionName: `approval/getApprovalRules`,
       query: {
@@ -184,7 +192,7 @@ export const useApprovals = (sdk: any, businessUnitKey?: string, storeKey?: stri
       query: {
         businessUnitKey: businessUnitKey as string,
         storeKey: storeKey as string,
-        approvalRuleId
+        approvalRuleId,
       },
       payload,
     });

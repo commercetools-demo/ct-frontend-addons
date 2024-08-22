@@ -6,6 +6,7 @@ import SuperuserB2B from './superuser-b2b/extensions';
 import ConfigurableProducts from './configurable-products/extensions';
 import ApprovalWorkflows from './approval-workflows/extensions';
 import ProductSearch from './product-search/extensions';
+import StoreContext from './store-context/extensions';
 import { mergeExtensions } from './utils';
 import { ModuleConfiguration, Module } from './types';
 
@@ -53,6 +54,12 @@ export const injectExtensionsRegistry = (
           extensionRegirstry,
           ProductSearch,
           configuration.modules[Module.ProductSearch]!,
+        );
+      case Module.StoreContext:
+        extensionRegirstry = mergeExtensions(
+          extensionRegirstry,
+          StoreContext,
+          configuration.modules[Module.StoreContext]!,
         );
         break;
       default:

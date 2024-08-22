@@ -5,15 +5,13 @@ export const extractDependency = (dependency: keyof Dependencies, config?: Confi
   if (config?.dependencies?.[dependency]) {
     switch (dependency) {
       case 'BusinessUnitApi':
-        return config?.dependencies.BusinessUnitApi
+        return config?.dependencies.BusinessUnitApi;
       case 'CartApi':
         return injectCartApi(config.dependencies.CartApi);
       case 'CartMapper':
-        return config?.dependencies.CartMapper
+        return config?.dependencies.CartMapper;
       case 'EmailApiFactory':
-        return config?.dependencies.EmailApiFactory
+        return config?.dependencies.EmailApiFactory;
     }
   }
 };
-
-

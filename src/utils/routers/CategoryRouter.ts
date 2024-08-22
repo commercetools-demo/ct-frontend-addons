@@ -9,6 +9,4 @@ export class CategoryRouter {
 
     return false;
   }
-
-  
 }

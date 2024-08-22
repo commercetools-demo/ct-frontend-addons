@@ -26,7 +26,7 @@ export class ProductRouter {
 
     return false;
   }
-  
+
   static generateUrlFor(item: Product | LineItem) {
     if (ProductRouter.isProduct(item)) {
       return `/${item.slug}/p/${item.variants[0].sku}`;

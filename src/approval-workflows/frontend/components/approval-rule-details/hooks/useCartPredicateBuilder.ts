@@ -9,13 +9,14 @@ const useCartPredicateBuilder = (sdk: any, translate: (key: string) => string) =
 
   const fields: Record<
     string,
-    {
-      label: string;
-      type: string;
-      fieldSettings?: {
-        listValues?: string[];
-      };
-    } | undefined
+    | {
+        label: string;
+        type: string;
+        fieldSettings?: {
+          listValues?: string[];
+        };
+      }
+    | undefined
   > = useMemo(() => {
     const { countries, currencies } = projectSettings;
     if (!countries.length || !currencies.length) return {};

@@ -8,7 +8,7 @@ import { CartFetcher } from '../../../shared/utils/CartFetcher';
 export const changePrice = (config?: Configuration) => {
   return async (request: Request, actionContext: ActionContext) => {
     const CartApi = extractDependency('CartApi', config?.dependencies);
-    
+
     if (!CartApi) {
       const response: Response = {
         statusCode: 401,

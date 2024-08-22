@@ -27,12 +27,11 @@ export const injectThankYouPageHandler = async (
           ...originalResult.dataSourcePayload,
           order: result.items[0],
         },
-      }
+      };
     }
   }
   return originalResult;
 };
-
 
 export const injectOrderPageHandler = async (
   request: Request,
@@ -50,14 +49,14 @@ export const injectOrderPageHandler = async (
       commercetoolsOrder,
       originalResult.dataSourcePayload?.order,
       config,
-    )
+    );
     return {
       ...originalResult,
       dataSourcePayload: {
         ...originalResult.dataSourcePayload,
         order: mergedOrder,
       },
-    }
+    };
   }
   return originalResult;
 };

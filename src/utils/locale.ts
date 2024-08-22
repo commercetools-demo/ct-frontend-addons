@@ -1,6 +1,5 @@
 export interface Locale {
-    language: string;
-    country: string;
-    currency: string;
-  }
-  
+  language: string;
+  country: string;
+  currency: string;
+}

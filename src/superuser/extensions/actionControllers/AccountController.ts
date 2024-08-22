@@ -113,11 +113,7 @@ export const loginHookWithCSRCheck = (originalCb: ActionHandler, config?: Config
       const account = JSON.parse(originalResult.body);
 
       const AccountApi = extractDependency('AccountApi', config?.dependencies);
-      const accountApi = new AccountApi(
-        actionContext.frontasticContext,
-        getLocale(request),
-        getCurrency(request),
-      );
+      const accountApi = new AccountApi(actionContext.frontasticContext, getLocale(request), getCurrency(request));
 
       const customerAccount = await accountApi.getCustomerByEmail(account.email);
 

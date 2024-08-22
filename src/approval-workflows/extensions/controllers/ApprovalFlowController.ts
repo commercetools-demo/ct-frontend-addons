@@ -5,8 +5,6 @@ import { ApprovalFlowsQueryFactory } from '../utils/ApprovalFlowsQueryFactory';
 import parseRequestBody from '../../../utils/parseRequestBody';
 import { getApprovalApi } from '../utils/getApprovalApi';
 
-
-
 export const getApprovalFlows = (config?: Configuration): ActionHandler => {
   return async (request: Request, actionContext) => {
     const ApprovalFlowApi = extractDependency('ApprovalFlowApi', config);

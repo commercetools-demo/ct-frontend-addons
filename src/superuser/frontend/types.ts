@@ -16,7 +16,6 @@ export interface SuperUserDatasource {
   };
 }
 
-
 export interface LineItem {
   lineItemId?: string;
 }

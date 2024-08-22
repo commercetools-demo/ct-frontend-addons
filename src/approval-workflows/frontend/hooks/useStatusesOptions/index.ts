@@ -1,4 +1,3 @@
-
 const useStatusesOptions = (translate: (key: string) => string) => {
   const flowStatusOptions = [
     { name: 'Pending', value: 'Pending' },

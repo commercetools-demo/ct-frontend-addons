@@ -10,14 +10,12 @@ import { CategoryQuery } from '../../types/CategoryQuery';
 import { Category, Product } from '@commercetools/frontend-domain-types/product';
 import { ProductRouter } from '../../../configurable-products/extensions/utils/product-router';
 
-
 export const injectProductSearchHandler = (
   request: Request,
   context: DynamicPageContext,
   originalResult: DynamicPageSuccessResult,
-  config: Configuration
+  config: Configuration,
 ) => {
-
   const loadFor = async (
     request: Request,
     commercetoolsFrontendContext: Context,
@@ -37,7 +35,7 @@ export const injectProductSearchHandler = (
     }
 
     return null;
-  }
+  };
 
   if (SearchRouter.identifyFrom(request)) {
     return loadFor(request, context.frontasticContext).then((result: ProductPaginatedResult | null) => {
@@ -57,9 +55,8 @@ export const injectCategoryPageHandler = (
   request: Request,
   context: DynamicPageContext,
   originalResult: DynamicPageSuccessResult,
-  config: Configuration
+  config: Configuration,
 ) => {
-
   const loadFor = async (
     request: Request,
     commercetoolsFrontendContext: Context,
@@ -88,7 +85,7 @@ export const injectCategoryPageHandler = (
     }
 
     return null;
-  }
+  };
 
   if (CategoryRouter.identifyFrom(request)) {
     return loadFor(request, context.frontasticContext).then((result: ProductPaginatedResult | null) => {
@@ -108,27 +105,25 @@ export const injectProductPageHandler = (
   request: Request,
   context: DynamicPageContext,
   originalResult: DynamicPageSuccessResult,
-  config: Configuration
+  config: Configuration,
 ) => {
-
-  const loadFor = async (
-    request: Request,
-    commercetoolsFrontendContext: Context,
-  ): Promise<Product | null> => {
+  const loadFor = async (request: Request, commercetoolsFrontendContext: Context): Promise<Product | null> => {
     const ProductApi = extractDependency('ProductApi', config.dependencies);
     const productApi = new ProductApi(commercetoolsFrontendContext, getLocale(request), getCurrency(request), request);
 
     const urlMatches = getPath(request)?.match(/\/p\/([^\/]+)/);
 
+    const productQuery = ProductQueryFactory.queryFromParams({
+      ...request,
+    });
+
     if (urlMatches) {
-      const productQuery: ProductQuery = {
-        skus: [urlMatches[1]],
-      };
+      productQuery.skus = [urlMatches[1]];
       return productApi.getProduct(productQuery);
     }
 
     return null;
-  }
+  };
 
   if (ProductRouter.identifyFrom(request)) {
     return loadFor(request, context.frontasticContext).then((product: Product) => {
@@ -146,6 +141,6 @@ export const injectProductPageHandler = (
         };
       }
       return null;
-    })
+    });
   }
 };

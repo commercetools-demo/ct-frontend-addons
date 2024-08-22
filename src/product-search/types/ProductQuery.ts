@@ -1,4 +1,4 @@
-import {  Facet, PaginatedQuery, SortAttributes } from '@commercetools/frontend-domain-types/query';
+import { Facet, PaginatedQuery, SortAttributes } from '@commercetools/frontend-domain-types/query';
 import { PaginatedResult } from '../../utils/types';
 import { Product } from '@commercetools/frontend-domain-types/product';
 import { Filter } from './Filter';
@@ -27,5 +27,5 @@ export interface ProductQuery extends PaginatedQuery {
 }
 
 export interface ProductPaginatedResult extends PaginatedResult<Product> {
-	facets?: any[];
-  }
+  facets?: any[];
+}
