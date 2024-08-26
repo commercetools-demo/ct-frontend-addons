@@ -24,7 +24,6 @@ export const injectFlowPageHandler = (request: Request, context: DynamicPageCont
   }
 };
 
-
 export const injectRulePageHandler = (request: Request, context: DynamicPageContext, config: Configuration) => {
   if (ApprovalRouter.identifyRuleFrom(request)) {
     return ApprovalRouter.loadRuleFor(request, context.frontasticContext!, config).then((rule: ApprovalRule | null) => {

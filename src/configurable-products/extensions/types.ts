@@ -1,6 +1,6 @@
-import { LineItem } from "../../shared/types";
+import { LineItem } from '../../shared/types';
 
 export interface AddToCartBody {
-    lineItems: LineItem[];
-    configurableComponents?: LineItem[];
-  }
+  lineItems: LineItem[];
+  configurableComponents?: LineItem[];
+}

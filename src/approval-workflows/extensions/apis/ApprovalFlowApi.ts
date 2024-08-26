@@ -30,7 +30,6 @@ export const injectApprovalFlowApi = (BaseApi: any, config: Configuration): type
       const limit = +flowQuery.limit! || undefined;
       const sortAttributes: string[] = [];
 
-
       if (flowQuery.sortAttributes) {
         Object.keys(flowQuery.sortAttributes).map((field, directionIndex) => {
           sortAttributes.push(`${field} ${Object.values(flowQuery.sortAttributes!)[directionIndex]}`);

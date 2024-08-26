@@ -111,8 +111,9 @@ export const duplicateApprovalRule = (config?: Configuration): ActionHandler => 
     };
 
     const promises =
-      body?.businessUnitKeys.map((businessUnitKey) => approvalRuleApi.duplicate(businessUnitKey, approvalRuleDraft) as Promise<ApprovalRule>) ||
-      [];
+      body?.businessUnitKeys.map(
+        (businessUnitKey) => approvalRuleApi.duplicate(businessUnitKey, approvalRuleDraft) as Promise<ApprovalRule>,
+      ) || [];
 
     try {
       const res = await Promise.allSettled(promises).then((values) => values);

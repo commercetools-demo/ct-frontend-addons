@@ -10,9 +10,7 @@ export const extractDependency = (dependency: keyof Dependencies, config?: Confi
       case 'ApprovalRuleApi':
         return injectApprovalRuleApi(config?.dependencies.BaseApi, config);
       case 'CartMapper':
-        return config?.dependencies.CartMapper
+        return config?.dependencies.CartMapper;
     }
   }
 };
-
-

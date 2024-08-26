@@ -32,7 +32,12 @@ export const injectCartApi = (BaseCartApi: any, config?: Configuration): typeof 
           return response.body;
         });
     }
-    async addLinkedLineitemsToCart(cartId: string, cartVersion: number, lineItemId: string, configurableComponents: LineItem[]): Promise<Cart> {
+    async addLinkedLineitemsToCart(
+      cartId: string,
+      cartVersion: number,
+      lineItemId: string,
+      configurableComponents: LineItem[],
+    ): Promise<Cart> {
       const locale = await this.getCommercetoolsLocal();
 
       const cartUpdate: CartUpdate = {
@@ -94,7 +99,7 @@ export const injectCartApi = (BaseCartApi: any, config?: Configuration): typeof 
 
       return await this.buildCartWithAvailableShippingMethods(commercetoolsCart, locale);
     }
-    async updateLinkedLineitemsInCart(cart: Cart, lineItem: { id: string , count: number}): Promise<Cart> {
+    async updateLinkedLineitemsInCart(cart: Cart, lineItem: { id: string; count: number }): Promise<Cart> {
       const locale = await this.getCommercetoolsLocal();
 
       const linkedLineItems = cart.lineItems.filter((lineitem: LineItem & { parentId?: string }) => {

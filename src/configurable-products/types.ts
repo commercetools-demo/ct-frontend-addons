@@ -11,10 +11,10 @@ export interface Configuration extends GeneralConfiguration {
     lineItem: {
       customTypeKey: string;
       parentIdCustomFieldKey: string;
-    },
+    };
     product: {
       attributeName: string;
       productDetailsPageRegex: RegExp;
-    }
-  }
+    };
+  };
 }

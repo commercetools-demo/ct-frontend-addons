@@ -94,24 +94,27 @@ export const injectProductApi = (BaseProductApi: any, dependencies?: Dependencie
         });
     };
 
-    protected async queryCategories(categoryQuery: CategoryQuery, buckets?: string[]): Promise<PaginatedResult<Category>> {
+    protected async queryCategories(
+      categoryQuery: CategoryQuery,
+      buckets?: string[],
+    ): Promise<PaginatedResult<Category>> {
       const locale = await this.getCommercetoolsLocal();
-  
+
       // TODO: get default from constant
       const limit = +categoryQuery.limit || 24;
       const where: string[] = [];
-  
+
       if (categoryQuery.slug) {
         where.push(`slug(${locale.language}="${categoryQuery.slug}")`);
       }
-  
+
       if (categoryQuery.parentId) {
         where.push(`parent(id="${categoryQuery.parentId}")`);
       }
       if (buckets?.length) {
         where.push(`id in (${buckets.map((b) => `"${b}"`).join(',')})`);
       }
-  
+
       const methodArgs = {
         queryArgs: {
           limit: limit,
@@ -120,7 +123,7 @@ export const injectProductApi = (BaseProductApi: any, dependencies?: Dependencie
           expand: ['ancestors[*]', 'parent'],
         },
       };
-  
+
       return await this.getCommercetoolsCategoryPagedQueryResponse(methodArgs)
         .then((response) => {
           const items =
@@ -129,16 +132,20 @@ export const injectProductApi = (BaseProductApi: any, dependencies?: Dependencie
               : response.body.results.map((category) =>
                   ProductMapper.commercetoolsCategoryToCategory(category, this.categoryIdField, locale),
                 );
-  
+
           const result: PaginatedResult<Category> = {
             total: response.body.total,
             items: items,
             count: response.body.count,
             previousCursor: ProductMapper.calculatePreviousCursor(response.body.offset, response.body.count),
-            nextCursor: ProductMapper.calculateNextCursor(response.body.offset, response.body.count, response.body.total),
+            nextCursor: ProductMapper.calculateNextCursor(
+              response.body.offset,
+              response.body.count,
+              response.body.total,
+            ),
             query: categoryQuery,
           };
-  
+
           return result;
         })
         .catch((error) => {
@@ -288,7 +295,7 @@ export const injectProductApi = (BaseProductApi: any, dependencies?: Dependencie
           },
         ],
       };
-  
+
       const result = await this.requestBuilder()
         .products()
         .search()
@@ -296,10 +303,12 @@ export const injectProductApi = (BaseProductApi: any, dependencies?: Dependencie
           body: query,
         })
         .execute();
-  
-      return (result?.body.facets?.find((r) => r.name === 'categoriesSubTree') as ProductSearchFacetResultBucket)?.buckets
+
+      return (
+        result?.body.facets?.find((r) => r.name === 'categoriesSubTree') as ProductSearchFacetResultBucket
+      )?.buckets
         ?.filter((b) => b.count > 0)
         ?.map((b) => b.key);
-    };
+    }
   };
 };

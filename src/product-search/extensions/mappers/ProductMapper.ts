@@ -296,7 +296,7 @@ export const injectProductMapper = (BaseProductMapper: any): typeof BaseProductM
         commercetoolsFacetDistinctExpression,
         'distinct',
       );
-  
+
       return {
         type: FacetTypes.TERM,
         identifier: commercetoolsFacetResultBucket.name,
@@ -309,7 +309,9 @@ export const injectProductMapper = (BaseProductMapper: any): typeof BaseProductM
             label: facetResultTerm.key.toString(),
             count: facetResultTerm.count,
             key: facetResultTerm.key.toString(),
-            selected: selected?.some((andQuery) => 'exact' in andQuery && andQuery.exact?.value === facetResultTerm.key),
+            selected: selected?.some(
+              (andQuery) => 'exact' in andQuery && andQuery.exact?.value === facetResultTerm.key,
+            ),
           };
           return term;
         }),

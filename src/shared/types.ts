@@ -1,4 +1,4 @@
-import { Currency } from "@commercetools/frontend-sdk/lib/types/Currency";
+import { Currency } from '@commercetools/frontend-sdk/lib/types/Currency';
 
 export type AccountLoginBody = {
   email?: string;
@@ -17,13 +17,12 @@ export type Account = {
 export interface LineItem {
   lineItemId: string;
   variant: {
-      attributes: Record<string, any>
-      sku?: string
+    attributes: Record<string, any>;
+    sku?: string;
   };
   count: number;
   parentId?: string;
 }
-
 
 export type Cart = {
   cartId: string;
@@ -32,10 +31,10 @@ export type Cart = {
 };
 
 export interface Order extends Cart {
-	cartId: string; //TODO: Rename
-	orderVersion: string;
-	orderState?: string;
-	createdAt?: Date;
+  cartId: string; //TODO: Rename
+  orderVersion: string;
+  orderState?: string;
+  createdAt?: Date;
 }
 
 export interface Money {

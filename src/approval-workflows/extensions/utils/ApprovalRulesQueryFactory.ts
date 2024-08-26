@@ -4,11 +4,8 @@ import { SortAttributes } from '@commercetools/frontend-domain-types/query';
 import queryParamsToStates from '../../../shared/utils/queryParamsToState';
 import queryParamsToIds from '../../../shared/utils/queryParamsToIds';
 
-
 export class ApprovalRulesQueryFactory {
-  static queryFromParams: (request: Request) => RuleQuery = (
-    request: Request,
-  ) => {
+  static queryFromParams: (request: Request) => RuleQuery = (request: Request) => {
     const ruleQuery: RuleQuery = {
       limit: request.query?.limit ?? undefined,
       cursor: request.query?.cursor ?? undefined,

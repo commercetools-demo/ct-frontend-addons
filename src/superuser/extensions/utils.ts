@@ -1,7 +1,7 @@
-import { Dependencies } from "../types";
-import { injectAccountApi } from "./apis/AccountApi";
-import { injectCartApi } from "./apis/CartApi";
-import { injectCartMapper } from "./mappers/CartMapper";
+import { Dependencies } from '../types';
+import { injectAccountApi } from './apis/AccountApi';
+import { injectCartApi } from './apis/CartApi';
+import { injectCartMapper } from './mappers/CartMapper';
 
 export const extractDependency = (dependency: keyof Dependencies, dependencies?: Dependencies): any => {
   if (dependencies?.[dependency]) {

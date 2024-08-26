@@ -14,6 +14,7 @@ import { Dependencies as SuperuserB2BDependencies } from '../superuser-b2b/types
 import { Dependencies as ConfigurableProductsDependencies } from '../configurable-products/types';
 import { Dependencies as ApprovalWorkflowsDependencies } from '../approval-workflows/types';
 import { Dependencies as ProductSeaechDependencies } from '../product-search/types';
+import { Dependencies as StoreContextDependencies } from '../store-context/types';
 
 export type UnionDependencies =
   | MinimumQuantityDependencies
@@ -21,6 +22,7 @@ export type UnionDependencies =
   | SuperuserB2BDependencies
   | ConfigurableProductsDependencies
   | ProductSeaechDependencies
+  | StoreContextDependencies
   | ApprovalWorkflowsDependencies;
 
 export type ActionWrapper<T> = (originalCb: ActionHandler, config?: T) => ActionHandler;

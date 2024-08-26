@@ -13,5 +13,5 @@ export interface Configuration extends GeneralConfiguration {
     csrCustomerGroupId: string;
     csrCustomTypeKey: string;
     csrCustomFieldKey: string;
-  }
+  };
 }

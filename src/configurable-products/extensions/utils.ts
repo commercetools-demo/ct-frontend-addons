@@ -11,5 +11,3 @@ export const extractDependency = (dependency: keyof Dependencies, config?: Confi
     }
   }
 };
-
-

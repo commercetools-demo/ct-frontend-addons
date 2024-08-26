@@ -70,7 +70,7 @@ export const updateLineItem = (originalCb: ActionHandler, config?: Configuration
 
         return response;
       }
-      
+
       const cartApi = new CartApi(actionContext.frontasticContext, getLocale(request), getCurrency(request), request);
 
       const changes: {

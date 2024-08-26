@@ -6,19 +6,19 @@ export const injectProductDetailPageHandler = (
   request: Request,
   context: DynamicPageContext,
   originalResult: DynamicPageSuccessResult,
-  config: Configuration
+  config: Configuration,
 ) => {
-    const product = originalResult.dataSourcePayload.product;
-    return ProductRouter.getBundles(request, context.frontasticContext!, product, config).then(
-        (configurableComponents) => {
-          return {
-            dynamicPageType: originalResult.dynamicPageType,
-            dataSourcePayload: {
-              ...originalResult.dataSourcePayload,
-              configurableComponents,
-            },
-            pageMatchingPayload: originalResult.pageMatchingPayload,
-          };
+  const product = originalResult.dataSourcePayload.product;
+  return ProductRouter.getBundles(request, context.frontasticContext!, product, config).then(
+    (configurableComponents) => {
+      return {
+        dynamicPageType: originalResult.dynamicPageType,
+        dataSourcePayload: {
+          ...originalResult.dataSourcePayload,
+          configurableComponents,
         },
-      );
+        pageMatchingPayload: originalResult.pageMatchingPayload,
+      };
+    },
+  );
 };

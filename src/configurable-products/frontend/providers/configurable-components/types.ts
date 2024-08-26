@@ -1,4 +1,4 @@
-import { Product, Variant } from "@commercetools/frontend-domain-types/product";
+import { Product, Variant } from '@commercetools/frontend-domain-types/product';
 
 export interface ContextShape {
   configurableComponents?: Product[];

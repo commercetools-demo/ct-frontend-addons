@@ -1,4 +1,4 @@
-import { AssociateRoleAssignment, ApprovalRule as CommercetoolsApprovalRule } from "@commercetools/platform-sdk";
+import { AssociateRoleAssignment, ApprovalRule as CommercetoolsApprovalRule } from '@commercetools/platform-sdk';
 
 export interface ApproverDisjunction {
   or: Omit<AssociateRoleAssignment, 'inheritance'>[];

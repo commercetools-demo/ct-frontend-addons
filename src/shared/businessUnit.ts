@@ -1,4 +1,4 @@
-import { Account } from "@commercetools/frontend-domain-types/account";
+import { Account } from '@commercetools/frontend-domain-types/account';
 
 export type Permission =
   | 'AcceptMyQuotes'

@@ -1,4 +1,4 @@
-import { Attributes } from "@commercetools/frontend-domain-types/product";
+import { Attributes } from '@commercetools/frontend-domain-types/product';
 
 export const useConfigurableProductAttribute = ({ productAttributes }: { productAttributes: string[] }) => {
   const findAttributeLabel = (attributes?: Attributes): string => {

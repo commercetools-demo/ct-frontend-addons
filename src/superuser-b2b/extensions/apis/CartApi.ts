@@ -252,11 +252,7 @@ export const injectCartApi = (BaseCartApi: any): typeof BaseCartApi => {
       cartId: string,
       cartversion: string,
       originalOwnerEmail: string,
-    ) => Promise<CommercetoolsCart> = async (
-      cartId: string,
-      cartversion: string,
-      originalOwnerEmail: string,
-    ) => {
+    ) => Promise<CommercetoolsCart> = async (cartId: string, cartversion: string, originalOwnerEmail: string) => {
       const cartUpdate: CartUpdate = {
         version: +cartversion,
         actions: [

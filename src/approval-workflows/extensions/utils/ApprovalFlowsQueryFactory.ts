@@ -4,12 +4,8 @@ import { SortAttributes } from '@commercetools/frontend-domain-types/query';
 import queryParamsToIds from '../../../shared/utils/queryParamsToIds';
 import queryParamsToStates from '../../../shared/utils/queryParamsToState';
 
-
 export class ApprovalFlowsQueryFactory {
-  static queryFromParams: (request: Request) => FlowQuery = (
-    request: Request,
-  ) => {
-
+  static queryFromParams: (request: Request) => FlowQuery = (request: Request) => {
     const flowQuery: FlowQuery = {
       limit: request.query?.limit ?? undefined,
       cursor: request.query?.cursor ?? undefined,

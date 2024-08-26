@@ -5,9 +5,8 @@ import {
   getCurrency,
   getDistributionChannelId,
   getLocale,
-  getSupplyChannelId
+  getSupplyChannelId,
 } from '../../utils/request';
-
 
 export const getCartApi = (request: Request, actionContext: Context, CartApi: any) => {
   const account = fetchAccountFromSession(request);
@@ -22,6 +21,6 @@ export const getCartApi = (request: Request, actionContext: Context, CartApi: an
     account?.accountId,
     businessUnitKey,
     distributionChannelId,
-    supplyChannelId
+    supplyChannelId,
   );
 };

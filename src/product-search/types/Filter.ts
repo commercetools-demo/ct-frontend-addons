@@ -10,8 +10,7 @@ export interface Filter {
 }
 
 export interface RangeFilter extends Filter {
-    type: FilterTypes.RANGE;
-    min?: number;
-    max?: number;
-  }
-  
+  type: FilterTypes.RANGE;
+  min?: number;
+  max?: number;
+}

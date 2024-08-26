@@ -10,5 +10,5 @@ export interface Configuration extends GeneralConfiguration {
   dependencies: Dependencies;
   props: {
     useStoreProducts: boolean;
-  }
+  };
 }

@@ -1,4 +1,4 @@
-import { GeneralConfiguration } from "../utils/types";
+import { GeneralConfiguration } from '../utils/types';
 
 export interface Dependencies extends Record<string, any> {
   BaseApi: any;

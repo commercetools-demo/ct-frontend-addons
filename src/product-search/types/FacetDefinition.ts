@@ -1,6 +1,5 @@
 export interface FacetDefinition {
-    attributeType?: string;
-    attributeId?: string;
-    attributeLabel?: string;
-  }
-  
+  attributeType?: string;
+  attributeId?: string;
+  attributeLabel?: string;
+}

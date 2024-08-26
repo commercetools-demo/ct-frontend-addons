@@ -4,6 +4,10 @@ Using this extension you can use product-search API instead of product projectio
 ## Requirements
 none
 
+## Features
+ - API, dynamic-page-handlers and controller work
+ - Datasources does NOT work
+
 ## Usage
 
 ### Backend changes
@@ -18,7 +22,7 @@ export default injectExtensionsRegistry(
   // previous exported default
 }, {
     modules: {
-      'approval-workflows': {
+      'product-search': {
          props: {
             useStoreProducts: false, // should categories be limited to current session-store's products
         },
