@@ -1,3 +1,5 @@
+# 0.11.0
+- store-context module
 # 0.9.0
 - product-seach module
 # 0.8.2
