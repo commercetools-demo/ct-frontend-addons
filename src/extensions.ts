@@ -7,6 +7,7 @@ import ConfigurableProducts from './configurable-products/extensions';
 import ApprovalWorkflows from './approval-workflows/extensions';
 import ProductSearch from './product-search/extensions';
 import StoreContext from './store-context/extensions';
+import FeclRules from './fecl-rules/extensions';
 import { mergeExtensions } from './utils';
 import { ModuleConfiguration, Module } from './types';
 
@@ -60,6 +61,12 @@ export const injectExtensionsRegistry = (
           extensionRegirstry,
           StoreContext,
           configuration.modules[Module.StoreContext]!,
+        );
+      case Module.FeclRules:
+        extensionRegirstry = mergeExtensions(
+          extensionRegirstry,
+          FeclRules,
+          configuration.modules[Module.FeclRules]!,
         );
         break;
       default:

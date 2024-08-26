@@ -12,6 +12,8 @@ export type Account = {
   password?: string;
   firstName?: string;
   lastName?: string;
+  customerGroupId?: string;
+  customerGroupAssignmentIds?: string[];
 };
 
 export interface LineItem {
