@@ -1,6 +1,6 @@
 # Dealer selector
 
-Add possiblity to add Store selector based on location and save in session/customer. Using this module the session's cart will be specific to selected store. Also add-to-cart action uses store's supplyChannel
+Using this module, a B2C customer can select a store/dealer based on location and save that information in session/customer entity. By doing that, the session's cart will be specific to selected store and the `add-to-cart` action uses store's supplyChannel.
 
 ## Requirements
 
