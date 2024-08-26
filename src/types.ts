@@ -5,6 +5,7 @@ import { Configuration as ConfigurableProductsConfiguration } from './configurab
 import { Configuration as ApprovalWorkflowsConfiguration } from './approval-workflows/types';
 import { Configuration as ProductSearchConfiguration } from './product-search/types';
 import { Configuration as StoreContextConfiguration } from './store-context/types';
+import { Configuration as FeclRulesConfiguration } from './fecl-rules/extensions/types';
 
 export enum Module {
   MinimumQuantity = 'minimum-quantity',
@@ -14,6 +15,7 @@ export enum Module {
   ApprovalWorkflows = 'approval-workflows',
   ProductSearch = 'product-search',
   StoreContext = 'store-context',
+  FeclRules = 'fecl-rules',
 }
 export interface ModuleConfiguration {
   modules: {
@@ -24,5 +26,6 @@ export interface ModuleConfiguration {
     [Module.ApprovalWorkflows]?: ApprovalWorkflowsConfiguration;
     [Module.ProductSearch]?: ProductSearchConfiguration;
     [Module.StoreContext]?: StoreContextConfiguration;
+    [Module.FeclRules]?: FeclRulesConfiguration;
   };
 }

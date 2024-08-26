@@ -15,6 +15,7 @@ import { Dependencies as ConfigurableProductsDependencies } from '../configurabl
 import { Dependencies as ApprovalWorkflowsDependencies } from '../approval-workflows/types';
 import { Dependencies as ProductSeaechDependencies } from '../product-search/types';
 import { Dependencies as StoreContextDependencies } from '../store-context/types';
+import { Dependencies as FeclRulesDependencies } from '../fecl-rules/extensions/types';
 
 export type UnionDependencies =
   | MinimumQuantityDependencies
@@ -23,6 +24,7 @@ export type UnionDependencies =
   | ConfigurableProductsDependencies
   | ProductSeaechDependencies
   | StoreContextDependencies
+  | FeclRulesDependencies
   | ApprovalWorkflowsDependencies;
 
 export type ActionWrapper<T> = (originalCb: ActionHandler, config?: T) => ActionHandler;
