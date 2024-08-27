@@ -18,8 +18,7 @@ export const injectAccountApi = (BaseAccountApi: any, config?: Configuration): t
           state: false,
           customerGroupId: false,
           customerGroupAssignmentIds: false,
-
-        }
+        };
       }
       const locale = await this.getCommercetoolsLocal();
 
@@ -106,6 +105,5 @@ export const injectAccountApi = (BaseAccountApi: any, config?: Configuration): t
 
       return fields;
     }
-
   };
 };

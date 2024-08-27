@@ -48,13 +48,13 @@ export const injectCategoryPageHandler = (
   };
 
   if (CategoryRouter.identifyFrom(request)) {
-    return loadFor(request, context.frontasticContext).then(({ result, category }) => {
+    return loadFor(request, context.frontasticContext).then(async ({ result, category }) => {
       if (result) {
         const AccountApi = extractDependency('AccountApi', config);
         const accountApi = new AccountApi(context.frontasticContext, getLocale(request), getCurrency(request), request);
-        const accountPayload = accountApi.getAccountPayload();
+        const accountPayload = await accountApi.getAccountPayload(request.sessionData.account);
         return {
-          dynamicPageType: 'frontastic/search',
+          dynamicPageType: 'frontastic/category',
           dataSourcePayload: result,
           pageMatchingPayload: {
             ...result,
@@ -97,11 +97,11 @@ export const injectProductPageHandler = (
   };
 
   if (ProductRouter.identifyFrom(request)) {
-    return loadFor(request, context.frontasticContext).then((product: Product) => {
+    return loadFor(request, context.frontasticContext).then(async (product: Product) => {
       if (product) {
         const AccountApi = extractDependency('AccountApi', config);
         const accountApi = new AccountApi(context.frontasticContext, getLocale(request), getCurrency(request), request);
-        const accountPayload = accountApi.getAccountPayload();
+        const accountPayload = await accountApi.getAccountPayload(request.sessionData.account);
         return {
           dynamicPageType: 'frontastic/product-detail-page',
           dataSourcePayload: {

@@ -63,11 +63,7 @@ export const injectExtensionsRegistry = (
           configuration.modules[Module.StoreContext]!,
         );
       case Module.FeclRules:
-        extensionRegirstry = mergeExtensions(
-          extensionRegirstry,
-          FeclRules,
-          configuration.modules[Module.FeclRules]!,
-        );
+        extensionRegirstry = mergeExtensions(extensionRegirstry, FeclRules, configuration.modules[Module.FeclRules]!);
         break;
       default:
         break;

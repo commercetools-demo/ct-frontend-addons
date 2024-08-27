@@ -8,10 +8,15 @@ export const accountFilters = (config?: Configuration): ActionHandler => {
   return async (request: Request, actionContext: ActionContext) => {
     try {
       const AccountApi = extractDependency('AccountApi', config);
-      const accountApi = new AccountApi(actionContext.frontasticContext, getLocale(request), getCurrency(request), request);
-  
+      const accountApi = new AccountApi(
+        actionContext.frontasticContext,
+        getLocale(request),
+        getCurrency(request),
+        request,
+      );
+
       const result = await accountApi.getAccountFilters();
-  
+
       const response: Response = {
         statusCode: 200,
         body: JSON.stringify(result),
@@ -19,11 +24,10 @@ export const accountFilters = (config?: Configuration): ActionHandler => {
           ...accountApi.getSessionData(),
         },
       };
-  
+
       return response;
     } catch (error) {
-      throw new ExternalError({status: error.status, message: error.message, body: error.body});
+      throw new ExternalError({ status: error.status, message: error.message, body: error.body });
     }
   };
 };
-

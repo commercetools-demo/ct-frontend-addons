@@ -1,8 +1,4 @@
-import {
-  MergableAction,
-  DynamicPageHandlerAddOn,
-  MergableDynamicHandlers,
-} from '../../utils/types';
+import { MergableAction, DynamicPageHandlerAddOn, MergableDynamicHandlers } from '../../utils/types';
 import { accountFilters } from './actionControllers/AccountController';
 import { categoryFilters, productFilters } from './actionControllers/ProductController';
 import { injectCategoryPageHandler, injectProductPageHandler } from './dynamicPageHandlers';
