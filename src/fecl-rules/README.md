@@ -1,6 +1,6 @@
-# FECL rules
+# FECL Rules
 
-Using this module, you can configure page rules in dynamic pages. This module adds the follwoing crietrias to each dynamic page
+Using this module, you can configure page rules in dynamic pages. This module adds the following criteria to each dynamic page:
 
 1. Category page:
 
@@ -8,23 +8,23 @@ Using this module, you can configure page rules in dynamic pages. This module ad
    - Is Top Level: boolean
    - Is VIP: boolean
 
-1. Product detail page
+2. Product detail page:
 
    - All product attributes
-   - product type: enum
+   - Product type: enum
 
 Both dynamic pages have access to Customer's session data which includes:
 
-- customer city: string (use the first address in customer profile)
-- customer country: string (use the first address in customer profile)
-- customer state: string (use the first address in customer profile)
-- customer zipCode: string (use the first address in customer profile)
-- customer group: enum
-- customer group assignment: enum - only works if customer-group-assignment is enabled in MC (use `contains` operator)
+- Customer city: string (use the first address in customer profile)
+- Customer country: string (use the first address in customer profile)
+- Customer state: string (use the first address in customer profile)
+- Customer zipCode: string (use the first address in customer profile)
+- Customer group: enum
+- Customer group assignment: enum - only works if customer-group-assignment is enabled in MC (use `contains` operator)
 
 ## Requirements
 
-none
+None
 
 ## Usage
 
@@ -57,7 +57,7 @@ export default injectExtensionsRegistry(
       },
     },
   },
-
+)
 ```
 
 ### Studio changes
