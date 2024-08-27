@@ -58,3 +58,13 @@ export default injectExtensionsRegistry(
     },
   },
 )
+```
+
+### Studio changes
+
+#### Dynamic page rules
+
+Update dynamic pages using the json provided below
+
+1. [category.json](./docs/category.json)
+1. [product-detail.json](./docs/product-detail.json)
