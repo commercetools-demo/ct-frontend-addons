@@ -11,23 +11,22 @@ import { Product } from '../../types/Product';
 export const injectProductApi = (BaseProductApi: any, config?: Configuration): typeof BaseProductApi => {
   const ProductMapper = extractDependency('ProductMapper', config);
   return class ProductApi extends BaseProductApi {
-
     async getProduct(productQuery: ProductQuery): Promise<Product> {
       const result = await this.query(productQuery);
-  
+
       return result.items.shift() as Product;
     }
 
     async query(productQuery: ProductQuery): Promise<ProductPaginatedResult> {
       const locale = await this.getCommercetoolsLocal();
-  
+
       // TODO: get default from constant
       const limit = +productQuery.limit || 24;
-  
+
       const filterQuery: string[] = [];
       const filterFacets: string[] = [];
       const sortAttributes: string[] = [];
-  
+
       const facetDefinitions: FacetDefinition[] = [
         ...ProductMapper.commercetoolsProductTypesToFacetDefinitions(await this.getProductTypes(), locale),
         // Include Category facet
@@ -51,22 +50,22 @@ export const injectProductApi = (BaseProductApi: any, config?: Configuration): t
           attributeType: 'boolean',
         },
       ];
-  
+
       const queryArgFacets = ProductMapper.facetDefinitionsToCommercetoolsQueryArgFacets(facetDefinitions, locale);
-  
+
       if (productQuery.productIds !== undefined && productQuery.productIds.length !== 0) {
         filterQuery.push(`${this.productIdField}:"${productQuery.productIds.join('","')}"`);
       }
-  
+
       if (productQuery.skus !== undefined && productQuery.skus.length !== 0) {
         filterQuery.push(`variants.sku:"${productQuery.skus.join('","')}"`);
       }
-  
+
       if (productQuery.categories !== undefined && productQuery.categories.length !== 0) {
         let categoryIds = productQuery.categories.filter(function uniqueCategories(value, index, self) {
           return self.indexOf(value) === index;
         });
-  
+
         // commercetools only allows filter categories by id. If we are using something different as categoryIdField,
         // we need first to fetch the category to get the correspondent category id.
         if (this.categoryIdField !== 'id') {
@@ -75,31 +74,33 @@ export const injectProductApi = (BaseProductApi: any, config?: Configuration): t
               where: [`key in ("${categoryIds.join('","')}")`],
             },
           };
-  
+
           categoryIds = await this.getCommercetoolsCategoryPagedQueryResponse(categoriesMethodArgs).then((response) => {
             return response.body.results.map((category) => {
               return category.id;
             });
           });
         }
-  
+
         filterQuery.push(
           `categories.id: ${categoryIds.map((category) => {
             return `subtree("${category}")`;
           })}`,
         );
       }
-  
+
       if (productQuery.filters !== undefined) {
         filterQuery.push(
           ...ProductMapper.facetDefinitionsToFilterQueries(productQuery.filters, facetDefinitions, locale),
         );
       }
-  
+
       if (productQuery.facets !== undefined) {
-        filterFacets.push(...ProductMapper.facetDefinitionsToFilterFacets(productQuery.facets, facetDefinitions, locale));
+        filterFacets.push(
+          ...ProductMapper.facetDefinitionsToFilterFacets(productQuery.facets, facetDefinitions, locale),
+        );
       }
-  
+
       switch (true) {
         case productQuery.sortAttributes !== undefined:
           Object.keys(productQuery.sortAttributes).map((field, directionIndex) => {
@@ -112,7 +113,7 @@ export const injectProductApi = (BaseProductApi: any, config?: Configuration): t
           // across several search requests for products that have the same relevance score.
           sortAttributes.push(`score desc`, `id desc`);
       }
-  
+
       const methodArgs = {
         queryArgs: {
           sort: sortAttributes,
@@ -129,7 +130,7 @@ export const injectProductApi = (BaseProductApi: any, config?: Configuration): t
           fuzzy: true,
         },
       };
-  
+
       return await this.requestBuilder()
         .productProjections()
         .search()
@@ -145,7 +146,7 @@ export const injectProductApi = (BaseProductApi: any, config?: Configuration): t
               this.defaultLocale,
             ),
           );
-  
+
           const result: ProductPaginatedResult = {
             total: response.body.total,
             items: items,
@@ -157,10 +158,14 @@ export const injectProductApi = (BaseProductApi: any, config?: Configuration): t
               locale,
             ),
             previousCursor: ProductMapper.calculatePreviousCursor(response.body.offset, response.body.count),
-            nextCursor: ProductMapper.calculateNextCursor(response.body.offset, response.body.count, response.body.total),
+            nextCursor: ProductMapper.calculateNextCursor(
+              response.body.offset,
+              response.body.count,
+              response.body.total,
+            ),
             query: productQuery,
           };
-  
+
           return result;
         })
         .catch((error) => {
