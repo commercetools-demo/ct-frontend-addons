@@ -59,7 +59,6 @@ export default injectExtensionsRegistry(
   },
 )
 ```
-
 ### Studio changes
 
 #### Dynamic page rules
