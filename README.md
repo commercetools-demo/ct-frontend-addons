@@ -1,5 +1,8 @@
 # ct-frontend-addons
 
+IMPORTANT:
+As of Nov 2024, because of updates to b2c code base, the b2c modules don't work.
+
 NOTE:
 This is NOT an official commercetools code and NOT production ready. Use it at your own risk
 
