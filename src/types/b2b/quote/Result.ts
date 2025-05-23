@@ -1,5 +1,5 @@
-import {Quote} from './Quote';
-import {QuoteRequest} from './QuoteRequest';
+import { Quote } from './Quote';
+import { QuoteRequest } from './QuoteRequest';
 
 /**
  * @deprecated | Use PaginatedResult<T>

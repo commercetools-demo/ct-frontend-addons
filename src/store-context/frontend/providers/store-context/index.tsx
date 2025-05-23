@@ -99,7 +99,7 @@ const StoreContextProvider = ({
       {overlayShown && <Overlay onClick={hide} />}
       <Transition
         show={!!overlayShown}
-        className="fixed bottom-0 z-[310] w-full overflow-hidden rounded-[20px_20px_0_0] bg-white shadow md:bottom-[unset] md:left-1/2 md:top-1/2 md:w-[90%] md:max-w-[1200px] md:-translate-x-1/2 md:-translate-y-1/2 md:rounded-lg"
+        // className="fixed bottom-0 z-[310] w-full overflow-hidden rounded-[20px_20px_0_0] bg-white shadow md:bottom-[unset] md:left-1/2 md:top-1/2 md:w-[90%] md:max-w-[1200px] md:-translate-x-1/2 md:-translate-y-1/2 md:rounded-lg"
         enter="transition md:transition-opacity duration-75"
         enterFrom="opacity-0 translate-y-full"
         enterTo="opacity-100 translate-y-0"

@@ -26,9 +26,9 @@
     "format": "prettier --write \"**/*.ts\"",
     "test": "test",
     "build": "rimraf dist && yarn bundle",
-    "bundle": "npm run build:tsup",
+    "bundle": "yarn run build:tsup",
     "build:ts": "tsc",
-    "build:tsup": "npm run build:tsup:fe && npm run build:tsup:extensions",
+    "build:tsup": "yarn run build:tsup:fe && yarn run build:tsup:extensions",
     "build:tsup:fe": "tsup --config tsup.config.fe.ts && node move-dist.js",
     "build:tsup:extensions": "tsup --config tsup.config.extensions.ts"
   },

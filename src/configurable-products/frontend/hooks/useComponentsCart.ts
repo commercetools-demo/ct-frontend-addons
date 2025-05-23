@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 import { useConfigurableComponentsContext } from '../providers/configurable-components';
 import { SDKResponse } from '@commercetools/frontend-sdk';
 import { KeyedMutator } from 'swr';
-import { Cart } from '@commercetools/frontend-domain-types/cart';
+import { Cart } from '../../../types/b2c/cart';
 
 const useComponentsCart = (sdk: any, mutate: KeyedMutator<Cart>, businessUnitKey?: string, storeKey?: string) => {
   const { selectedVariants } = useConfigurableComponentsContext();

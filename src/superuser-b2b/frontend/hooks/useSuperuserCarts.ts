@@ -1,7 +1,7 @@
 import { KeyedMutator } from 'swr';
 import { useSuperuserContext } from '../provider';
 import { SDKResponse } from '@commercetools/frontend-sdk';
-import { Cart } from '@commercetools/frontend-domain-types/cart';
+import { Cart } from '../../../types/b2b/cart';
 import { Cart as CommercetoolsCart } from '@commercetools/platform-sdk';
 
 const useSuperuserCarts = (sdk: any, mutate: KeyedMutator<Cart>) => {

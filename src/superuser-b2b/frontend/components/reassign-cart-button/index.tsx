@@ -1,7 +1,7 @@
 import React from 'react';
 import { CheckIcon } from '@heroicons/react/24/outline';
 import { useSuperuserContext } from '../../provider';
-import { Associate, BusinessUnit } from '../../../../shared/businessUnit';
+import { Associate, BusinessUnit } from '../../../../types/b2b/business-unit';
 
 type Props = {
   activeBusinessUnit?: BusinessUnit;

@@ -1,4 +1,4 @@
-import { Cart } from '@commercetools/frontend-domain-types/cart';
+import { Cart } from '../../../types/b2c/cart';
 import { LineItem } from '../types';
 import { useBundledItemsContext } from '../providers/bundled-items';
 import { Middleware, SWRHook } from 'swr';
@@ -26,7 +26,7 @@ const useChildComponents = () => {
   }): { discountedPrice?: number; price?: number } => {
     const originalLineItem = cart?.lineItems?.find((li) => li.lineItemId === lineItem.id);
     if (!originalLineItem) return { price: 0, discountedPrice: 0 };
-    const discountedPrice = originalLineItem.variant?.discountedPrice?.centAmount;
+    const discountedPrice = originalLineItem.variant?.discountedPrice?.value?.centAmount;
     if (!originalLineItem.variant?.attributes?.[childComponentsAttributeName]) {
       return { price: 0, discountedPrice: 0 };
     }

@@ -1,19 +1,12 @@
 import React, { useMemo } from 'react';
 // @ts-ignore
 import { useParams } from 'next/navigation';
-import { Money, Product } from '@commercetools/frontend-domain-types/product';
+import { Money, Product } from '../../../../types/b2c/product';
 import { childComponentsAttributeName } from '../../hooks/useChildComponents';
 import { useBundledItemsContext } from '../../providers/bundled-items';
 import { useConfigurableProductAttribute } from '../../hooks/useConfigurableProductAttribute';
 import { CurrencyHelpers } from '../../../../shared/utils/currency-helpers';
-import { LineItem as DomainLineItem } from '@commercetools/frontend-domain-types/cart/LineItem';
-
-interface LineItem extends DomainLineItem {
-  parentId?: string;
-  price?: Money;
-  discountedPrice?: Money;
-  sku: string;
-}
+import { LineItem } from '../../../../types/b2c/cart';
 
 type Props = {
   item: Product & { id: string };
@@ -24,7 +17,7 @@ const BundledItems: React.FC<Props> = ({ item }) => {
   const { findAttributeLabel } = useConfigurableProductAttribute({ productAttributes });
   const { locale } = useParams();
 
-  const lineItem = useMemo(() => cart?.lineItems?.find((li) => li.lineItemId === item.id), [cart, item]);
+  const lineItem = useMemo(() => cart?.lineItems?.find((li: LineItem) => li.lineItemId === item.id), [cart, item]);
 
   if (!lineItem) return null;
   return (

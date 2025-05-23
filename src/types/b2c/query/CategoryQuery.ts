@@ -2,7 +2,7 @@ import { PaginatedQuery } from './PaginatedQuery';
 
 export enum CategoryQueryFormat {
   FLAT = 'flat',
-  TREE = 'tree'
+  TREE = 'tree',
 }
 export interface CategoryQuery extends PaginatedQuery {
   slug?: string;

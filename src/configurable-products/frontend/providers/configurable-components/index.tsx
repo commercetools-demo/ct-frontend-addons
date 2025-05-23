@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext, useState } from 'react';
 import { ContextProps, ContextShape } from './types';
-import { Variant } from '@commercetools/frontend-domain-types/product';
+import { Variant } from '../../../../types/b2c/product';
 
 const initialState = {
   configurableComponents: [],

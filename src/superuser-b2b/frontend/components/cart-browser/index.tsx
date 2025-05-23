@@ -3,7 +3,7 @@ import { Popover, Transition } from '@headlessui/react';
 import { ChevronDownIcon, ChevronUpIcon, CheckIcon } from '@heroicons/react/24/outline';
 import { useSuperuserContext } from '../../provider';
 import { CurrencyHelpers } from '../../../../shared/utils/currency-helpers';
-import { Associate } from '../../../../shared/businessUnit';
+import { Associate } from '../../../../types/b2b/business-unit';
 
 type Props = {
   setCart: (cartId: string, email?: string) => void;

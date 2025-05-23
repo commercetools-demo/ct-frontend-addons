@@ -5,7 +5,7 @@ import { CheckIcon } from '@heroicons/react/24/outline';
 import { useConfigurableComponentsContext } from '../../providers/configurable-components';
 import ConfigurableComponent from './configurable-component';
 import { useConfigurableProductAttribute } from '../../hooks/useConfigurableProductAttribute';
-import { Money, Product, Variant } from '@commercetools/frontend-domain-types/product';
+import { Money, Product, Variant } from '../../../../types/b2c/product';
 import { CurrencyHelpers } from '../../../../shared/utils/currency-helpers';
 
 interface ConfigurableComponentState extends Product {

@@ -4,12 +4,9 @@ import MinimumQuantity from './minimum-quantity/extensions';
 import Superuser from './superuser/extensions';
 import SuperuserB2B from './superuser-b2b/extensions';
 import ConfigurableProducts from './configurable-products/extensions';
-import ApprovalWorkflows from './approval-workflows/extensions';
-import ProductSearch from './product-search/extensions';
 import StoreContext from './store-context/extensions';
-import FeclRules from './fecl-rules/extensions';
 import { mergeExtensions } from './utils';
-import { ModuleConfiguration, Module } from './types';
+import { ModuleConfiguration, Module } from './types/types';
 
 export const injectExtensionsRegistry = (
   extensionRegirstry: ExtensionRegistry,
@@ -44,26 +41,12 @@ export const injectExtensionsRegistry = (
           configuration.modules[Module.SuperuserB2B]!,
         );
         break;
-      case Module.ApprovalWorkflows:
-        extensionRegirstry = mergeExtensions(
-          extensionRegirstry,
-          ApprovalWorkflows,
-          configuration.modules[Module.ApprovalWorkflows]!,
-        );
-      case Module.ProductSearch:
-        extensionRegirstry = mergeExtensions(
-          extensionRegirstry,
-          ProductSearch,
-          configuration.modules[Module.ProductSearch]!,
-        );
       case Module.StoreContext:
         extensionRegirstry = mergeExtensions(
           extensionRegirstry,
           StoreContext,
           configuration.modules[Module.StoreContext]!,
         );
-      case Module.FeclRules:
-        extensionRegirstry = mergeExtensions(extensionRegirstry, FeclRules, configuration.modules[Module.FeclRules]!);
         break;
       default:
         break;

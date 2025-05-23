@@ -1,1 +1,1 @@
-export { SuperuserFrontend, ConfigurableProducts, SuperuserB2BFrontend, ApprovalWorkflows } from './frontend';
+export { SuperuserFrontend, ConfigurableProducts, SuperuserB2BFrontend } from './frontend';
