@@ -1,7 +1,0 @@
-{
-    "name": "Approval flow",
-    "category": "Approvals",
-    "icon": "picture_in_picture",
-    "schema": [],
-    "customDataSourceType": "frontastic/approval-flow"
-}

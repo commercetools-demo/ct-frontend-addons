@@ -1,8 +1,0 @@
-{
-    "name": "Approval flow page",
-    "category": "Approval",
-    "icon": "picture_in_picture",
-    "isMultiple": true,
-    "dynamicPageType": "frontastic/approval-flow-page",
-    "dataSourceType": "frontastic/approval-flow"
-}

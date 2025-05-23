@@ -1,7 +1,0 @@
-{
-    "name": "Approval rule",
-    "category": "Approvals",
-    "icon": "picture_in_picture",
-    "schema": [],
-    "customDataSourceType": "frontastic/approval-rule"
-}
