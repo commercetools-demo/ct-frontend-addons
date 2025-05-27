@@ -1,13 +1,12 @@
 import React from 'react';
-import { CheckIcon } from '@heroicons/react/24/outline';
+import { BusinessUnit } from '../../../../types/b2b/business-unit';
 import { useSuperuserContext } from '../../provider';
-import { Associate, BusinessUnit } from '../../../../types/b2b/business-unit';
 
 type Props = {
-  activeBusinessUnit?: BusinessUnit;
+  activeBusinessUnit?: any;
   translate: (translationKey: string) => string;
   reassignCart: (accountId?: string, email?: string) => void;
-  Dropdown: React.FC<any> & { Button: React.FC<any>; Options: React.FC<any>; Option: React.FC<any> };
+  Select: React.FC<any>;
   className?: string;
   accountId?: string;
   cartAccountId?: string;
@@ -18,7 +17,7 @@ const ReassignCartButton: React.FC<Props> = ({
   className,
   accountId,
   cartAccountId,
-  Dropdown,
+  Select,
   translate,
   reassignCart,
 }) => {
@@ -28,23 +27,26 @@ const ReassignCartButton: React.FC<Props> = ({
     return null;
   }
 
-  return (
-    <Dropdown onChange={(associate: Associate) => reassignCart(associate?.accountId, associate?.email)} className={className}>
-      <Dropdown.Button>{translate('cart.superuser.reassign.cart')}</Dropdown.Button>
+  const handleChange = (value: string) => {
+    const associate = activeBusinessUnit?.associates?.find((associate: any) => associate.id === value);
+    reassignCart(associate?.accountId, associate?.email);
+  };
 
-      <Dropdown.Options>
-        {activeBusinessUnit?.associates
-          ?.filter((associate) => associate.accountId !== accountId)
-          .map((associate) => (
-            <Dropdown.Option key={associate.accountId} value={associate}>
-              {`${associate.firstName || ''} ${associate.lastName || ''} ${
-                associate.roles?.length && ` (${associate.roles.map((role) => role.key).join(', ')})`
-              }`}
-              {cartAccountId === associate.accountId && <CheckIcon className="ml-2 inline h-4 w-4" />}
-            </Dropdown.Option>
-          ))}
-      </Dropdown.Options>
-    </Dropdown>
+  return (
+    <Select
+      className={className}
+      value={cartAccountId}
+      placeholder={translate('cart.superuser-reassign-cart')}
+      options={activeBusinessUnit?.associates
+        ?.filter((associate: any) => associate.id !== accountId)
+        .map((associate: any) => ({
+          name: `${associate.firstName || ''} ${associate.lastName || ''} ${
+            associate.roles?.length && ` (${associate.roles.join(', ')})`
+          }`,
+          value: associate.id,
+        }))}
+      onChange={(value: string) => handleChange(value)}
+    />
   );
 };
 

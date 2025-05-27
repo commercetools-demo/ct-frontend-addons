@@ -11,10 +11,7 @@ This is NOT an official commercetools code and NOT production ready. Use it at y
 1. [Superuser](src/superuser/README.md)
 1. [Configurable components](src/configurable-products/README.md)
 1. [B2B superuser](src/superuser-b2b/README.md)
-1. [Approval workflows](src/approval-workflows/README.md)
-1. [Product search](src/product-search/README.md)
 1. [Dealer/Store selector](src/store-context/README.md)
-1. [Dynamic page FECL rules](src/fecl-rules/README.md)
 
 ## Install
 ```

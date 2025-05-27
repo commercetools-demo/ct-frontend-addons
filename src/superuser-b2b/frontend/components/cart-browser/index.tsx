@@ -10,7 +10,7 @@ type Props = {
   createSuperuserCart: () => void;
   cartId: string;
   className?: string;
-  associates?: Associate[];
+  associates?: any[];
   translate: (translationKey: string) => string;
 };
 
@@ -55,7 +55,7 @@ const CartBrowser: React.FC<Props> = ({ setCart, createSuperuserCart, cartId, cl
             leaveTo="opacity-0 translate-y-1"
           >
             <Popover.Panel
-              className={`dark:bg-primary-400 dark:shadow-3xl absolute right-0 top-6 z-50 mr-8 mt-2 max-h-[300px] w-72 origin-top-right overflow-scroll rounded-sm bg-white p-2 shadow-sm ring-1 ring-black/5 focus:outline-none`}
+              className={`dark:bg-primary-400 dark:shadow-3xl absolute right-0 top-6 z-50 mr-8 mt-2 max-h-[316px] w-72 origin-top-right overflow-scroll rounded-sm bg-white p-2 shadow-sm ring-1 ring-black/5 focus:outline-none`}
             >
               {superuserStatus?.carts?.map((cart) => (
                 <button
@@ -71,7 +71,7 @@ const CartBrowser: React.FC<Props> = ({ setCart, createSuperuserCart, cartId, cl
                     cart.origin === 'Quote' ? ` - ${translate('cart.createdFromAQuote')} ` : ''
                   } ${cart.origin === 'Merchant' ? ` - ${translate('cart.createdByAMerchant')} ` : ''}`}
                   {`${translate('cart.with')} ${CurrencyHelpers.formatForCurrency(cart.totalPrice) || 0} ${translate(
-                    'cart.total.price',
+                    'cart.total-price',
                   )}`}
                   {cart.createdBy?.associate?.obj?.firstName && cart.createdBy?.associate?.obj?.lastName && (
                     <>

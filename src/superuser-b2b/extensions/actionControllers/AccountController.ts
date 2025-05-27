@@ -2,9 +2,9 @@ import { ActionContext, ActionHandler, Request, Response } from '@frontastic/ext
 import { extractDependency } from '../utils';
 import { Configuration } from '../../types';
 import { getCurrency, getLocale, getStoreKey, getSuperuserFromSession } from '../../../utils/request';
-import { BusinessUnit } from '../../../shared/businessUnit';
 import { getCartApi } from '../../../shared/utils/getCartApi';
-import { Cart } from '@commercetools/frontend-domain-types/cart';
+import { BusinessUnit } from '../../../types/b2b/business-unit';
+import { Cart } from '../../../types/b2b/cart';
 
 export const login = (originalCb: ActionHandler, config?: Configuration): ActionHandler => {
   return async (request: Request, actionContext: ActionContext): Promise<Response> => {
@@ -25,17 +25,17 @@ export const login = (originalCb: ActionHandler, config?: Configuration): Action
         actionContext.frontasticContext!,
         getLocale(request),
         getCurrency(request),
+        request
       );
       const businessUnit: BusinessUnit = await businessUnitApi.getByKeyForAccount(
         originalResult.sessionData.businessUnitKey,
-        originalResult.sessionData.account.accountId,
+        originalResult.sessionData.accountId,
       );
-
       if (businessUnit?.associates && !getSuperuserFromSession(request)) {
         const isSuperuser = businessUnit.associates.some(
           (associate) =>
             associate.roles?.some((role) => role.key === config?.props?.superuserRoleKey) &&
-            associate.accountId === originalResult.sessionData.account.accountId,
+            associate.accountId === originalResult.sessionData.accountId,
         );
         const response: Response = {
           ...originalResult,

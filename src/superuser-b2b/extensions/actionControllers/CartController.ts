@@ -2,10 +2,10 @@ import { ActionContext, ActionHandler, Request, Response } from '@frontastic/ext
 import { Configuration } from '../../types';
 import { getLocale, getStoreKey, getSuperuserFromSession } from '../../../utils/request';
 import { extractDependency } from '../utils';
-import { Cart, Order } from '@commercetools/frontend-domain-types/cart';
 import { getCartApi } from '../../../shared/utils/getCartApi';
 import parseRequestBody from '../../../utils/parseRequestBody';
 import { Cart as CommercetoolsCart } from '@commercetools/platform-sdk';
+import { Order, Cart } from '../../../types/b2b/cart';
 
 export const getAllSuperuserCartsInStore = (config?: Configuration): ActionHandler => {
   return async (request: Request, actionContext: ActionContext) => {
@@ -50,7 +50,6 @@ export const setCart = (config?: Configuration): ActionHandler => {
       const body = parseRequestBody<{
         email?: string;
       }>(request.body);
-
       const cart = await cartApi.getByPureId(id);
       const commercetoolsCart = await cartApi.getCommercetoolsCartById(cart.cartId);
       const cartId = cart.cartId;

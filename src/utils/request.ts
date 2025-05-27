@@ -1,6 +1,6 @@
 import { Request } from '@frontastic/extension-types';
 import parseQueryParams from './parseRequestParams';
-import { Account } from '../shared/types';
+import { Account } from '../types/b2b/account';
 
 export const getPath = (request: Request): string | null => {
   return getHeader(request, 'frontastic-path') ?? request.query.path;
@@ -103,6 +103,14 @@ export const getSupplyChannelId = (request: Request): string | null => {
 export function fetchAccountFromSession(request: Request): Account | undefined {
   if (request.sessionData?.account !== undefined) {
     return request.sessionData.account;
+  }
+
+  return undefined;
+}
+
+export const fetchAccountIdFromSession = (request: Request): string | undefined => {
+  if (request.sessionData?.accountId !== undefined) {
+    return request.sessionData.accountId;
   }
 
   return undefined;

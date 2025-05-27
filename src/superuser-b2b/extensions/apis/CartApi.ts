@@ -1,4 +1,4 @@
-import { Cart } from '@commercetools/frontend-domain-types/cart';
+import { Cart } from '../../../types/b2b/cart';
 import {
   CartDraft,
   CartPagedQueryResponse,

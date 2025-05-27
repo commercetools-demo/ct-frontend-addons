@@ -1,6 +1,6 @@
 import { Context, Request } from '@frontastic/extension-types';
 import {
-  fetchAccountFromSession,
+  fetchAccountIdFromSession,
   getBusinessUnitKey,
   getCurrency,
   getDistributionChannelId,
@@ -9,7 +9,7 @@ import {
 } from '../../utils/request';
 
 export const getCartApi = (request: Request, actionContext: Context, CartApi: any) => {
-  const account = fetchAccountFromSession(request);
+  const accountId = fetchAccountIdFromSession(request);
   const businessUnitKey = getBusinessUnitKey(request);
   const distributionChannelId = getDistributionChannelId(request);
   const supplyChannelId = getSupplyChannelId(request);
@@ -18,9 +18,10 @@ export const getCartApi = (request: Request, actionContext: Context, CartApi: an
     actionContext,
     getLocale(request),
     getCurrency(request),
-    account?.accountId,
+    accountId,
     businessUnitKey,
     distributionChannelId,
     supplyChannelId,
+    request
   );
 };
